@@ -5,9 +5,21 @@ import AboutBreeds from '../../components/AboutBreeds/AboutBreeds'
 import BreedInfo from '../BreedInfo/BreedInfo'
 import DogInfo from '../DogInfo/DogInfo'
 import NotFound from '../../components/NotFound/NotFound'
-import {Switch, Route} from 'react-router-dom'
+import {Switch, Route, withRouter} from 'react-router-dom'
+import {connect} from 'react-redux'
+import { fetchDogs } from '../../thunks/fetchDogs'
 
 class App extends Component {
+
+
+  componentDidMount = async () => {
+    const options = {
+      location: 77043,
+      breed: 'Siberian Husky'
+    }
+    this.props.fetchDogs(options)
+  }
+
   render() {
     return (
       <div className="App">
@@ -38,4 +50,9 @@ class App extends Component {
   }
 }
 
-export default App;
+export const mapDispatchToProps = (dispatch) => ({
+  fetchDogs: (url, options) => dispatch(fetchDogs(url, options))
+})
+
+
+export default withRouter(connect(null, mapDispatchToProps)(App))
