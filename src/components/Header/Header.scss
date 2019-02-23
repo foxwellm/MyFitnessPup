@@ -2,6 +2,16 @@
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
+}
+
+.header-navlink {
+  background-color: red;
+  padding: 20px 30px;
+  margin: 10px;
+}
+
+.selected {
+  background-color: blue;
 }
 
