@@ -1,5 +1,18 @@
 .DogCard-container {
   width: 300px;
-  height: 400px;
-  background-image: url('../../../public/images/siberian-husky.jpg')
+  height: 300px;
+  // background-image: url('../../../public/images/siberian-husky.jpg')
+  background-size: 300px 200px;
+  // background:  no-repeat center center;
 }
+
+.dog-img {
+  width: 300px;
+  height: 200px;
+  background-size: 300px 200px;
+}
+// .card-img {
+//   box-sizing: border-box;
+//    width: 100px;
+//      height: 100px;
+// }
