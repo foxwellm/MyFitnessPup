@@ -55,7 +55,9 @@ export class Search extends Component {
       <form onSubmit={this.handleSearch}>
         <input type='number' onChange={this.handleChange} placeholder='zip-code' name='zip' value={this.state.zipCode}></input>
         <button>Search</button>
-        <div className='results-container'></div>
+        <div className='results-container'>
+        
+        </div>
       </form>
     )
   }

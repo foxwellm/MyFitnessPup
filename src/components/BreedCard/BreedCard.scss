@@ -1,0 +1,29 @@
+.BreedCard-container {
+  width: 300px;
+  height: 220px;
+  // background-image: url('../../../public/images/siberian-husky.jpg')
+  // background-size: 300px 200px;
+  // background:  no-repeat center center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  &:hover {
+    background-color: blue;
+  }
+}
+
+.breed-card-header {
+  // height: 20px;
+  margin: 0;
+}
+
+.breed-img {
+  width: 300px;
+  height: 200px;
+  background-size: 300px 200px;
+}
+// .card-img {
+//   box-sizing: border-box;
+//    width: 100px;
+//      height: 100px;
+// }

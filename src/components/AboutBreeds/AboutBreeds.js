@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { breeds } from '../../staticData/breeds'
-import DogCard from '../DogCard/DogCard'
+import BreedCard from '../BreedCard/BreedCard'
 
 export class AboutBreeds extends Component {
   constructor() {
@@ -13,7 +13,7 @@ export class AboutBreeds extends Component {
   render() {
 // debugger
     const breedCards =this.state.breeds.map((breed, i) => {
-      return <DogCard {...breed} cardNumber={i} />
+      return <BreedCard {...breed} cardNumber={i} />
     })
 
 
