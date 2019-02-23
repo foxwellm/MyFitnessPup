@@ -4,6 +4,7 @@ import {fetchDogsSuccess} from '../actions'
 import {dogCleaner} from '../helpers/dogCleaner'
 
 export const fetchDogs = (options) => {
+  console.log(options)
   return async (dispatch) => {
     try {
       // dispatch(isLoading(true))
@@ -12,13 +13,16 @@ export const fetchDogs = (options) => {
       })
       if (!response.ok) {
         throw Error(response.statusText)
+       
       }
       const dogs = await response.json()
       // dispatch(isLoading(false))
       // const cleanedDogs = dogCleaner(dogs)
       // debugger
+      const cleanedDogs = dogCleaner(dogs)
       const lastOffset = dogs.petfinder.lastOffset.$t
-      dispatch(fetchDogsSuccess(options.location, options.breed, lastOffset, dogCleaner(dogs)))
+
+      dispatch(fetchDogsSuccess(options.location, options.breed, lastOffset, cleanedDogs))
     } catch (error) {
       // dispatch(hasErrored(error.message))
     }
