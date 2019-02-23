@@ -4,20 +4,20 @@ import Home from '../Home/Home'
 import AboutBreeds from '../../components/AboutBreeds/AboutBreeds'
 import BreedInfo from '../BreedInfo/BreedInfo'
 import DogInfo from '../DogInfo/DogInfo'
+import Search from '../Search/Search'
 import NotFound from '../../components/NotFound/NotFound'
 import {Switch, Route, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import { fetchDogs } from '../../thunks/fetchDogs'
 
-class App extends Component {
+ class App extends Component {
 
-
-  componentDidMount = async () => {
-    const options = {
-      location: 77043,
-      breed: 'Siberian Husky'
-    }
-    this.props.fetchDogs(options)
+  componentDidMount = () => {
+    // const options = {
+    //   location: 77043,
+    //   breed: 'Siberian Husky'
+    // }
+    // this.props.fetchDogs(options)
   }
 
   render() {
@@ -35,7 +35,8 @@ class App extends Component {
             return <NotFound />
           }}
           />
-          <Route path='/:id' render={({match}) => {
+          <Route path='/search' component={Search} />
+          <Route path='/dog-info/:id' render={({match}) => {
             const {id} = match.params
             if(id) {
               return <DogInfo />
@@ -51,7 +52,7 @@ class App extends Component {
 }
 
 export const mapDispatchToProps = (dispatch) => ({
-  fetchDogs: (url, options) => dispatch(fetchDogs(url, options))
+  fetchDogs: (options) => dispatch(fetchDogs(options))
 })
 
 
