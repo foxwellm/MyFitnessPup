@@ -4,13 +4,7 @@ import React from 'react'
 // import images from  '../../../public/images'
 
 export const DogCard = (props) => {
-  function importAll(r) {
-    let images = {};
-    r.keys().map((item) => { images[item.replace('./', '')] = r(item); });
-    return images;
-  }
 
-  const images = importAll(require.context('../../images'));
   return (
     <div className='DogCard-container' >
       <div className='dog-card-header'>{props.breed}</div>

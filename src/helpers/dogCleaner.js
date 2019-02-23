@@ -18,7 +18,8 @@ export const dogCleaner = (dogs) => {
       shelterId: dog.shelterId.$t,
       shelterPetId: dog.shelterPetId.$t,
       size: dog.size.$t,
-      status: dog.status.$t
+      status: dog.status.$t,
+      zip: dog.contact.zip.$t
     }
   })
   return cleanedDogs

@@ -51,6 +51,8 @@ export class Search extends Component {
     // const breeds = breeds
     // debugger
 
+    
+
     return (
       <form onSubmit={this.handleSearch}>
         <input type='number' onChange={this.handleChange} placeholder='zip-code' name='zip' value={this.state.zipCode}></input>
