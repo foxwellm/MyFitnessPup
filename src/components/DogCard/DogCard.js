@@ -13,12 +13,11 @@ export const DogCard = (props) => {
   const images = importAll(require.context('../../images'));
   return (
     <div className='DogCard-container' >
-    <h2>{props.breed}</h2>
+      <div className='dog-card-header'>{props.breed}</div>
       <div className='dog-img' style={{ backgroundImage: `url(${images[props.img]})` }}>
 
-    </div>
-      {/* style={{ backgroundImage: `url(${logo})` }} */}
-      {/* <img className='card-img' src={images[props.img]} /> */}
+      </div>
+
 
     </div>
   )
