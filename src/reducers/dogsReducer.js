@@ -1,5 +1,5 @@
 export const dogsReducer = (state = {}, action) => {
-  debugger
+  // debugger
   switch (action.type) {
     
     case 'FETCH_DOGS_SUCCESS':
