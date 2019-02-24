@@ -1,22 +1,24 @@
 export const dogsReducer = (state = {}, action) => {
-  // debugger
+  
   switch (action.type) {
     
     case 'FETCH_DOGS_SUCCESS':
       let newState = { ...state }
-      if (!newState[action.location]) {
-        newState[action.location] = {}
-        newState[action.location][action.breed] = {}
-        newState[action.location][action.breed].dogs = action.dogs
-        newState[action.location][action.breed].offset = action.lastOffset
-      } else if (!newState[action.location][action.breed]) {
-        newState[action.location][action.breed] = {}
-        newState[action.location][action.breed].dogs = action.dogs
-        newState[action.location][action.breed].offset = action.lastOffset
-      } else {
-        newState[action.location][action.breed].dogs = [...newState[action.location][action.breed].dogs, ...action.dogs]
-        newState[action.location][action.breed].offset = action.lastOffset
-      }
+      action.dogs.map(dog => { 
+        if (!newState[dog.location]) {
+          newState[dog.location] = {}
+          newState[dog.location][dog.breed] = {}
+          newState[dog.location][dog.breed].cleanedDogs = dog.cleanedDogs
+          newState[dog.location][dog.breed].offset = dog.lastOffset
+        } else if (!newState[dog.location][dog.breed]) {
+          newState[dog.location][dog.breed] = {}
+          newState[dog.location][dog.breed].cleanedDogs = dog.cleanedDogs
+          newState[dog.location][dog.breed].offset = dog.lastOffset
+        } else {
+          newState[dog.location][dog.breed].cleanedDogs = [...newState[dog.location][dog.breed].cleanedDogs, ...dog.cleanedDogs]
+          newState[dog.location][dog.breed].offset = dog.lastOffset
+        }
+      })
       return newState
     default:
       return state;

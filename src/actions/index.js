@@ -1,8 +1,5 @@
-export const fetchDogsSuccess = (location, breed, lastOffset, dogs) => ({
+export const fetchDogsSuccess = (dogs) => ({
   type: 'FETCH_DOGS_SUCCESS',
-  location,
-  breed,
-  lastOffset,
   dogs
 })
 
