@@ -11,14 +11,6 @@ import {connect} from 'react-redux'
 
  class App extends Component {
 
-  componentDidMount = () => {
-    // const options = {
-    //   location: 77043,
-    //   breed: 'Siberian Husky'
-    // }
-    // this.props.fetchDogs(options)
-  }
-
   render() {
     return (
       <div className="App">

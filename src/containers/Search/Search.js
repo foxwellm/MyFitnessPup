@@ -5,10 +5,11 @@ import { breeds } from '../../staticData/breeds'
 import { setLoading } from '../../actions'
 import { fetchDogLocation } from '../../helpers/fetchDogLocation';
 import { fetchDogsSuccess } from '../../actions'
+import { DogCard } from '../../components/DogCard/DogCard'
 
 export class Search extends Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
     this.state = {
       zipCode: 77043,
       zipError: '',
@@ -46,17 +47,16 @@ export class Search extends Component {
   }
 
   updateCurrentSearchDogs = () => {
-    const { storedDogs, zipCode, breeds}= this.state
+    const { storedDogs, zipCode, breeds } = this.state
     let searchingAll = []
-    if(this.state.search.length === 0) {
+    if (this.state.search.length === 0) {
       breeds.forEach(breed => {
         searchingAll = [...searchingAll, ...this.props.storedDogs[zipCode][breed.breed].dogs]
       })
-      
+
       searchingAll.sort((a, b) => {
-        return parseFloat(a.distance.split(' ')[0]) - parseFloat(b.distance.split(' ')[0])
+        return parseFloat(a.distance.split(' ')[0].split(',').join('')) - parseFloat(b.distance.split(' ')[0].split(',').join(''))
       })
-      
     }
     this.setState({
       currentSearchDogs: searchingAll
@@ -64,15 +64,18 @@ export class Search extends Component {
   }
 
   handleSearch = async (e) => {
+    const {isLoading, setLoading} = this.props
+    // debugger
     e.preventDefault()
+    // debugger
+    setLoading(true)
     let result = await this.retrieveDogs()
-    // debugger
     let result2 = await this.addDistance(result)
-    // debugger
     result2.map(async result => {
       await this.props.fetchDogsSuccess(result.location, result.breed, result.lastOffset, result.cleanedDogs)
     })
     this.updateCurrentSearchDogs()
+    setLoading(false)
   }
 
   addDistance = async (allResults) => {
@@ -94,17 +97,36 @@ export class Search extends Component {
   }
 
   render() {
-    // if(search === 0) {
+    const { isLoading } = this.props
+    const { search, currentSearchDogs, currentPage } = this.state
+    let displayCards
+    if (search.length === 0) {
 
-    // }
+      // for (let i=(currentPage*10)-11; i<(currentPage*10)-1; i++) {
+      //   debugger
+      //   displayCards = displayCards + <DogCard {...currentSearchDogs[i]} />
+      // }
 
+      displayCards = currentSearchDogs.map((dog, i) => {
+        // debugger
+        if (i > (currentPage * 10) - 11 && i < (currentPage * 10) - 1) {
+          // debugger
+          return <DogCard {...dog} />
+        } else {
+          return
+        }
+      })
+    }
 
+console.log('b4 ret', this.props.isLoading)
     return (
       <form onSubmit={this.handleSearch}>
         <input type='number' onChange={this.handleChange} placeholder='zip-code' name='zip' value={this.state.zipCode}></input>
         <button>Search</button>
         <div className='results-container'>
-
+          {
+            !isLoading ? displayCards : <div>...Loading</div>
+          }
 
         </div>
       </form>
