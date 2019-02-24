@@ -1,9 +1,12 @@
-export const dogCleaner = (dogs) => {
-  const cleanedDogs = dogs.petfinder.pets.pet.map(dog => {
+// import {fetchDogLocation} from '../helpers/fetchDogLocation'
+
+export const dogCleaner = (dogs, startLocation) => {
+  const cleanedDogs = dogs.petfinder.pets.pet.map( async dog => {
     let photos = null
     if(!Object.keys(dog.media).length === 0) {
       photos = dog.media.photos.photo
     }
+    // await fetchDogLocation(startLocation, dog.contact.zip.$t)
     return {
       id: dog.id.$t,
       name: dog.name.$t,
@@ -19,7 +22,8 @@ export const dogCleaner = (dogs) => {
       shelterPetId: dog.shelterPetId.$t,
       size: dog.size.$t,
       status: dog.status.$t,
-      zip: dog.contact.zip.$t
+      zip: dog.contact.zip.$t,
+      distance: ''
     }
   })
   return cleanedDogs
