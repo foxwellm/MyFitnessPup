@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
-import { fetchDogs } from '../../helpers/fetchDogs'
 import { connect } from 'react-redux'
 import { breeds } from '../../staticData/breeds'
 import { setLoading } from '../../actions'
-import { fetchDogLocation } from '../../helpers/fetchDogLocation';
 import { fetchDogsSuccess } from '../../actions'
 import { DogCard } from '../../components/DogCard/DogCard'
+import { retrieveDogs } from '../../helpers/retrieveDogs'
 
 export class Search extends Component {
   constructor() {
@@ -26,33 +25,15 @@ export class Search extends Component {
     })
   }
 
-  retrieveDogs = async () => {
-    const { search, breeds, zipCode } = this.state
-    const { storedDogs } = this.props
-    if (search.length === 0) {
-      const things = breeds.map(async dog => {
-        if (!storedDogs[zipCode] || !storedDogs[zipCode][dog.breed]) {
-          let options = {
-            location: zipCode,
-            breed: dog.breed,
-          }
-          const result = await fetchDogs(options)
-          return result
-        } else {
-
-        }
-      })
-      return Promise.all(things)
-    }
-  }
-
   updateCurrentSearchDogs = () => {
     const { zipCode, breeds } = this.state
     const { storedDogs } = this.props
     let searchingAll = []
+
     if (this.state.search.length === 0) {
       breeds.forEach(breed => {
-        searchingAll = [...searchingAll, ...storedDogs[zipCode][breed.breed].dogs]
+
+        searchingAll = [...searchingAll, ...storedDogs[zipCode][breed.breed].cleanedDogs]
       })
       searchingAll.sort((a, b) => {
         return parseFloat(a.distance.split(' ')[0].split(',').join('')) - parseFloat(b.distance.split(' ')[0].split(',').join(''))
@@ -64,34 +45,13 @@ export class Search extends Component {
   }
 
   handleSearch = async (e) => {
-    const { setLoading } = this.props
+    const { setLoading, fetchDogsSuccess, storedDogs } = this.props
+    const { search, breeds, zipCode } = this.state
     e.preventDefault()
     setLoading(true)
-    let result = await this.retrieveDogs()
-    let result2 = await this.addDistance(result)
-    result2.map(async result => {
-      await this.props.fetchDogsSuccess(result.location, result.breed, result.lastOffset, result.cleanedDogs)
-    })
+    fetchDogsSuccess(await retrieveDogs(search, breeds, zipCode, storedDogs))
     this.updateCurrentSearchDogs()
     setLoading(false)
-  }
-
-  addDistance = async (allResults) => {
-    const finished = allResults.map(async breed => {
-      const dogs = breed.cleanedDogs.map(async dog => {
-        dog.distance = await fetchDogLocation(this.state.zipCode, dog.zip)
-        return dog
-      })
-      let promisedDogs = await Promise.all(dogs)
-      return {
-        location: breed.location,
-        breed: breed.breed,
-        lastOffset: breed.lastOffset,
-        cleanedDogs: promisedDogs
-      }
-    })
-    let promisedFinished = await Promise.all(finished)
-    return promisedFinished
   }
 
   render() {
