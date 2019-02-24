@@ -1,10 +1,7 @@
 import { petFinderAPI } from '../APIKEY'
-
-// import {fetchDogsSuccess, setLoading} from '../actions'
-import { dogCleaner } from '../helpers/dogCleaner'
+import { dogCleaner } from './dogCleaner'
 
 export const fetchDogs = async (options) => {
-  // console.log(options)
   let cleanedDogs
   let lastOffset
   try {
@@ -14,14 +11,7 @@ export const fetchDogs = async (options) => {
     if (!response.ok) {
       throw Error(response.statusText)
     }
-    // debugger
     const dogs = await response.json()
-    // console.log(options.searchLength)
-    // if (options.searchLength === 1) {
-
-    // }
-    // const cleanedDogs = dogCleaner(dogs)
-    // debugger
     cleanedDogs = dogCleaner(dogs, options.location)
     lastOffset = dogs.petfinder.lastOffset.$t
     return {
@@ -30,9 +20,7 @@ export const fetchDogs = async (options) => {
       lastOffset,
       cleanedDogs
     }
-    // dispatch(fetchDogsSuccess(options.location, options.breed, lastOffset, cleanedDogs))
   } catch (error) {
-    // dispatch(hasErrored(error.message))
+
   }
-  // return { location:options.location, breed:options.breed, lastOffset, cleanedDogs}
 }

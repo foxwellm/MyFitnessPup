@@ -1,6 +1,5 @@
 export const fetchDogLocation = async (startLocation, endLocation) => {
-  // debugger
-  const response = await fetch('https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=77043&destinations=77007&key=AIzaSyD7FdmtnkrRQem_7NJWaKpHdNArXXgm7k4');
+  const response = await fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${startLocation}&destinations=${endLocation}&key=AIzaSyD7FdmtnkrRQem_7NJWaKpHdNArXXgm7k4`);
   if (!response.ok) {
     debugger
     throw Error(response.statusText)

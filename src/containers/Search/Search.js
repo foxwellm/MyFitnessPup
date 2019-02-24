@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { fetchDogs } from '../../thunks/fetchDogs'
+import { fetchDogs } from '../../helpers/fetchDogs'
 import { connect } from 'react-redux'
-import { Switch, Route, withRouter } from 'react-router-dom'
 import { breeds } from '../../staticData/breeds'
 import { setLoading } from '../../actions'
 import { fetchDogLocation } from '../../helpers/fetchDogLocation';
@@ -39,11 +38,29 @@ export class Search extends Component {
           const result = await fetchDogs(options)
           return result
         } else {
-          console.log('there')
+
         }
       })
       return Promise.all(things)
     }
+  }
+
+  updateCurrentSearchDogs = () => {
+    const { storedDogs, zipCode, breeds}= this.state
+    let searchingAll = []
+    if(this.state.search.length === 0) {
+      breeds.forEach(breed => {
+        searchingAll = [...searchingAll, ...this.props.storedDogs[zipCode][breed.breed].dogs]
+      })
+      
+      searchingAll.sort((a, b) => {
+        return parseFloat(a.distance.split(' ')[0]) - parseFloat(b.distance.split(' ')[0])
+      })
+      
+    }
+    this.setState({
+      currentSearchDogs: searchingAll
+    })
   }
 
   handleSearch = async (e) => {
@@ -55,12 +72,13 @@ export class Search extends Component {
     result2.map(async result => {
       await this.props.fetchDogsSuccess(result.location, result.breed, result.lastOffset, result.cleanedDogs)
     })
+    this.updateCurrentSearchDogs()
   }
 
   addDistance = async (allResults) => {
     const finished = allResults.map(async breed => {
       const dogs = breed.cleanedDogs.map(async dog => {
-        dog.distance = await fetchDogLocation()
+        dog.distance = await fetchDogLocation(this.state.zipCode, dog.zip)
         return dog
       })
       let promisedDogs = await Promise.all(dogs)
@@ -76,12 +94,17 @@ export class Search extends Component {
   }
 
   render() {
+    // if(search === 0) {
+
+    // }
+
 
     return (
       <form onSubmit={this.handleSearch}>
         <input type='number' onChange={this.handleChange} placeholder='zip-code' name='zip' value={this.state.zipCode}></input>
         <button>Search</button>
         <div className='results-container'>
+
 
         </div>
       </form>

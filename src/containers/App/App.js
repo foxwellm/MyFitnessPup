@@ -8,7 +8,6 @@ import Search from '../Search/Search'
 import NotFound from '../../components/NotFound/NotFound'
 import {Switch, Route, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
-import { fetchDogs } from '../../thunks/fetchDogs'
 
  class App extends Component {
 
@@ -52,7 +51,7 @@ import { fetchDogs } from '../../thunks/fetchDogs'
 }
 
 export const mapDispatchToProps = (dispatch) => ({
-  fetchDogs: (options) => dispatch(fetchDogs(options))
+  // fetchDogs: (options) => dispatch(fetchDogs(options))
 })
 
 
