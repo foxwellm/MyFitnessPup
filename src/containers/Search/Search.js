@@ -3,7 +3,9 @@ import { fetchDogs } from '../../thunks/fetchDogs'
 import { connect } from 'react-redux'
 import { Switch, Route, withRouter } from 'react-router-dom'
 import { breeds } from '../../staticData/breeds'
-import {setLoading} from '../../actions'
+import { setLoading } from '../../actions'
+import { fetchDogLocation } from '../../helpers/fetchDogLocation';
+import {fetchDogsSuccess} from '../../actions'
 
 export class Search extends Component {
   constructor(props) {
@@ -37,63 +39,81 @@ export class Search extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
- 
+
     // this.updateCurrentSearchDogs()
   }
 
-  retrieveDogs = () => {
+  retrieveDogs = async () => {
     const { search, breeds, zipCode } = this.state
-    const { fetchDogs, storedDogs } = this.props
-    // let allDogs = []
+    const { storedDogs } = this.props
+    let allDogs = []
     if (search.length === 0) {
-      let searchLength = 20
-      breeds.forEach(dog => {
+      // debugger
+      // let searchLength = 20
+      const things = breeds.map(async dog => {
         if (!storedDogs[zipCode] || !storedDogs[zipCode][dog.breed]) {
           let options = {
             location: zipCode,
             // location: 77043,
             breed: dog.breed,
-            searchLength: searchLength
           }
-          console.log('in')
-          fetchDogs(options)
-          searchLength--
-          
+          const result = await fetchDogs(options)
+          // allDogs.push(result)
+          return result
+          // debugger
+
         } else {
           console.log('there')
         }
       })
+      // debugger
       // dispatch(fetchDogsSuccess(options.location, options.breed, lastOffset, cleanedDogs))
+      return Promise.all(things)
     }
-    // this.updateState()
-    
   }
+
+
 
   // updateState = () => {
   //   this.setState({ isFetching: true })
   // }
-  handleSearch = (e) => {
+  handleSearch = async (e) => {
     e.preventDefault()
 
     // this.props.setLoading(true)
     console.log('before')
-   this.retrieveDogs()
-   console.log('after')
+    let result = await this.retrieveDogs()
+    console.log(result)
+    let result2 = await this.addDistance(result)
+    result2.map(async result => {
+      await this.props.fetchDogsSuccess(77043, 'Husky', 10, result)
+    })
+      // fetchDogsSuccess(options.location, options.breed, lastOffset, cleanedDogs)
+
     // this.props.setLoading(false)
-
-// this.setState({isFetching: true})
-
+    // this.setState({isFetching: true})
     // console.log('hi')
     //  this.locateDog()
+  }
+
+  addDistance = async (allResults) => {
+    const finished = allResults.map(async breed => {
+      const dogs = breed.cleanedDogs.map(async dog => {
+        dog.distance = await fetchDogLocation()
+        return dog
+      })
+      return Promise.all(dogs)
+    })
+    return Promise.all(finished)
   }
 
   render() {
 
     // const breeds = breeds
     // debugger
-    console.log(this.props.isLoading)
-// console.log('ren', this.state.isFetching)
-// !this.props.isLoading && this.updateCurrentSearchDogs()
+    // console.log(this.props.isLoading)
+    // console.log('ren', this.state.isFetching)
+    // !this.props.isLoading && this.updateCurrentSearchDogs()
     return (
       <form onSubmit={this.handleSearch}>
         <input type='number' onChange={this.handleChange} placeholder='zip-code' name='zip' value={this.state.zipCode}></input>
@@ -112,7 +132,7 @@ export const mapStateToProps = (state) => ({
 })
 
 export const mapDispatchToProps = (dispatch) => ({
-  fetchDogs: (options) => dispatch(fetchDogs(options)),
+  fetchDogsSuccess: (location, breed, lastOffset, dogs) => dispatch(fetchDogsSuccess(location, breed, lastOffset, dogs)),
   setLoading: (bool) => dispatch(setLoading(bool))
 })
 

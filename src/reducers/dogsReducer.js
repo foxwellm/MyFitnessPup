@@ -1,5 +1,7 @@
 export const dogsReducer = (state = {}, action) => {
+  debugger
   switch (action.type) {
+    
     case 'FETCH_DOGS_SUCCESS':
       let newState = { ...state }
       if (!newState[action.location]) {
@@ -12,7 +14,7 @@ export const dogsReducer = (state = {}, action) => {
         newState[action.location][action.breed].dogs = action.dogs
         newState[action.location][action.breed].offset = action.lastOffset
       } else {
-        newState[action.location][action.breed].dogs.push(action.dogs)
+        newState[action.location][action.breed].dogs = [...newState[action.location][action.breed].dogs, ...action.dogs]
         newState[action.location][action.breed].offset = action.lastOffset
       }
       return newState

@@ -1,12 +1,14 @@
-// import {fetchDogLocation} from '../helpers/fetchDogLocation'
+import {fetchDogLocation} from '../helpers/fetchDogLocation'
 
 export const dogCleaner = (dogs, startLocation) => {
-  const cleanedDogs = dogs.petfinder.pets.pet.map( async dog => {
+  const cleanedDogs = dogs.petfinder.pets.pet.map( dog => {
     let photos = null
     if(!Object.keys(dog.media).length === 0) {
       photos = dog.media.photos.photo
     }
-    // await fetchDogLocation(startLocation, dog.contact.zip.$t)
+    // const locationD = await fetchDogLocation(startLocation, dog.contact.zip.$t)
+  //  console.log(locationD)
+   console.log(dog)
     return {
       id: dog.id.$t,
       name: dog.name.$t,
@@ -24,6 +26,7 @@ export const dogCleaner = (dogs, startLocation) => {
       status: dog.status.$t,
       zip: dog.contact.zip.$t,
       distance: ''
+      
     }
   })
   return cleanedDogs
