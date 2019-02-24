@@ -5,3 +5,8 @@ export const fetchDogsSuccess = (location, breed, lastOffset, dogs) => ({
   lastOffset,
   dogs
 })
+
+export const setLoading = (bool) => ({
+  type: 'SET_LOADING',
+  isLoading: bool
+});
