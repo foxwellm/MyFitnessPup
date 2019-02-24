@@ -47,13 +47,13 @@ export class Search extends Component {
   }
 
   updateCurrentSearchDogs = () => {
-    const { storedDogs, zipCode, breeds } = this.state
+    const { zipCode, breeds } = this.state
+    const { storedDogs } = this.props
     let searchingAll = []
     if (this.state.search.length === 0) {
       breeds.forEach(breed => {
-        searchingAll = [...searchingAll, ...this.props.storedDogs[zipCode][breed.breed].dogs]
+        searchingAll = [...searchingAll, ...storedDogs[zipCode][breed.breed].dogs]
       })
-
       searchingAll.sort((a, b) => {
         return parseFloat(a.distance.split(' ')[0].split(',').join('')) - parseFloat(b.distance.split(' ')[0].split(',').join(''))
       })
@@ -64,10 +64,8 @@ export class Search extends Component {
   }
 
   handleSearch = async (e) => {
-    const {isLoading, setLoading} = this.props
-    // debugger
+    const { setLoading } = this.props
     e.preventDefault()
-    // debugger
     setLoading(true)
     let result = await this.retrieveDogs()
     let result2 = await this.addDistance(result)
@@ -99,26 +97,13 @@ export class Search extends Component {
   render() {
     const { isLoading } = this.props
     const { search, currentSearchDogs, currentPage } = this.state
-    let displayCards
-    if (search.length === 0) {
-
-      // for (let i=(currentPage*10)-11; i<(currentPage*10)-1; i++) {
-      //   debugger
-      //   displayCards = displayCards + <DogCard {...currentSearchDogs[i]} />
-      // }
-
-      displayCards = currentSearchDogs.map((dog, i) => {
-        // debugger
-        if (i > (currentPage * 10) - 11 && i < (currentPage * 10) - 1) {
-          // debugger
-          return <DogCard {...dog} />
-        } else {
-          return
-        }
-      })
+    let displayCards = []
+    if (search.length === 0 && !isLoading) {
+      for (let i = (currentPage * 10) - 10; i < (currentPage * 10); i++) {
+        displayCards.push(<DogCard {...currentSearchDogs[i]} />)
+      }
     }
 
-console.log('b4 ret', this.props.isLoading)
     return (
       <form onSubmit={this.handleSearch}>
         <input type='number' onChange={this.handleChange} placeholder='zip-code' name='zip' value={this.state.zipCode}></input>
@@ -127,7 +112,6 @@ console.log('b4 ret', this.props.isLoading)
           {
             !isLoading ? displayCards : <div>...Loading</div>
           }
-
         </div>
       </form>
     )
