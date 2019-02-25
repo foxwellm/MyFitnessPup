@@ -18,7 +18,7 @@ export class AboutBreeds extends Component {
 
 
     return (
-      <div className='breed-cards-container'> {breedCards}</div >
+      <div className='breed-cards-container'>{breedCards}</div >
     )
   }
 }

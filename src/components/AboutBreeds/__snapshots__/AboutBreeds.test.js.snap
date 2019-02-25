@@ -4,7 +4,6 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
 <div
   className="breed-cards-container"
 >
-   
   <BreedCard
     breed="Siberian Husky"
     cardNumber={0}
