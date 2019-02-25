@@ -1,7 +1,6 @@
 export const dogsReducer = (state = {}, action) => {
-  
   switch (action.type) {
-    
+   
     case 'FETCH_DOGS_SUCCESS':
       let newState = { ...state }
       action.dogs.map(dog => { 
