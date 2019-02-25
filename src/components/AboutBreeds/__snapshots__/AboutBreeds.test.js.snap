@@ -1,0 +1,209 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AboutBreeds should have match the correct snapshot 1`] = `
+<div
+  className="breed-cards-container"
+>
+   
+  <BreedCard
+    breed="Siberian Husky"
+    cardNumber={0}
+    img="siberian-husky.jpg"
+    isClimber={true}
+    isCold={false}
+    isRunner={true}
+    key="0"
+    tag="siberian-husky"
+  />
+  <BreedCard
+    breed="Australian Shepherd"
+    cardNumber={1}
+    img="australian-shepherd.jpg"
+    isClimber={true}
+    isCold={false}
+    isRunner={true}
+    key="1"
+    tag="australian-shepherd"
+  />
+  <BreedCard
+    breed="German Shorthaired Pointer"
+    cardNumber={2}
+    img="german-shorthaired-pointer.jpg"
+    isClimber={true}
+    isCold={false}
+    isRunner={true}
+    key="2"
+    tag="german-shorthaired-pointer"
+  />
+  <BreedCard
+    breed="Vizsla"
+    cardNumber={3}
+    img="vizsla.jpg"
+    isClimber={true}
+    isCold={false}
+    isRunner={true}
+    key="3"
+    tag="vizsla"
+  />
+  <BreedCard
+    breed="Australian Cattle Dog / Blue Heeler"
+    cardNumber={4}
+    img="australian-cattle-dog.jpg"
+    isClimber={true}
+    isCold={false}
+    isRunner={true}
+    key="4"
+    tag="australian-cattle-dog"
+  />
+  <BreedCard
+    breed="Weimaraner"
+    cardNumber={5}
+    img="weimaraner.jpg"
+    isClimber={true}
+    isCold={false}
+    isRunner={true}
+    key="5"
+    tag="weimaraner"
+  />
+  <BreedCard
+    breed="Bernese Mountain Dog"
+    cardNumber={6}
+    img="bernese-mountain-dog.jpg"
+    isClimber={true}
+    isCold={false}
+    isRunner={true}
+    key="6"
+    tag="bernese-mountain-dog"
+  />
+  <BreedCard
+    breed="Rhodesian Ridgeback"
+    cardNumber={7}
+    img="rhodesian-ridgeback.jpg"
+    isClimber={true}
+    isCold={false}
+    isRunner={true}
+    key="7"
+    tag="rhodesian-ridgeback"
+  />
+  <BreedCard
+    breed="Alaskan Malamute"
+    cardNumber={8}
+    img="alaskan-malamute.jpg"
+    isClimber={true}
+    isCold={false}
+    isRunner={true}
+    key="8"
+    tag="alaskan-malamute"
+  />
+  <BreedCard
+    breed="Portuguese Water Dog"
+    cardNumber={9}
+    img="portuguese-water-dog.jpg"
+    isClimber={true}
+    isCold={false}
+    isRunner={true}
+    key="9"
+    tag="portuguese-water-dog"
+  />
+  <BreedCard
+    breed="Border Collie"
+    cardNumber={10}
+    img="border-collie.jpg"
+    isClimber={true}
+    isCold={false}
+    isRunner={true}
+    key="10"
+    tag="border-collie"
+  />
+  <BreedCard
+    breed="German Shepherd Dog"
+    cardNumber={11}
+    img="german-shepherd-dog.jpg"
+    isClimber={true}
+    isCold={false}
+    isRunner={true}
+    key="11"
+    tag="german-shepherd-dog"
+  />
+  <BreedCard
+    breed="Dalmatian"
+    cardNumber={12}
+    img="dalmatian.jpg"
+    isClimber={true}
+    isCold={false}
+    isRunner={true}
+    key="12"
+    tag="dalmatian"
+  />
+  <BreedCard
+    breed="Airedale Terrier"
+    cardNumber={13}
+    img="airedale-terrier.jpg"
+    isClimber={true}
+    isCold={false}
+    isRunner={true}
+    key="13"
+    tag="airedale-terrier"
+  />
+  <BreedCard
+    breed="Jack Russell Terrier"
+    cardNumber={14}
+    img="jack-russell-terrier.jpg"
+    isClimber={true}
+    isCold={false}
+    isRunner={true}
+    key="14"
+    tag="jack-russell-terrier"
+  />
+  <BreedCard
+    breed="Poodle"
+    cardNumber={15}
+    img="poodle.jpg"
+    isClimber={true}
+    isCold={false}
+    isRunner={true}
+    key="15"
+    tag="poodle"
+  />
+  <BreedCard
+    breed="Belgian Shepherd / Sheepdog"
+    cardNumber={16}
+    img="belgian-shepherd.jpg"
+    isClimber={true}
+    isCold={false}
+    isRunner={true}
+    key="16"
+    tag="belgian-shepherd"
+  />
+  <BreedCard
+    breed="English Setter"
+    cardNumber={17}
+    img="english-setter.jpg"
+    isClimber={true}
+    isCold={false}
+    isRunner={true}
+    key="17"
+    tag="english-setter"
+  />
+  <BreedCard
+    breed="Brittany Spaniel"
+    cardNumber={18}
+    img="brittany-spaniel.jpg"
+    isClimber={true}
+    isCold={false}
+    isRunner={true}
+    key="18"
+    tag="brittany-spaniel"
+  />
+  <BreedCard
+    breed="Labrador Retriever"
+    cardNumber={19}
+    img="labrador-retriever.jpg"
+    isClimber={true}
+    isCold={false}
+    isRunner={true}
+    key="19"
+    tag="labrador-retriever"
+  />
+</div>
+`;
