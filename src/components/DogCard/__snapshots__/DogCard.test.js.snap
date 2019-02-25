@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DogCard should have match the correct snapshot 1`] = `
+<div
+  className="DogCard-container"
+>
+  <h2 />
+  <h2 />
+</div>
+`;
