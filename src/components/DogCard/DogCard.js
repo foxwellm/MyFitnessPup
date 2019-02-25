@@ -8,7 +8,9 @@ export const DogCard = (props) => {
   return (
     <div className='DogCard-container' >
     <h2>{props.name}</h2>
-    <h2>{props.distance}</h2>
+    <span>{props.age}</span>
+    <span>{props.distance}</span>
+    <img className='dog-img'src={props.photos[4].$t}></img>
       {/* <div className='dog-card-header'>{props.breed}</div> */}
       {/* <div className='dog-img' style={{ backgroundImage: `url(${images[props.img]})` }}> */}
 
