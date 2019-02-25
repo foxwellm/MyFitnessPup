@@ -22,7 +22,7 @@ export const retrieveDogs = async (search, breeds, zipCode, storedDogs) => {
   }
 }
 
-const addDistance = async (allResults, zipCode) => {
+export const addDistance = async (allResults, zipCode) => {
   const finished = allResults.map(async breed => {
     const dogs = breed.cleanedDogs.map(async dog => {
       dog.distance = await fetchDogLocation(zipCode, dog.zip)
