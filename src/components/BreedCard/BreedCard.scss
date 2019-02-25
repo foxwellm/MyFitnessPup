@@ -3,7 +3,7 @@
   height: 180px;
   padding: 5px;
   border-radius: 5px;
-  margin-bottom: 5px;
+  margin: 5px;
   background-color: $primary;
   // background-image: url('../../../public/images/siberian-husky.jpg')
   // background-size: 300px 200px;
@@ -19,14 +19,20 @@
 .breed-card-header {
   height: 40px;
   margin: 0;
+  pointer-events: none
 }
 
 .breed-img {
   width: 150px;
   height: 100px;
   background-size: 150px 100px;
+  pointer-events: none
 }
 
 .breed-attr {
   height: 40px;
+  pointer-events: none
+}
+.activeCard {
+  background-color: green;
 }

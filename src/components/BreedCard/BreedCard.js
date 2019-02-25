@@ -8,21 +8,30 @@ export class BreedCard extends Component {
     super()
   }
 
-
+handleClick = () => {
+  // let name = e.target.name
+  // debugger
+this.props.handleSearchFilter(this.props.breed)
+}
 
 
   render() {
+    const {active} = this.props
     const images = importImages();
+    const cssClasses = [
+      "BreedCard-container",
+      active ? "activeCard" : null
+    ];
     return (
 
-      <Link to={`/about-breeds/${this.props.breed}`}>
-        <div className='BreedCard-container' onClick={this.handleClick}>
+      
+      <div className={cssClasses.join(' ')} name={this.props.breed} onClick={this.handleClick}>
           <div className='breed-card-header'>{this.props.breed}</div>
           <div className='breed-img' style={{ backgroundImage: `url(${images[this.props.img]})` }}>
             <div className='breed-attr'></div>
           </div>
         </div>
-      </Link>
+
 
     )
   }
