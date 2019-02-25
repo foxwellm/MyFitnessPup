@@ -1,4 +1,5 @@
 export const dogCleaner = (dogs) => {
+  // debugger
   const cleanedDogs = dogs.petfinder.pets.pet.map(dog => {
     let photos = null
     if (Object.keys(dog.media).length !== 0) { 
