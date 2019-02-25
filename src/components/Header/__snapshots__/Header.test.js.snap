@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header should have match the correct snapshot 1`] = `
+<div
+  className="Header"
+>
+  <NavLink
+    activeClassName="active"
+    aria-current="page"
+    className="header-navlink"
+    to="/"
+  >
+    MyFitnessPup
+  </NavLink>
+  <NavLink
+    activeClassName="selected"
+    aria-current="page"
+    className="header-navlink"
+    to="/about-breeds"
+  >
+    About Breeds
+  </NavLink>
+  <NavLink
+    activeClassName="selected"
+    aria-current="page"
+    className="header-navlink"
+    to="/search"
+  >
+    Search
+  </NavLink>
+</div>
+`;
