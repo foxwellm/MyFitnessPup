@@ -13,7 +13,7 @@ export class AboutBreeds extends Component {
   render() {
 // debugger
     const breedCards =this.state.breeds.map((breed, i) => {
-      return <BreedCard {...breed} cardNumber={i} />
+      return <BreedCard {...breed} cardNumber={i} key={i} />
     })
 
 
