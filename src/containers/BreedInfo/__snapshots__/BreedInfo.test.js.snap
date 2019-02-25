@@ -2,6 +2,13 @@
 
 exports[`BreedInfo should have match the correct snapshot 1`] = `
 <div>
-  BreedInfo
+  <AboutBreeds />
+  <div
+    className="breed-info-container"
+  >
+    <div
+      className="form"
+    />
+  </div>
 </div>
 `;
