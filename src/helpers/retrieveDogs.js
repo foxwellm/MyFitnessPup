@@ -3,7 +3,6 @@ import {fetchDogs} from '../helpers/fetchDogs'
 import {fetchDogLocation} from '../helpers/fetchDogLocation'
 
 export const retrieveDogs = async (search, breeds, zipCode, storedDogs) => {
-  // console.log(breeds)
   if (search.length === 0) {
     const things = breeds.map(async dog => {
       if (!storedDogs[zipCode] || !storedDogs[zipCode][dog.breed]) {
@@ -11,7 +10,6 @@ export const retrieveDogs = async (search, breeds, zipCode, storedDogs) => {
           location: zipCode,
           breed: dog.breed,
         }
-        // console.log('here')
         const result = await fetchDogs(options)
         return result
       } else {

@@ -17,6 +17,19 @@ describe('apiCall', () => {
     expect(window.fetch).toHaveBeenCalledWith(mockURL, mockOptions)
   })
 
+  it('should return the expected data', async () => {
+    //setup
+    const mockReturnData = [{}, {}]
+    window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+      json: () => Promise.resolve(mockReturnData),
+      ok: true
+    }))
+    //execution
+    const results = await apiCall(mockURL)
+    //expectation
+    expect(results).toEqual(mockReturnData)
+  })
+
   it('throws an error when the fetch fails', async () => {
     //setup
     const expectedError = Error('Error')
