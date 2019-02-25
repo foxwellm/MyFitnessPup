@@ -1,26 +1,30 @@
-import React from 'react'
-// import {poodle} from '../../images/'
-// import dogs from '../../../public/images'
-// import images from  '../../../public/images'
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
-export const BreedCard = (props) => {
-  function importAll(r) {
+
+export class BreedCard extends Component {
+  constructor() {
+    super()
+  }
+  importImages = (req) => {
     let images = {};
-    r.keys().map((item) => { images[item.replace('./', '')] = r(item); });
+    req.keys().map((item) => { images[item.replace('./', '')] = req(item); });
     return images;
   }
 
-  const images = importAll(require.context('../../images'));
-  return (
-    <div className='BreedCard-container' >
-      <div className='breed-card-header'>{props.breed}</div>
-      <div className='breed-img' style={{ backgroundImage: `url(${images[props.img]})` }}>
-
-      </div>
-
-
-    </div>
-  )
+  render() {
+    const images = this.importImages(require.context('../../images'));
+    return (
+      
+      <Link to={`/about-breeds/${this.props.breed}`}>
+        <div className='BreedCard-container' onClick={this.handleClick}>
+          <div className='breed-card-header'>{this.props.breed}</div>
+          <div className='breed-img' style={{ backgroundImage: `url(${images[this.props.img]})` }}>
+          </div>
+        </div>
+      </Link>
+    )
+  }
 
 }
 
