@@ -1,6 +1,10 @@
+@import 'variables.scss';
 @import 'index.scss';
 @import './containers/App/App.scss';
 @import './components/Header/Header.scss';
 @import './components/DogCard/DogCard.scss';
 @import './components/BreedCard/BreedCard.scss';
-@import './components/AboutBreeds/AboutBreeds.scss'
+@import './components/AboutBreeds/AboutBreeds.scss';
+@import './components/BreedCard/BreedCard.scss';
+@import './containers/BreedInfo/BreedInfo.scss';
+@import url('https://fonts.googleapis.com/css?family=Lato|Roboto+Condensed');

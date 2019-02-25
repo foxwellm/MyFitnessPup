@@ -3,15 +3,31 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  background-color: $primary;
 }
 
 .header-navlink {
-  background-color: red;
+  background-color: $primary-light;
   padding: 20px 30px;
   margin: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: $white;
+  font-weight: 800;
+  transition: .1s linear;
+  &:hover {
+      transform: scale(1.01);
+      background-color: $primary-light-hover;
+      transition: .1s linear;
+    }
 }
 
 .selected {
-  background-color: blue;
+  background-color: $primary-dark;
+    &:hover {
+      transform: scale(1.01);
+      background-color: $primary-light-hover;
+      transition: .1s linear;
+    }
 }
 
