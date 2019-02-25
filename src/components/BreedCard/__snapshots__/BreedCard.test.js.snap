@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BreedCard should have match the correct snapshot 1`] = `
+<Link
+  replace={false}
+  to="/about-breeds/undefined"
+>
+  <div
+    className="BreedCard-container"
+    onClick={[Function]}
+  >
+    <div
+      className="breed-card-header"
+    />
+    <div
+      className="breed-img"
+      style={
+        Object {
+          "backgroundImage": "url(undefined)",
+        }
+      }
+    >
+      <div
+        className="breed-attr"
+      />
+    </div>
+  </div>
+</Link>
+`;
