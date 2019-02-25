@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Search should match the correct snapshot 1`] = `
+<form
+  onSubmit={[Function]}
+>
+  <input
+    name="zip"
+    onChange={[Function]}
+    placeholder="zip-code"
+    type="number"
+    value={77043}
+  />
+  <button>
+    Search
+  </button>
+  <div
+    className="results-container"
+  >
+    <DogCard />
+    <DogCard />
+    <DogCard />
+    <DogCard />
+    <DogCard />
+    <DogCard />
+    <DogCard />
+    <DogCard />
+    <DogCard />
+    <DogCard />
+  </div>
+</form>
+`;
