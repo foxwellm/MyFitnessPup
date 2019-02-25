@@ -6,35 +6,43 @@ import BreedInfo from '../BreedInfo/BreedInfo'
 import DogInfo from '../DogInfo/DogInfo'
 import Search from '../Search/Search'
 import NotFound from '../../components/NotFound/NotFound'
-import {Switch, Route, withRouter} from 'react-router-dom'
-import {connect} from 'react-redux'
+import { Switch, Route, withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { breeds } from '../../staticData/breeds'
 
- class App extends Component {
+export class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      breedNames: breeds.map(type => type.breed)
+    }
+  }
 
   render() {
+    const { breedNames} = this.state
     return (
       <div className="App">
         <Header />
         <Switch>
           <Route exact path='/' component={Home} />
-          <Route path='/about-breeds' component={AboutBreeds} />
-          <Route path='/about-breeds/:id' render={({match}) => {
-            const {breed} = match.params
-            if (breed) {
+          <Route exact path='/about-breeds' component={AboutBreeds} />
+          <Route path='/about-breeds/:breed' render={({ match }) => {
+            const { breed } = match.params
+            if (breedNames.includes(breed)) {
               return <BreedInfo />
             }
             return <NotFound />
           }}
           />
           <Route path='/search' component={Search} />
-          <Route path='/dog-info/:id' render={({match}) => {
-            const {id} = match.params
-            if(id) {
+          <Route path='/search/:id' render={({ match }) => {
+            const { id } = match.params
+            if (id) {
               return <DogInfo />
             }
             return <NotFound />
           }} />
-        <Route component={NotFound} />
+          <Route component={NotFound} />
 
         </Switch>
       </div>
@@ -42,9 +50,4 @@ import {connect} from 'react-redux'
   }
 }
 
-export const mapDispatchToProps = (dispatch) => ({
-  // fetchDogs: (options) => dispatch(fetchDogs(options))
-})
-
-
-export default withRouter(connect(null, mapDispatchToProps)(App))
+export default withRouter(App)
