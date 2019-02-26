@@ -72,6 +72,14 @@ export class Search extends Component {
     setLoading(false)
   }
 
+  handleClear = () => {
+    this.setState({
+      loading: true,
+      search: [],
+      
+    })
+  }
+
   handleSearchFilter = (name) => {
     let newSearch = this.state.search
     newSearch = newSearch.includes(name) ? newSearch.filter(breed => breed !== name) : [...newSearch, name]
@@ -86,7 +94,6 @@ export class Search extends Component {
     let displayCards = []
     if (!isLoading) {
       for (let i = (currentPage * 10) - 10; i < (currentPage * 10); i++) {
-
         displayCards.push(<DogCard {...currentSearchDogs[i]} />)
       }
     }
@@ -95,11 +102,23 @@ export class Search extends Component {
       const active = search.includes(breed.breed) ? true : false
       return <BreedCard {...breed} active={active} handleSearchFilter={this.handleSearchFilter} location={this.props.location} cardNumber={i} key={i} />
     })
+    const searching = !search.length ? 'all' : search.length
 
     return (
-      <form onSubmit={this.handleSearch}>
+      <div>
+      <div className='search-bar'>
+      <div className='search-num-display'>
+      {
+      `Searching ${searching} dog breed(s)`
+      }
+      <button onClick={this.handleClear}>Clear all</button>
+      </div>
+      
+          <form onSubmit={this.handleSearch} className='search-input-container'>
         <input type='number' onChange={this.handleChange} placeholder='zip-code' name='zip' value={this.state.zipCode}></input>
         <button>Search</button>
+        </form>
+        </div>
         <div className='search-container'>
           {searchCards}
         </div>
@@ -108,7 +127,7 @@ export class Search extends Component {
             !isLoading ? displayCards : <div>...Loading</div>
           }
         </div>
-      </form>
+      </div>
     )
   }
 }
