@@ -67,7 +67,7 @@ export class Search extends Component {
     e.preventDefault()
     const searchDogs = !search.length ? breeds.map(breed => breed.breed) : search
     const newSearchDogs = this.checkStoredDogs(searchDogs)
-    newSearchDogs.length && await this.props.retrieveDogs(search, breeds, zipCode, newSearchDogs)
+    newSearchDogs.length && await this.props.retrieveDogs(zipCode, newSearchDogs)
     this.updateCurrentSearchDogs()
     setLoading(false)
   }
@@ -138,7 +138,7 @@ export const mapStateToProps = (state) => ({
 })
 
 export const mapDispatchToProps = (dispatch) => ({
-  retrieveDogs: (search, breeds, zipCode, breedTypes) => dispatch(retrieveDogs(search, breeds, zipCode, breedTypes)),
+  retrieveDogs: (zipCode, breedTypes) => dispatch(retrieveDogs(zipCode, breedTypes)),
   setLoading: (bool) => dispatch(setLoading(bool)),
 })
 

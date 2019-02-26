@@ -1,4 +1,4 @@
-// import { isLoading, hasErrored, fetchDogsSuccess} from '../actions'
+import { hasErrored} from '../actions'
 
 import { googleDistanceMatrixAPI } from '../APIKEY'
 
@@ -17,10 +17,14 @@ export const addDistance = (dogs, zipCode) => {
         }
         const data = await response.json()
         let newDog = { ...dog }
+      //  console.log(dog)
+        console.log(newDog)
+        console.log(data.rows[0].elements[0].distance.text)
         newDog.distance = data.rows[0].elements[0].distance.text
+        console.log(newDog)
         return newDog
       } catch (error) {
-        // dispatch(hasErrored(error.message))
+        dispatch(hasErrored(error.message))
       }
     })
     return Promise.all(promisedDogs)
