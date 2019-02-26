@@ -1,10 +1,10 @@
 import { petFinderAPI } from '../APIKEY'
 import { dogCleaner } from '../helpers/dogCleaner'
 import { addDistance } from '../thunks/addDistance'
-import { fetchDogsSuccess, setLoading } from '../actions'
+import { fetchDogsSuccess, setLoading, hasErrored } from '../actions'
 
 
-export const retrieveDogs = (search, breeds, zipCode, dogs) => {
+export const retrieveDogs = (zipCode, dogs) => {
 
   return async (dispatch) => {
     const promisedDogs = dogs.map(async dog => {
@@ -31,10 +31,10 @@ export const retrieveDogs = (search, breeds, zipCode, dogs) => {
       dispatch(setLoading(true))
       let resolvedDogs = await Promise.all(promisedDogs)
       dispatch(fetchDogsSuccess(resolvedDogs))
-      // dispatch(setLoading(false))
+      dispatch(setLoading(false))
 
     } catch (error) {
-      // dispatch(hasErrored(error.message))
+      dispatch(hasErrored(error.message))
     }
   }
 }
