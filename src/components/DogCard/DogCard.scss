@@ -1,6 +1,6 @@
 .DogCard-container {
-  width: 300px;
-  height: 220px;
+  width: 200px;
+  height: 200px;
   // background-image: url('../../../public/images/siberian-husky.jpg')
   // background-size: 300px 200px;
   // background:  no-repeat center center;
@@ -10,6 +10,8 @@
   &:hover {
     background-color: blue;
   }
+
+
 }
 
 .dog-card-header {
@@ -19,9 +21,11 @@
 
 .dog-img {
   width: 100px;
-  height: 200px;
-  background-size: 100px 200px;
-  // border-radius: 50%;
+  height: 100px;
+  background-size: 100px 100px;
+  // position: absolute;
+  border-radius: 50%;
+  
 }
 // .card-img {
 //   box-sizing: border-box;
