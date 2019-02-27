@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { breeds, info } from '../../staticData/breeds'
 import BreedCard from '../BreedCard/BreedCard'
 import {Link} from 'react-router-dom'
+let shortID = require('short-id');
 
 export class AboutBreeds extends Component {
   constructor() {
@@ -13,7 +14,7 @@ export class AboutBreeds extends Component {
 
   render() {
     const breedCards =this.state.breeds.map((breed, i) => {
-      return <Link to={`/about-breeds/${breed.breed}`}><BreedCard {...breed} info={info[breed.name]} location={this.props.location} active={false} cardNumber={i} key={i} /></Link>
+      return <Link to={`/about-breeds/${breed.breed}`}><BreedCard {...breed} info={info[breed.name]} location={this.props.location} active={false} cardNumber={i} key={shortID.generate()} /></Link>
     })
 
     return (

@@ -31,15 +31,15 @@ export class Search extends Component {
     let searchingAll = []
 
     if (this.state.search.length === 0) {
-      breeds.forEach(breed => {
-        searchingAll = [...searchingAll, ...storedDogs[zipCode][breed.breed].cleanedDogs]
+      breeds.map(breed => {
+        return searchingAll = [...searchingAll, ...storedDogs[zipCode][breed.breed].cleanedDogs]
       })
       searchingAll.sort((a, b) => {
         return parseFloat(a.distance.split(' ')[0].split(',').join('')) - parseFloat(b.distance.split(' ')[0].split(',').join(''))
       })
     } else {
-      search.forEach(breed => {
-        searchingAll = [...searchingAll, ...storedDogs[zipCode][breed].cleanedDogs]
+      search.map(breed => {
+        return searchingAll = [...searchingAll, ...storedDogs[zipCode][breed].cleanedDogs]
       })
       searchingAll.sort((a, b) => {
         return parseFloat(a.distance.split(' ')[0].split(',').join('')) - parseFloat(b.distance.split(' ')[0].split(',').join(''))

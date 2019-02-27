@@ -16,7 +16,7 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
       isClimber={true}
       isCold={true}
       isRunner={true}
-      key="0"
+      key="1aaa5a"
       tag="siberian-husky"
     />
   </Link>
@@ -32,7 +32,7 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
       isClimber={true}
       isCold={true}
       isRunner={false}
-      key="1"
+      key="1ac6d2"
       tag="australian-shepherd"
     />
   </Link>
@@ -48,7 +48,7 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
       isClimber={true}
       isCold={false}
       isRunner={true}
-      key="2"
+      key="5be8e0"
       tag="german-shorthaired-pointer"
     />
   </Link>
@@ -64,7 +64,7 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
       isClimber={true}
       isCold={false}
       isRunner={true}
-      key="3"
+      key="201cbb"
       tag="vizsla"
     />
   </Link>
@@ -80,7 +80,7 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
       isClimber={true}
       isCold={false}
       isRunner={true}
-      key="4"
+      key="ce27cc"
       tag="australian-cattle-dog"
     />
   </Link>
@@ -96,7 +96,7 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
       isClimber={true}
       isCold={false}
       isRunner={true}
-      key="5"
+      key="dabd5a"
       tag="weimaraner"
     />
   </Link>
@@ -112,7 +112,7 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
       isClimber={true}
       isCold={true}
       isRunner={false}
-      key="6"
+      key="d0fef1"
       tag="bernese-mountain-dog"
     />
   </Link>
@@ -128,7 +128,7 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
       isClimber={true}
       isCold={false}
       isRunner={true}
-      key="7"
+      key="8eb206"
       tag="rhodesian-ridgeback"
     />
   </Link>
@@ -144,7 +144,7 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
       isClimber={true}
       isCold={true}
       isRunner={true}
-      key="8"
+      key="f879e8"
       tag="alaskan-malamute"
     />
   </Link>
@@ -160,7 +160,7 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
       isClimber={true}
       isCold={true}
       isRunner={true}
-      key="9"
+      key="05d1d5"
       tag="portuguese-water-dog"
     />
   </Link>
@@ -176,7 +176,7 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
       isClimber={true}
       isCold={false}
       isRunner={true}
-      key="10"
+      key="62a95a"
       tag="border-collie"
     />
   </Link>
@@ -192,7 +192,7 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
       isClimber={false}
       isCold={false}
       isRunner={true}
-      key="11"
+      key="f6baf3"
       tag="german-shepherd-dog"
     />
   </Link>
@@ -208,7 +208,7 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
       isClimber={true}
       isCold={false}
       isRunner={true}
-      key="12"
+      key="50a05e"
       tag="dalmatian"
     />
   </Link>
@@ -224,7 +224,7 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
       isClimber={true}
       isCold={false}
       isRunner={false}
-      key="13"
+      key="b18978"
       tag="airedale-terrier"
     />
   </Link>
@@ -240,7 +240,7 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
       isClimber={false}
       isCold={false}
       isRunner={true}
-      key="14"
+      key="193aa6"
       tag="jack-russell-terrier"
     />
   </Link>
@@ -256,7 +256,7 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
       isClimber={true}
       isCold={false}
       isRunner={true}
-      key="15"
+      key="29b40a"
       tag="poodle"
     />
   </Link>
@@ -272,7 +272,7 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
       isClimber={true}
       isCold={false}
       isRunner={false}
-      key="16"
+      key="8f4de8"
       tag="belgian-shepherd"
     />
   </Link>
@@ -288,7 +288,7 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
       isClimber={true}
       isCold={false}
       isRunner={true}
-      key="17"
+      key="46f798"
       tag="english-setter"
     />
   </Link>
@@ -304,7 +304,7 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
       isClimber={true}
       isCold={false}
       isRunner={false}
-      key="18"
+      key="a74b15"
       tag="brittany-spaniel"
     />
   </Link>
@@ -320,7 +320,7 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
       isClimber={false}
       isCold={false}
       isRunner={true}
-      key="19"
+      key="21aba9"
       tag="labrador-retriever"
     />
   </Link>

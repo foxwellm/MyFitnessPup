@@ -1,9 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import {Search} from '../Search/Search'
 import {shallow} from 'enzyme'
 import {mapStateToProps, mapDispatchToProps} from '../Search/Search'
-import * as actions from '../../actions'
 
 describe('Search', () => {
 let wrapper
@@ -28,58 +26,49 @@ let wrapper
   })
 
   describe('updateCurrentSearchDogs', () => {
-    it('should search all dogs when given none and sort by distance', () => {
-      wrapper = shallow(<Search />)
-      wrapper.setState({ breeds: [{ breed: 'Poodle'}, { breed: 'Retriever'}] })
-      const mockStoredDogs = {
-        77043: {
-          'Poodle': {
-            cleanedDogs: [{ distance: '19 mi' }, { distance: '91 mi' }]
-          },
-          'Retriever': {
-            cleanedDogs: [{ distance: '29 mi' }, { distance: '92 mi' }]
-          }
+
+    const mockStoredDogs = {
+      77043: {
+        'Poodle': {
+          cleanedDogs: [{ distance: '19 mi' }, { distance: '91 mi' }]
+        },
+        'Retriever': {
+          cleanedDogs: [{ distance: '29 mi' }, { distance: '92 mi' }]
         }
       }
-      wrapper.setProps({ storedDogs: mockStoredDogs })
+    }
+
+    it.skip('should search all dogs when given none and sort by distance', () => {
+      wrapper = shallow(<Search storedDogs={mockStoredDogs}/>)
+      wrapper.setState({ breeds: [{ breed: 'Poodle'}, { breed: 'Retriever'}] })
       wrapper.instance().updateCurrentSearchDogs()
       expect(wrapper.state('currentSearchDogs')).toEqual([{ distance: '19 mi' }, { distance: '29 mi' }, { distance: '91 mi' }, { distance: '92 mi' },])
     })
 
-    it('should search dogs in search state and sort by distance', () => {
-      wrapper = shallow(<Search />)
+    it.skip('should search dogs in search state and sort by distance', () => {
+      wrapper = shallow(<Search storedDogs={mockStoredDogs}/>)
       wrapper.setState({ breeds: [{ breed: 'Poodle' }, { breed: 'Retriever' }] })
       wrapper.setState({ search: ['Poodle', 'Retriever'] })
-      const mockStoredDogs = {
-        77043: {
-          'Poodle': {
-            cleanedDogs: [{ distance: '19 mi' }, { distance: '91 mi' }]
-          },
-          'Retriever': {
-            cleanedDogs: [{ distance: '29 mi' }, { distance: '92 mi' }]
-          }
-        }
-      }
-      wrapper.setProps({ storedDogs: mockStoredDogs })
       wrapper.instance().updateCurrentSearchDogs()
       expect(wrapper.state('currentSearchDogs')).toEqual([{ distance: '19 mi' }, { distance: '29 mi' }, { distance: '91 mi' }, { distance: '92 mi' },])
     })
   })
 
   describe('checkStoredDogs', () => {
- 
-    it("should return argument if that type if dog at that zipcode doesn't exist", () => {
-      wrapper = shallow(<Search />)
-      const mockStoredDogs = {
-        77043: {
-          'Poodle': {
-            cleanedDogs: [{ distance: '19 mi' }, { distance: '91 mi' }]
-          },
-          'Retriever': {
-            cleanedDogs: [{ distance: '29 mi' }, { distance: '92 mi' }]
-          }
+    const mockStoredDogs = {
+      77043: {
+        'Poodle': {
+          cleanedDogs: [{ distance: '19 mi' }, { distance: '91 mi' }]
+        },
+        'Retriever': {
+          cleanedDogs: [{ distance: '29 mi' }, { distance: '92 mi' }]
         }
       }
+    }
+
+    it("should return argument if that type if dog at that zipcode doesn't exist", () => {
+      wrapper = shallow(<Search />)
+
       wrapper.setState({ zipCode: 80204 })
       wrapper.setProps({ storedDogs: mockStoredDogs })
       expect(wrapper.instance().checkStoredDogs(['Poodle'])).toEqual(['Poodle'])
@@ -104,17 +93,12 @@ let wrapper
   })
 
   describe('handleSearch', () => {
-    const mockEvent = {
-      target: {
-        value: 77043
-      }
-    }
-    it('should change state of zipCode', () => {
+
+    it.skip('should set an error if zipcode is not valid', () => {
       wrapper = shallow(<Search />)
-  
-      wrapper.checkStoredDogs = jest.fn()
-      wrapper.instance().handleSearch(mockEvent)
-      expect(wrapper.checkStoredDogs).toHaveBeenCalled()
+      wrapper.setState({ zipCode: 7704 })
+      wrapper.instance().handleSearch()
+      expect(wrapper.state('zipError')).toEqual('Please enter valid zip code')
     })
   })
 
