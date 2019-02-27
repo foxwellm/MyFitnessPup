@@ -38,14 +38,14 @@ let wrapper
       }
     }
 
-    it.skip('should search all dogs when given none and sort by distance', () => {
+    it('should search all dogs when given none and sort by distance', () => {
       wrapper = shallow(<Search storedDogs={mockStoredDogs}/>)
       wrapper.setState({ breeds: [{ breed: 'Poodle'}, { breed: 'Retriever'}] })
       wrapper.instance().updateCurrentSearchDogs()
       expect(wrapper.state('currentSearchDogs')).toEqual([{ distance: '19 mi' }, { distance: '29 mi' }, { distance: '91 mi' }, { distance: '92 mi' },])
     })
 
-    it.skip('should search dogs in search state and sort by distance', () => {
+    it('should search dogs in search state and sort by distance', () => {
       wrapper = shallow(<Search storedDogs={mockStoredDogs}/>)
       wrapper.setState({ breeds: [{ breed: 'Poodle' }, { breed: 'Retriever' }] })
       wrapper.setState({ search: ['Poodle', 'Retriever'] })
@@ -94,7 +94,7 @@ let wrapper
 
   describe('handleSearch', () => {
 
-    it.skip('should set an error if zipcode is not valid', () => {
+    it('should set an error if zipcode is not valid', () => {
       wrapper = shallow(<Search />)
       wrapper.setState({ zipCode: 7704 })
       wrapper.instance().handleSearch()

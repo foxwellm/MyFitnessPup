@@ -33,7 +33,7 @@ describe('retrieveDogs', () => {
     expect(mockDispatch).toHaveBeenCalledWith(hasErrored('Something went wrong'))
   })
 
-  it.skip('should dispatch setLoading(false) if the response is ok', async () => {
+  it('should dispatch setLoading(false) if the response is ok', async () => {
     window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
       ok: true
     }))
@@ -42,7 +42,7 @@ describe('retrieveDogs', () => {
     expect(mockDispatch).toHaveBeenCalledWith(setLoading(false))
   })
 
-  it.skip('should dispatch fetchDogsSuccess', async () => {
+  it('should dispatch fetchDogsSuccess', async () => {
     const mockNote = 'Mock Note'
 
     window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
