@@ -20,13 +20,16 @@ exports[`Search should match the correct snapshot 1`] = `
       className="search-input-container"
       onSubmit={[Function]}
     >
+      <div
+        className="search-error"
+      />
       <input
         className="search-input"
         name="zip"
         onChange={[Function]}
         placeholder="zip-code"
         type="number"
-        value={77043}
+        value=""
       />
       <button
         className="search-btn"

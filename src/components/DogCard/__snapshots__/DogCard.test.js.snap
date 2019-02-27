@@ -22,6 +22,7 @@ exports[`DogCard should have match the correct snapshot 1`] = `
     className="img-container"
   >
     <img
+      alt="dog from shelter"
       className="dog-img"
       src={null}
     />

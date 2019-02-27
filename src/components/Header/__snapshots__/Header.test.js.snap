@@ -12,6 +12,9 @@ exports[`Header should have match the correct snapshot 1`] = `
   >
     MyFitnessPup
   </NavLink>
+  <div
+    className="spacer"
+  />
   <NavLink
     activeClassName="selected"
     aria-current="page"
