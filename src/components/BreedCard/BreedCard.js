@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 import { importImages } from '../../helpers/importImages'
 
-
 export class BreedCard extends Component {
 
   handleClick = () => {
-
     if (this.props.location.pathname === '/about-breeds') {
       return
     } else {
@@ -22,7 +20,6 @@ export class BreedCard extends Component {
     ];
     return (
 
-
       <div className={cssClasses.join(' ')} name={breed} onClick={this.handleClick}>
         <div className='breed-card-header'>{breed}</div>
         <div className='breed-img' style={{ backgroundImage: `url(${images[img]})` }}></div>
@@ -38,8 +35,6 @@ export class BreedCard extends Component {
           }
         </div>
       </div>
-
-
     )
   }
 }

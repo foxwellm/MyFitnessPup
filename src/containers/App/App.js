@@ -37,7 +37,6 @@ export class App extends Component {
           />
           <Route path='/search' component={Search} />
           <Route component={NotFound} />
-
         </Switch>
       </div>
     );

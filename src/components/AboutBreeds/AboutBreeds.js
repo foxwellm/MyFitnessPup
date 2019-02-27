@@ -13,10 +13,8 @@ export class AboutBreeds extends Component {
 
   render() {
     const breedCards =this.state.breeds.map((breed, i) => {
-    // debugger
       return <Link to={`/about-breeds/${breed.breed}`}><BreedCard {...breed} info={info[breed.name]} location={this.props.location} active={false} cardNumber={i} key={i} /></Link>
     })
-
 
     return (
       <div className='breed-cards-container'>{breedCards}</div >
