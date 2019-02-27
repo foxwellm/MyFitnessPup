@@ -1,4 +1,5 @@
 export const dogsReducer = (state = {}, action) => {
+  console.log(action)
   switch (action.type) {
     case 'FETCH_DOGS_SUCCESS':
       let newState = { ...state }

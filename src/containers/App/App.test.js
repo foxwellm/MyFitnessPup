@@ -16,12 +16,12 @@ import { rootReducer } from '../../reducers/index';
 import thunk from 'redux-thunk';
 import { breeds } from '../../staticData/breeds'
 import * as image from '../../helpers/importImages'
-// import BreedCard from '../../components/BreedCard/BreedCard';
 
 describe('App', () => {
   const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
   let wrapper
-
+  image.importImages = jest.fn().mockImplementation(() => '../')
+  
   it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(
@@ -52,10 +52,7 @@ describe('App', () => {
       expect(wrapper.find(Home)).toHaveLength(1)
     })
 
-    it.skip('should render the AboutBreeds container when at /about-breeds', () => {
-      // const require = jest.fn()
-      // require.context() = jest.fn().mockImplementation(() => 5)
-      const mockBreeds = breeds
+    it('should render the AboutBreeds container when at /about-breeds', () => {
 
       const wrapper = mount(
         <Provider store={store}>
@@ -108,7 +105,7 @@ describe('App', () => {
       const wrapper = mount(
         <Provider store={store}>
           <MemoryRouter initialEntries={['/search/N3456']}>
-            <App />
+            <App breeds={mockBreeds} />
           </MemoryRouter>
         </Provider>
       )

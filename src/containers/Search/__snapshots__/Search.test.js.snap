@@ -10,6 +10,7 @@ exports[`Search should match the correct snapshot 1`] = `
     >
       Searching all dog breed(s)
       <button
+        className="search-btn"
         onClick={[Function]}
       >
         Clear all
@@ -20,13 +21,16 @@ exports[`Search should match the correct snapshot 1`] = `
       onSubmit={[Function]}
     >
       <input
+        className="search-input"
         name="zip"
         onChange={[Function]}
         placeholder="zip-code"
         type="number"
         value={77043}
       />
-      <button>
+      <button
+        className="search-btn"
+      >
         Search
       </button>
     </form>
@@ -41,7 +45,7 @@ exports[`Search should match the correct snapshot 1`] = `
       handleSearchFilter={[Function]}
       img="siberian-husky.jpg"
       isClimber={true}
-      isCold={false}
+      isCold={true}
       isRunner={true}
       key="0"
       tag="siberian-husky"
@@ -53,8 +57,8 @@ exports[`Search should match the correct snapshot 1`] = `
       handleSearchFilter={[Function]}
       img="australian-shepherd.jpg"
       isClimber={true}
-      isCold={false}
-      isRunner={true}
+      isCold={true}
+      isRunner={false}
       key="1"
       tag="australian-shepherd"
     />
@@ -113,8 +117,8 @@ exports[`Search should match the correct snapshot 1`] = `
       handleSearchFilter={[Function]}
       img="bernese-mountain-dog.jpg"
       isClimber={true}
-      isCold={false}
-      isRunner={true}
+      isCold={true}
+      isRunner={false}
       key="6"
       tag="bernese-mountain-dog"
     />
@@ -137,7 +141,7 @@ exports[`Search should match the correct snapshot 1`] = `
       handleSearchFilter={[Function]}
       img="alaskan-malamute.jpg"
       isClimber={true}
-      isCold={false}
+      isCold={true}
       isRunner={true}
       key="8"
       tag="alaskan-malamute"
@@ -149,7 +153,7 @@ exports[`Search should match the correct snapshot 1`] = `
       handleSearchFilter={[Function]}
       img="portuguese-water-dog.jpg"
       isClimber={true}
-      isCold={false}
+      isCold={true}
       isRunner={true}
       key="9"
       tag="portuguese-water-dog"
@@ -172,7 +176,7 @@ exports[`Search should match the correct snapshot 1`] = `
       cardNumber={11}
       handleSearchFilter={[Function]}
       img="german-shepherd-dog.jpg"
-      isClimber={true}
+      isClimber={false}
       isCold={false}
       isRunner={true}
       key="11"
@@ -198,7 +202,7 @@ exports[`Search should match the correct snapshot 1`] = `
       img="airedale-terrier.jpg"
       isClimber={true}
       isCold={false}
-      isRunner={true}
+      isRunner={false}
       key="13"
       tag="airedale-terrier"
     />
@@ -208,7 +212,7 @@ exports[`Search should match the correct snapshot 1`] = `
       cardNumber={14}
       handleSearchFilter={[Function]}
       img="jack-russell-terrier.jpg"
-      isClimber={true}
+      isClimber={false}
       isCold={false}
       isRunner={true}
       key="14"
@@ -234,7 +238,7 @@ exports[`Search should match the correct snapshot 1`] = `
       img="belgian-shepherd.jpg"
       isClimber={true}
       isCold={false}
-      isRunner={true}
+      isRunner={false}
       key="16"
       tag="belgian-shepherd"
     />
@@ -258,7 +262,7 @@ exports[`Search should match the correct snapshot 1`] = `
       img="brittany-spaniel.jpg"
       isClimber={true}
       isCold={false}
-      isRunner={true}
+      isRunner={false}
       key="18"
       tag="brittany-spaniel"
     />
@@ -268,7 +272,7 @@ exports[`Search should match the correct snapshot 1`] = `
       cardNumber={19}
       handleSearchFilter={[Function]}
       img="labrador-retriever.jpg"
-      isClimber={true}
+      isClimber={false}
       isCold={false}
       isRunner={true}
       key="19"
@@ -277,17 +281,6 @@ exports[`Search should match the correct snapshot 1`] = `
   </div>
   <div
     className="results-container"
-  >
-    <DogCard />
-    <DogCard />
-    <DogCard />
-    <DogCard />
-    <DogCard />
-    <DogCard />
-    <DogCard />
-    <DogCard />
-    <DogCard />
-    <DogCard />
-  </div>
+  />
 </div>
 `;

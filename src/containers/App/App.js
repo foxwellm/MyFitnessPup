@@ -8,18 +8,19 @@ import Search from '../Search/Search'
 import NotFound from '../../components/NotFound/NotFound'
 import { Switch, Route, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { breeds } from '../../staticData/breeds'
+import { breeds, info } from '../../staticData/breeds'
 
 export class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      breedNames: breeds.map(type => type.breed)
+      breedNames: breeds.map(type => type.breed),
+      info: info
     }
   }
 
   render() {
-    const { breedNames} = this.state
+    const { breedNames, info} = this.state
     return (
       <div className="App">
         <Header />
@@ -28,20 +29,15 @@ export class App extends Component {
           <Route exact path='/about-breeds' component={AboutBreeds} />
           <Route path='/about-breeds/:breed' render={({ match }) => {
             const { breed } = match.params
+            const dogInfo = info.find(dog => dog.name === breed)
+            const dogBreed = breeds.find(dog => dog.breed === breed)
             if (breedNames.includes(breed)) {
-              return <BreedInfo />
+              return <BreedInfo breed={dogBreed} info={dogInfo}/>
             }
             return <NotFound />
           }}
           />
           <Route path='/search' component={Search} />
-          <Route path='/search/:id' render={({ match }) => {
-            const { id } = match.params
-            if (id) {
-              return <DogInfo />
-            }
-            return <NotFound />
-          }} />
           <Route component={NotFound} />
 
         </Switch>
