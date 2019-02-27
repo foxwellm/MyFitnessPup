@@ -17,7 +17,6 @@ describe('addDistance', () => {
   })
 
 
-
   it('should dispatch hasErrored with a message if the response is not "ok"', async () => {
     window.fetch = jest.fn().mockImplementation(() =>
       Promise.resolve({
@@ -29,16 +28,7 @@ describe('addDistance', () => {
     expect(mockDispatch).toHaveBeenCalledWith(hasErrored('Something went wrong'))
   })
 
-  // it('should dispatch isLoading(false) if the response is ok', async () => {
-  //   window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-  //     ok: true
-  //   }))
-  //   const thunk = addDistance(mockDogs, mockZipCode)
-  //   await thunk(mockDispatch)
-  //   expect(mockDispatch).toHaveBeenCalledWith(isLoading(false))
-  // })
-
-  it('should dispatch getNotesSuccess', async () => {
+  it('should return an object', async () => {
     const mockResult = {
       data: {
         rows: [ {
@@ -52,17 +42,14 @@ describe('addDistance', () => {
     }
 
     window.response = await jest.fn().mockImplementation( () => mockResult)
-
     window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
       json: () => Promise.resolve(mockResult),
       ok: true
     }))
 
     const thunk = addDistance(mockDogs, mockZipCode)
-
     thunk(mockDispatch)
-
-    expect(Promise.all(mockDispatch)).toEqual([])
+    expect(Promise.all(mockDispatch)).toEqual(Promise.all({}))
   })
 
 })
