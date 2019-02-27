@@ -3,12 +3,9 @@ import { dogCleaner } from '../helpers/dogCleaner'
 import { addDistance } from '../thunks/addDistance'
 import { fetchDogsSuccess, setLoading, hasErrored } from '../actions'
 
-
 export const retrieveDogs = (zipCode, dogs) => {
-
   return async (dispatch) => {
     const promisedDogs = dogs.map(async dog => {
-      // debugger
       const url = `https://cors-anywhere.herokuapp.com/http://api.petfinder.com/pet.find?key=${petFinderAPI}&format=json&animal=dog&location=${zipCode}&breed=${dog}&count=10&age!==Senior&output=full`
       const urlOptions = {
         headers: { "Content-Type": "application/json" }
@@ -32,7 +29,6 @@ export const retrieveDogs = (zipCode, dogs) => {
       let resolvedDogs = await Promise.all(promisedDogs)
       dispatch(fetchDogsSuccess(resolvedDogs))
       dispatch(setLoading(false))
-
     } catch (error) {
       dispatch(hasErrored(error.message))
     }

@@ -51,9 +51,7 @@ describe('retrieveDogs', () => {
     }))
 
     const thunk = retrieveDogs(mockZipCode, mockDogs)
-
     await thunk(mockDispatch)
-
     expect(mockDispatch).toHaveBeenCalledWith(fetchDogsSuccess(resolvedDogs))
   })
 

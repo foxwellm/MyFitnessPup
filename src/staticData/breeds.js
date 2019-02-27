@@ -1,26 +1,50 @@
 const breeds = [
-  { breed: 'Siberian Husky', tag: 'siberian-husky', img: 'siberian-husky.jpg', isCold: false, isRunner: true, isClimber: true },
-  { breed: 'Australian Shepherd', tag: 'australian-shepherd', img: 'australian-shepherd.jpg', isCold: false, isRunner: true, isClimber: true },
+  { breed: 'Siberian Husky', tag: 'siberian-husky', img: 'siberian-husky.jpg', isCold: true, isRunner: true, isClimber: true },
+  { breed: 'Australian Shepherd', tag: 'australian-shepherd', img: 'australian-shepherd.jpg', isCold: true, isRunner: false, isClimber: true },
   { breed: 'German Shorthaired Pointer', tag: 'german-shorthaired-pointer', img: 'german-shorthaired-pointer.jpg', isCold: false, isRunner: true, isClimber: true },
   { breed: 'Vizsla', tag: 'vizsla', img: 'vizsla.jpg', isCold: false, isRunner: true, isClimber: true },
   { breed: 'Australian Cattle Dog / Blue Heeler', tag: 'australian-cattle-dog', img: 'australian-cattle-dog.jpg', isCold: false, isRunner: true, isClimber: true },
   { breed: 'Weimaraner', tag: 'weimaraner', img: 'weimaraner.jpg', isCold: false, isRunner: true, isClimber: true },
-  { breed: 'Bernese Mountain Dog', tag: 'bernese-mountain-dog', img: 'bernese-mountain-dog.jpg', isCold: false, isRunner: true, isClimber: true },
+  { breed: 'Bernese Mountain Dog', tag: 'bernese-mountain-dog', img: 'bernese-mountain-dog.jpg', isCold: true, isRunner: false, isClimber: true },
   { breed: 'Rhodesian Ridgeback', tag: 'rhodesian-ridgeback', img: 'rhodesian-ridgeback.jpg', isCold: false, isRunner: true, isClimber: true },
-  { breed: 'Alaskan Malamute', tag: 'alaskan-malamute', img: 'alaskan-malamute.jpg', isCold: false, isRunner: true, isClimber: true },
-  { breed: 'Portuguese Water Dog', tag: 'portuguese-water-dog', img: 'portuguese-water-dog.jpg', isCold: false, isRunner: true, isClimber: true },
+  { breed: 'Alaskan Malamute', tag: 'alaskan-malamute', img: 'alaskan-malamute.jpg', isCold: true, isRunner: true, isClimber: true },
+  { breed: 'Portuguese Water Dog', tag: 'portuguese-water-dog', img: 'portuguese-water-dog.jpg', isCold: true, isRunner: true, isClimber: true },
   { breed: 'Border Collie', tag: 'border-collie', img: 'border-collie.jpg', isCold: false, isRunner: true, isClimber: true },
-  { breed: 'German Shepherd Dog', tag: 'german-shepherd-dog', img: 'german-shepherd-dog.jpg', isCold: false, isRunner: true, isClimber: true },
+  { breed: 'German Shepherd Dog', tag: 'german-shepherd-dog', img: 'german-shepherd-dog.jpg', isCold: false, isRunner: true, isClimber: false },
   { breed: 'Dalmatian', tag: 'dalmatian', img: 'dalmatian.jpg', isCold: false, isRunner: true, isClimber: true },
-  { breed: 'Airedale Terrier', tag: 'airedale-terrier', img: 'airedale-terrier.jpg', isCold: false, isRunner: true, isClimber: true },
-  { breed: 'Jack Russell Terrier', tag: 'jack-russell-terrier', img: 'jack-russell-terrier.jpg', isCold: false, isRunner: true, isClimber: true },
+  { breed: 'Airedale Terrier', tag: 'airedale-terrier', img: 'airedale-terrier.jpg', isCold: false, isRunner: false, isClimber: true },
+  { breed: 'Jack Russell Terrier', tag: 'jack-russell-terrier', img: 'jack-russell-terrier.jpg', isCold: false, isRunner: true, isClimber: false },
   { breed: 'Poodle', tag: 'poodle', img: 'poodle.jpg', isCold: false, isRunner: true, isClimber: true },
-  { breed: 'Belgian Shepherd / Sheepdog', tag: 'belgian-shepherd', img: 'belgian-shepherd.jpg', isCold: false, isRunner: true, isClimber: true },
+  { breed: 'Belgian Shepherd / Sheepdog', tag: 'belgian-shepherd', img: 'belgian-shepherd.jpg', isCold: false, isRunner: false, isClimber: true },
   { breed: 'English Setter', tag: 'english-setter', img: 'english-setter.jpg', isCold: false, isRunner: true, isClimber: true },
-  { breed: 'Brittany Spaniel', tag: 'brittany-spaniel', img: 'brittany-spaniel.jpg', isCold: false, isRunner: true, isClimber: true },
-  { breed: 'Labrador Retriever', tag: 'labrador-retriever', img: 'labrador-retriever.jpg', isCold: false, isRunner: true, isClimber: true }
+  { breed: 'Brittany Spaniel', tag: 'brittany-spaniel', img: 'brittany-spaniel.jpg', isCold: false, isRunner: false, isClimber: true },
+  { breed: 'Labrador Retriever', tag: 'labrador-retriever', img: 'labrador-retriever.jpg', isCold: false, isRunner: true, isClimber: false }
+]
+
+const info = [
+  { name: 'Siberian Husky', desc: "The Siberian Husky was originally bred to pull sleds and carts long distances in the harsh Russian climate.They are powerfully built dogs with lively spirits, always ready for adventure at any time.A true endurance breed, Siberians make an excellent choice for those looking for a dog that will keep them entertained on long hikes.They are gentle and alert, but very social dogs that enjoy spending time outside." },
+  { name: 'Australian Shepherd', desc: "The Australian Shepherd is an intelligent, adventurous breed that is always ready to go. Originally used as herding dogs, they still excel at this job today, as well as in many dog sports such as agility and obedience. Australian Shepherds make excellent hiking partners, as they are very athletic, friendly, and well suited for long hours of strenuous activity." },
+  { name: 'German Shorthaired Pointer', desc: "The German Shorthaired Pointer makes an excellent hiking companion. The breed was developed as a hunting dog and still performs this task today across the world. They enjoy long hours of strenuous activity in various climates, making them suitable for long hikes and adventures. They are social and willing to please, eager to work with their owners and make new friends." },
+  { name: 'Vizsla', desc: "The Vizsla is a Hungarian hunting dog and is still used as such today. Due to his innate power and drive as a hunting dog, Vizslas have maintained his need for exercise and a love of the outdoors. Vizslas are energetic and athletic dogs, very friendly and affectionate, and always ready to go. They make an ideal choice for someone looking for an active companion." },
+  { name: 'Australian Cattle Dog / Blue Heeler', desc: "The Australian Cattle Dog is an athletic, intelligent breed that has a lot of energy to burn. They are still used as herding dogs today, as well as in various dog sports such as obedience and agility. The breed is very active and does best in a home that can provide adequate physical exercise. Therefore, they make excellent hiking partners." },
+  { name: 'Weimaraner', desc: "The Weimaraner is a hunting dog that was bred to work long hours outdoors, an activity it still enjoys today. Weimaraners are loyal, affectionate, and fun-loving dogs that make excellent hiking partners. Built for speed and stamina, they do well on short and long excursions." },
+  { name: 'Bernese Mountain Dog', desc: "The Bernese Mountain Dog is a large, powerful working breed with a gentle personality and a desire to make friends everywhere. Originally used for drafting and as a drover for cattle in the cold Swiss Alps, this breed enjoys strenuous activity and makes an excellent hiking companion." },
+  { name: 'Rhodesian Ridgeback', desc: "The Rhodesian Ridgeback is a hound developed in Africa. There they were used to hunt large game for many hours over long distances. They are very active and dignified dogs, reserved toward strangers, but affectionate with their families. They make excellent companions for very active families, and though laid back, love engaging in exercise with their owner." },
+  { name: 'Alaskan Malamute', desc: "The Alaskan Malamute is a large working dog bred for pulling carts and sleds over long distances. They are playful and affectionate dogs that enjoy spending time outdoors, especially in cold weather. This breed is a great choice for a hiking partner and was bred for endurance rather than speed, making it suitable for long hikes." },
+  { name: 'Portuguese Water Dog', desc: "The Portuguese Water Dog has worked many jobs, including herding fish into fishermen’s nets, retrieving tackle and nets, and as couriers from ship to shore or ship to ship. This breed loves to work and makes a wonderful family companion for those looking for an active companion. They are affectionate and adventurous, and they are happiest when they get lots of exercise." },
+  { name: 'Border Collie', desc: "Herding dogs are agile runners, and the border collie is considered one of the most intelligent of the breeds. This dog loves having a job to do, says the American Kennel Club, so keep it busy as a faithful and sure-footed running mate." },
+  { name: 'German Shepherd Dog', desc: "German shepherd dogs are known for having many talents, and running is one of them. Strong and durably built, this breed can keep pace with the best of them. Even better, German shepherds are good with kids, protective and eager to please—sure to become much more than a running companion." },
+  { name: 'Dalmatian', desc: "Dalmatians can keep pace with horses. Which means they can keep pace with you. These large and lean dogs were classically employed to run ahead of firefighting carriages and clear the way, but they’re just as happy running through the park. Great if you’re looking for a more protective breed to accompany your long-distance jogs." },
+  { name: 'Airedale Terrier', desc: "Live somewhere hot? The Airedale terrier has a short, wiry coat made for just such a place. Airedales love to run, but since they’re on the smaller side, you’ll probably get along best if you’re running 10K or less, according to Runner’s World." },
+  { name: 'Jack Russell Terrier', desc: "Small but mighty, Jack Russell terriers have boundless energy and can run for surprisingly extended periods of time. If you're looking for a more compact long-distance running mate, this adventurous breed should be just right." },
+  { name: 'Poodle', desc: "Although the breed might seem pretentious—and even prissy—the standard poodle shouldn’t be overlooked when it comes to being a running companion. The breed has plenty of energy, but isn’t short on intelligence or obedience, either. The poodle was bred as a gun dog and a water retriever, and the breed retains those athletic instincts, which will surely kick in on a long, slow run." },
+  { name: 'Belgian Shepherd / Sheepdog', desc: "Not only does this dog breed have an elegant, proud stature, but its gait follows suit with a smooth, tireless stride that is perfect for long, slow runs (this dog is so graceful, in fact, that you might look clumsy running alongside it). This strong and lean breed, also known as the Belgian Shepherd, won’t tire. After all, these dogs have worked as herders, message carriers, ambulance dogs, and even machine gun pullers during WWI , according to the American Kennel Club." },
+  { name: 'English Setter', desc: "English setters get feisty (read: ruin furniture) when not exercised enough, which is good incentive to get outside. Although this breed was bred as a gun dog for running in fields all day, their optimal distance for a road run is about four to six miles. And stay out of the woods; their long fur can easily gather brambles and twigs." },
+  { name: 'Brittany Spaniel', desc: "Get ready for that pleading look that just says, “I want to go outside!” Brittany spaniels are eager-to-please, very smart, and very energetic—they need lots of exercise, more than just a walk around the block. Leggy and light boned, these hunting dogs are quick and agile." },
+  { name: 'Labrador Retriever', desc: "Labs are used to being on these types of lists (you’ll also find them in our Best Family Dogs and Best Active Dogs galleries), so it’s no surprise that they’re included here, too. Labrador retrievers are lean but sturdy and have enough energy to keep pace with a sprint workout or go the distance on a 10K. Like all gun dog breeds, Labs can be extremely obedient and willing to work ’round the clock, making them the perfect adventure companion." }
 ]
 
 module.exports = {
-  breeds
+  breeds,
+  info
 }
