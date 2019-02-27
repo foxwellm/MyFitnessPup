@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Header from '../../components/Header/Header'
-import Home from '../Home/Home'
+import Home from '../../components/Home/Home'
 import AboutBreeds from '../../components/AboutBreeds/AboutBreeds'
 import BreedInfo from '../BreedInfo/BreedInfo'
 import DogInfo from '../DogInfo/DogInfo'

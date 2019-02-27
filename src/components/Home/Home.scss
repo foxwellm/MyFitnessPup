@@ -1,0 +1,23 @@
+.home-container {
+  left: 0;
+  top: 80px;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+}
+
+.home-card {
+  background-color: $primary-light;
+  font-family: $font-secondary;
+  padding: 20px;
+  border-radius: 5px;
+  left: 30vw;
+  top: 30vh; 
+  width: 40vw;
+  height: 40vh;
+  min-height: 300px;
+  min-width: 600px;
+  position: fixed;
+  color: white;
+  font-size: 35px;
+}

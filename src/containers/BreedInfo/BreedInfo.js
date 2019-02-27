@@ -6,7 +6,7 @@ import {importImages} from '../../helpers/importImages'
 export class BreedInfo extends Component {
 
   render() {
-    const {img, isCold, isRunner, isClimber} = this.props.breed
+    const {img} = this.props.breed
     const images = importImages();
     return (
       <div>
