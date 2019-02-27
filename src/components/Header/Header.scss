@@ -6,6 +6,26 @@
   background-color: $primary;
 }
 
+.title-navlink {
+  padding: 20px;
+  font-size: 34px;
+  text-decoration: none;
+  color: $white;
+  font-weight: 800;
+  transition: .1s linear;
+  &:hover {
+      transform: scale(1.01);
+      transition: .1s linear;
+    }
+}
+
+// .header-img {
+//   background-size: 30px 30px;
+//   width: 30px;
+//   height: 30px;
+//   color: white;
+// }
+
 .header-navlink {
   background-color: $primary-light;
   padding: 20px 30px;

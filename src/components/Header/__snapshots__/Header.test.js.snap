@@ -7,7 +7,7 @@ exports[`Header should have match the correct snapshot 1`] = `
   <NavLink
     activeClassName="active"
     aria-current="page"
-    className="header-navlink"
+    className="title-navlink"
     to="/"
   >
     MyFitnessPup
