@@ -4,9 +4,20 @@ exports[`DogCard should have match the correct snapshot 1`] = `
 <div
   className="DogCard-container"
 >
-  <h2 />
-  <span />
-  <span />
+  <div
+    className="dog-name"
+  />
+  <div
+    className="dog-age"
+  >
+    Age: 
+  </div>
+  <div
+    className="dog-distance"
+  >
+    Location: 
+     away
+  </div>
   <div
     className="img-container"
   >

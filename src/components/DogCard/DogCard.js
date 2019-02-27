@@ -1,15 +1,15 @@
 import React from 'react'
-// import {poodle} from '../../images/'
-// import dogs from '../../../public/images'
-// import images from  '../../../public/images'
 
 export const DogCard = (props) => {
-  const srcImg = !props.photos || !props.photos[4].$t ? null : props.photos[4].$t
+  const {photos, name, age, distance, zip} = props
+  const srcImg = !photos || !photos[4].$t ? null : photos[4].$t
+  const dogName = !name || !name.match(' ') ? name : name.split(' ')[0]
+  const dogDistance = !distance || !distance.split(' ')[1] === 'ft' ? distance : zip
   return (
-    <div className='DogCard-container' >
-      <h2>{props.name}</h2>
-      <span>{props.age}</span>
-      <span>{props.distance}</span>
+    <div className='DogCard-container'>
+      <div className='dog-name'>{dogName}</div>
+      <div className='dog-age'>Age: {age}</div>
+      <div className='dog-distance'>Location: {dogDistance} away</div>
       <div className='img-container'>
         <img className='dog-img' src={srcImg}></img>
       </div>
