@@ -1,68 +1,48 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# MyFitnessPup
+#### MyFitnessPup is a React app that lets avid runners/hikers search for their perfect companion at local shelters near by. Many dog breeds are un-suited to keep pace with their owners on long hikes or runs and so MyFitnessPup helps users find the breeds that will.
 
-## Available Scripts
 
-In the project directory, you can run:
+## Installation Steps 
+- Clone this repo: ```https://github.com/foxwellm/MyFitnessPup```
+- Install dependencies: ```npm install```
+- Start Local Host 3000: ```npm start```
+- For testing suite: ```npm test```
 
-### `npm start`
+## Primary Technologies Used - Front End
+- React
+- Redux
+- React Router
+- SCSS
+- Jest
+- Enzyme
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Screenshots
+#### /about-breeds
+<img width="1439" alt="screen shot 2019-02-27 at 6 32 10 am" src="https://user-images.githubusercontent.com/34201608/53494687-8c318000-3a5b-11e9-9457-492f68716214.png">
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+#### /about-breeds/:breed
+<img width="1433" alt="screen shot 2019-02-27 at 6 48 57 am" src="https://user-images.githubusercontent.com/34201608/53494802-ca2ea400-3a5b-11e9-8f81-04f9f3919ebf.png">
 
-### `npm test`
+#### /search
+<img width="1437" alt="screen shot 2019-02-27 at 6 33 03 am" src="https://user-images.githubusercontent.com/34201608/53494730-a53a3100-3a5b-11e9-9962-04b75c633170.png">
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Original Wireframes
+#### Main Page
+<img width="980" alt="screen shot 2019-02-27 at 6 36 42 am" src="https://user-images.githubusercontent.com/34201608/53494443-07defd00-3a5b-11e9-88a4-7a017d081592.png">
 
-### `npm run build`
+#### /about-breeds
+<img width="978" alt="screen shot 2019-02-27 at 6 36 54 am" src="https://user-images.githubusercontent.com/34201608/53494489-1decbd80-3a5b-11e9-877b-3a226938d678.png">
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### /about-breeds/:breed
+<img width="980" alt="screen shot 2019-02-27 at 6 37 05 am" src="https://user-images.githubusercontent.com/34201608/53494522-34931480-3a5b-11e9-8731-6216cf1ec2e9.png">
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+#### /search
+<img width="977" alt="screen shot 2019-02-27 at 6 37 14 am" src="https://user-images.githubusercontent.com/34201608/53494563-4b396b80-3a5b-11e9-9a6f-3eec2ec7303f.png">
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### /search/:id
+<img width="983" alt="screen shot 2019-02-27 at 6 37 24 am" src="https://user-images.githubusercontent.com/34201608/53494595-5c827800-3a5b-11e9-8fc5-f9edd19409e6.png">
 
-### `npm run eject`
+## Next Steps
+#### Future iterations of the project could include:
+- Individual cards for each dog based off of their ID
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify

@@ -6,7 +6,6 @@ import { retrieveDogs } from '../../thunks/retrieveDogs'
 import BreedCard from '../../components/BreedCard/BreedCard'
 import { setLoading, setDisplay } from '../../actions'
 
-
 export class Search extends Component {
   constructor() {
     super()
