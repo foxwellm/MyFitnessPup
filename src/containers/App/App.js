@@ -3,11 +3,9 @@ import Header from '../../components/Header/Header'
 import Home from '../../components/Home/Home'
 import AboutBreeds from '../../components/AboutBreeds/AboutBreeds'
 import BreedInfo from '../BreedInfo/BreedInfo'
-import DogInfo from '../DogInfo/DogInfo'
 import Search from '../Search/Search'
 import NotFound from '../../components/NotFound/NotFound'
 import { Switch, Route, withRouter } from 'react-router-dom'
-import { connect } from 'react-redux'
 import { breeds, info } from '../../staticData/breeds'
 
 export class App extends Component {

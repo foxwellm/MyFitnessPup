@@ -3,9 +3,6 @@ import { importImages } from '../../helpers/importImages'
 
 
 export class BreedCard extends Component {
-  constructor() {
-    super()
-  }
 
   handleClick = () => {
 

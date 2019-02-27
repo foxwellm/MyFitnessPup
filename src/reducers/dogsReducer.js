@@ -3,7 +3,7 @@ export const dogsReducer = (state = {}, action) => {
   switch (action.type) {
     case 'FETCH_DOGS_SUCCESS':
       let newState = { ...state }
-      action.dogs.map(dog => { 
+      action.dogs.forEach(dog => { 
         if (!newState[dog.location]) {
           newState[dog.location] = {}
           newState[dog.location][dog.breed] = {}

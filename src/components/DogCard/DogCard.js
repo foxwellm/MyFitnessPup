@@ -1,7 +1,7 @@
 import React from 'react'
 
 export const DogCard = (props) => {
-  const {photos, name, age, distance, zip} = props
+  const {photos, name, age, distance} = props
   const srcImg = !photos || !photos[4].$t ? null : photos[4].$t
   const dogName = !name || !name.match(' ') ? name : name.split(' ')[0]
   return (
@@ -10,7 +10,7 @@ export const DogCard = (props) => {
       <div className='dog-age'>Age: {age}</div>
       <div className='dog-distance'>Location: {distance} away</div>
       <div className='img-container'>
-        <img className='dog-img' src={srcImg}></img>
+        <img className='dog-img' alt='dog from shelter' src={srcImg}></img>
       </div>
     </div>
   )

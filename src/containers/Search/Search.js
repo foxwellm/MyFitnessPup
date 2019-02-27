@@ -63,7 +63,7 @@ export class Search extends Component {
 
   handleSearch = async (e) => {
     const { setLoading, setDisplay } = this.props
-    const { search, breeds, zipCode, zipError } = this.state
+    const { search, breeds, zipCode } = this.state
     e.preventDefault()
 
     if (zipCode.length !== 5) {
