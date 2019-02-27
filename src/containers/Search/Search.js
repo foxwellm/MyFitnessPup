@@ -4,7 +4,7 @@ import { breeds } from '../../staticData/breeds'
 import { DogCard } from '../../components/DogCard/DogCard'
 import { retrieveDogs } from '../../thunks/retrieveDogs'
 import BreedCard from '../../components/BreedCard/BreedCard'
-import {setLoading} from '../../actions'
+import { setLoading, setDisplay } from '../../actions'
 
 
 export class Search extends Component {
@@ -49,12 +49,13 @@ export class Search extends Component {
     this.setState({
       currentSearchDogs: searchingAll
     })
+    setDisplay(false)
   }
 
-  checkStoredDogs =(searchDogs) => {
+  checkStoredDogs = (searchDogs) => {
     const { storedDogs } = this.props
-    const { search, breeds, zipCode } = this.state
-    if(!storedDogs[zipCode]) {
+    const { zipCode } = this.state
+    if (!storedDogs[zipCode]) {
       return searchDogs
     }
     const newSearchDogs = searchDogs.filter(dog => !storedDogs[zipCode][dog])
@@ -62,9 +63,10 @@ export class Search extends Component {
   }
 
   handleSearch = async (e) => {
-    const { setLoading, fetchDogsSuccess, storedDogs } = this.props
+    const { setLoading, setDisplay } = this.props
     const { search, breeds, zipCode } = this.state
     e.preventDefault()
+    setDisplay(true)
     const searchDogs = !search.length ? breeds.map(breed => breed.breed) : search
     const newSearchDogs = this.checkStoredDogs(searchDogs)
     newSearchDogs.length && await this.props.retrieveDogs(zipCode, newSearchDogs)
@@ -76,7 +78,6 @@ export class Search extends Component {
     this.setState({
       loading: true,
       search: [],
-      
     })
   }
 
@@ -89,12 +90,12 @@ export class Search extends Component {
   }
 
   render() {
-    const { isLoading } = this.props
-    const { search, currentSearchDogs, currentPage } = this.state
+    const { isLoading, isDisplay } = this.props
+    const { search, currentSearchDogs, currentPage, zipCode } = this.state
     let displayCards = []
     if (!isLoading) {
       for (let i = (currentPage * 10) - 10; i < (currentPage * 10); i++) {
-        displayCards.push(<DogCard {...currentSearchDogs[i]} />)
+        displayCards.push(<DogCard {...currentSearchDogs[i]} zip={zipCode}/>)
       }
     }
 
@@ -106,25 +107,25 @@ export class Search extends Component {
 
     return (
       <div>
-      <div className='search-bar'>
-      <div className='search-num-display'>
-      {
-      `Searching ${searching} dog breed(s)`
-      }
-      <button onClick={this.handleClear}>Clear all</button>
-      </div>
-      
+        <div className='search-bar'>
+          <div className='search-num-display'>
+            {
+              `Searching ${searching} dog breed(s)`
+            }
+            <button className='search-btn' onClick={this.handleClear}>Clear all</button>
+          </div>
+
           <form onSubmit={this.handleSearch} className='search-input-container'>
-        <input type='number' onChange={this.handleChange} placeholder='zip-code' name='zip' value={this.state.zipCode}></input>
-        <button>Search</button>
-        </form>
+            <input className='search-input' type='number' onChange={this.handleChange} placeholder='zip-code' name='zip' value={this.state.zipCode}></input>
+            <button className='search-btn'>Search</button>
+          </form>
         </div>
         <div className='search-container'>
           {searchCards}
         </div>
         <div className='results-container'>
           {
-            !isLoading ? displayCards : <div>...Loading</div>
+            !isDisplay ? null : !isLoading ? displayCards : <div>...Loading</div>
           }
         </div>
       </div>
@@ -134,12 +135,14 @@ export class Search extends Component {
 
 export const mapStateToProps = (state) => ({
   storedDogs: state.storedDogs,
-  isLoading: state.isLoading
+  isLoading: state.isLoading,
+  isDisplay: state.isDisplay
 })
 
 export const mapDispatchToProps = (dispatch) => ({
   retrieveDogs: (zipCode, breedTypes) => dispatch(retrieveDogs(zipCode, breedTypes)),
   setLoading: (bool) => dispatch(setLoading(bool)),
+  setDisplay: (bool) => dispatch(setDisplay(bool)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search)
