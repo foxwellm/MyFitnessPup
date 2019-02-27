@@ -7,5 +7,4 @@ export const rootReducer = combineReducers({
   storedDogs: dogsReducer,
   isLoading: setLoadingReducer,
   isDisplay: setDisplayReducer,
-  
 })

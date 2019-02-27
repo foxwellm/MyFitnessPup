@@ -25,13 +25,13 @@ export class BreedCard extends Component {
         <div className='breed-img' style={{ backgroundImage: `url(${images[img]})` }}></div>
         <div className='breed-attr'>
           {
-            isCold ? <i class="fas fa-snowflake"></i> : <div></div>
+            isCold ? <i className="fas fa-snowflake"></i> : <div></div>
           }
           {
-            isClimber ? <i class="fas fa-mountain"></i> : <div></div>
+            isClimber ? <i className="fas fa-mountain"></i> : <div></div>
           }
           {
-            isRunner ? <i class="fas fa-running"></i> : <div></div>
+            isRunner ? <i className="fas fa-running"></i> : <div></div>
           }
         </div>
       </div>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Header from '../../components/Header/Header'
 import Home from '../../components/Home/Home'
 import AboutBreeds from '../../components/AboutBreeds/AboutBreeds'
-import BreedInfo from '../BreedInfo/BreedInfo'
+import BreedInfo from '../../components/BreedInfo/BreedInfo'
 import Search from '../Search/Search'
 import NotFound from '../../components/NotFound/NotFound'
 import { Switch, Route, withRouter } from 'react-router-dom'
