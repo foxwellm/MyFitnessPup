@@ -15,10 +15,13 @@ exports[`BreedCard should have match the correct snapshot 1`] = `
         "backgroundImage": "url(undefined)",
       }
     }
+  />
+  <div
+    className="breed-attr"
   >
-    <div
-      className="breed-attr"
-    />
+    <div />
+    <div />
+    <div />
   </div>
 </div>
 `;

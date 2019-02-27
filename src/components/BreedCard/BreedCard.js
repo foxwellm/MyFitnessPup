@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import { importImages } from '../../helpers/importImages'
 
 
@@ -8,15 +7,17 @@ export class BreedCard extends Component {
     super()
   }
 
-handleClick = () => {
-  // let name = e.target.name
-  // debugger
-this.props.handleSearchFilter(this.props.breed)
-}
+  handleClick = () => {
 
+    if (this.props.location.pathname === '/about-breeds') {
+      return
+    } else {
+      this.props.handleSearchFilter(this.props.breed)
+    }
+  }
 
   render() {
-    const {active} = this.props
+    const { active, img, isCold, isRunner, isClimber, breed } = this.props
     const images = importImages();
     const cssClasses = [
       "BreedCard-container",
@@ -24,18 +25,26 @@ this.props.handleSearchFilter(this.props.breed)
     ];
     return (
 
-      
-      <div className={cssClasses.join(' ')} name={this.props.breed} onClick={this.handleClick}>
-          <div className='breed-card-header'>{this.props.breed}</div>
-          <div className='breed-img' style={{ backgroundImage: `url(${images[this.props.img]})` }}>
-            <div className='breed-attr'></div>
-          </div>
+
+      <div className={cssClasses.join(' ')} name={breed} onClick={this.handleClick}>
+        <div className='breed-card-header'>{breed}</div>
+        <div className='breed-img' style={{ backgroundImage: `url(${images[img]})` }}></div>
+        <div className='breed-attr'>
+          {
+            isCold ? <i class="fas fa-snowflake"></i> : <div></div>
+          }
+          {
+            isClimber ? <i class="fas fa-mountain"></i> : <div></div>
+          }
+          {
+            isRunner ? <i class="fas fa-running"></i> : <div></div>
+          }
         </div>
+      </div>
 
 
     )
   }
-
 }
 
 export default BreedCard

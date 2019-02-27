@@ -5,12 +5,9 @@
   border-radius: 5px;
   margin: 5px;
   background-color: $primary;
-  // background-image: url('../../../public/images/siberian-husky.jpg')
-  // background-size: 300px 200px;
-  // background:  no-repeat center center;
   display: flex;
   flex-direction: column;
-  // justify-content: space-between;
+  justify-content: space-between;
   &:hover {
     background-color:$primary-light-hover;
   }
@@ -19,10 +16,13 @@
 .breed-card-header {
   height: 40px;
   margin: 0;
-  pointer-events: none
+  pointer-events: none;
+  color: white;
+  text-decoration: none;
 }
 
 .breed-img {
+  margin-top: 15px;
   width: 150px;
   height: 100px;
   background-size: 150px 100px;
@@ -31,8 +31,19 @@
 
 .breed-attr {
   height: 40px;
-  pointer-events: none
+  margin-top: 15px;
+  pointer-events: none;
+  display: flex;
+  justify-content: space-around;
 }
 .activeCard {
-  background-color: green;
+  background-color:green;
+  &:hover {
+    background-color: rgb(25, 146, 25);
+  }
+}
+
+.fas {
+  color: white;
+  font-size: 20px;
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { breeds } from '../../staticData/breeds'
+import { breeds, info } from '../../staticData/breeds'
 import BreedCard from '../BreedCard/BreedCard'
 import {Link} from 'react-router-dom'
 
@@ -12,10 +12,9 @@ export class AboutBreeds extends Component {
   }
 
   render() {
-// debugger
     const breedCards =this.state.breeds.map((breed, i) => {
-      // debugger
-      return <Link to={`/about-breeds/${breed.breed}`}><BreedCard {...breed} location={this.props.location} cardNumber={i} key={i} /></Link>
+    // debugger
+      return <Link to={`/about-breeds/${breed.breed}`}><BreedCard {...breed} info={info[breed.name]} location={this.props.location} active={false} cardNumber={i} key={i} /></Link>
     })
 
 
