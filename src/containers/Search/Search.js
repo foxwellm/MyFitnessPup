@@ -64,14 +64,20 @@ export class Search extends Component {
 
   handleSearch = async (e) => {
     const { setLoading, setDisplay } = this.props
-    const { search, breeds, zipCode } = this.state
+    const { search, breeds, zipCode, zipError } = this.state
     e.preventDefault()
-    setDisplay(true)
-    const searchDogs = !search.length ? breeds.map(breed => breed.breed) : search
-    const newSearchDogs = this.checkStoredDogs(searchDogs)
-    newSearchDogs.length && await this.props.retrieveDogs(zipCode, newSearchDogs)
-    this.updateCurrentSearchDogs()
-    setLoading(false)
+
+    if (zipCode.length !== 5) {
+      this.setState({ zipError: 'Please enter valid zip code' })
+    } else {
+      this.setState({ zipError: '' })
+      setDisplay(true)
+      const searchDogs = !search.length ? breeds.map(breed => breed.breed) : search
+      const newSearchDogs = this.checkStoredDogs(searchDogs)
+      newSearchDogs.length && await this.props.retrieveDogs(zipCode, newSearchDogs)
+      this.updateCurrentSearchDogs()
+      setLoading(false)
+    }
   }
 
   handleClear = () => {
@@ -91,11 +97,11 @@ export class Search extends Component {
 
   render() {
     const { isLoading, isDisplay } = this.props
-    const { search, currentSearchDogs, currentPage, zipCode } = this.state
+    const { search, currentSearchDogs, currentPage, zipCode, zipError } = this.state
     let displayCards = []
     if (!isLoading) {
       for (let i = (currentPage * 10) - 10; i < (currentPage * 10); i++) {
-        displayCards.push(<DogCard {...currentSearchDogs[i]} zip={zipCode}/>)
+        displayCards.push(<DogCard {...currentSearchDogs[i]} zip={zipCode} />)
       }
     }
 
@@ -116,6 +122,7 @@ export class Search extends Component {
           </div>
 
           <form onSubmit={this.handleSearch} className='search-input-container'>
+            <div className='search-error'>{zipError}</div>
             <input className='search-input' type='number' onChange={this.handleChange} placeholder='zip-code' name='zip' value={this.state.zipCode}></input>
             <button className='search-btn'>Search</button>
           </form>

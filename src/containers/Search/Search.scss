@@ -22,9 +22,18 @@
 
 .search-input-container{
   display: flex;
+  position: relative;
 }
 
 .search-num-display {
+  font-size: 20px;
+}
+
+.search-error {
+  position: absolute;
+  top:5px;
+  left: -250px;
+  color: red;
   font-size: 20px;
 }
 
