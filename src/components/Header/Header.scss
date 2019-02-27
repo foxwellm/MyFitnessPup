@@ -19,12 +19,9 @@
     }
 }
 
-// .header-img {
-//   background-size: 30px 30px;
-//   width: 30px;
-//   height: 30px;
-//   color: white;
-// }
+.spacer {
+  flex: 5;
+}
 
 .header-navlink {
   background-color: $primary-light;
@@ -46,7 +43,7 @@
   background-color: $primary-dark;
     &:hover {
       transform: scale(1.01);
-      background-color: $primary-light-hover;
+      background-color: $primary-dark;
       transition: .1s linear;
     }
 }

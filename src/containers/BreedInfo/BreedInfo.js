@@ -18,7 +18,6 @@ export class BreedInfo extends Component {
             <div className='breed-info-img' style={{ backgroundImage: `url(${images[img]})` }}></div>
         </div>
         </div>
-
       </div>
     )
   }

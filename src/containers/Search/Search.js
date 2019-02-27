@@ -11,7 +11,7 @@ export class Search extends Component {
   constructor() {
     super()
     this.state = {
-      zipCode: 77043,
+      zipCode: '',
       zipError: '',
       breeds: breeds,
       currentPage: 1,
