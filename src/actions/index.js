@@ -12,3 +12,8 @@ export const hasErrored = (message) => ({
   type: 'HAS_ERRORED',
   message
 });
+
+export const setDisplay = (bool) => ({
+  type: 'SET_DISPLAY',
+  isDisplay: bool
+});
