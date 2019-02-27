@@ -1,5 +1,5 @@
 import React from 'react'
-import AboutBreeds from '../../components/AboutBreeds/AboutBreeds';
+import AboutBreeds from '../AboutBreeds/AboutBreeds';
 import { Link } from 'react-router-dom'
 import { importImages } from '../../helpers/importImages'
 

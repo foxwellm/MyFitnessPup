@@ -7,8 +7,34 @@ exports[`BreedInfo should have match the correct snapshot 1`] = `
     className="breed-info-container"
   >
     <div
-      className="form"
-    />
+      className="breed-info-card"
+    >
+      <div
+        className="back-btn-container"
+      >
+        <Link
+          replace={false}
+          to="/about-breeds"
+        >
+          <button
+            className="breed-info-btn"
+          >
+            Back
+          </button>
+        </Link>
+      </div>
+      <p>
+        Happy Doggy
+      </p>
+      <div
+        className="breed-info-img"
+        style={
+          Object {
+            "backgroundImage": "url(undefined)",
+          }
+        }
+      />
+    </div>
   </div>
 </div>
 `;
