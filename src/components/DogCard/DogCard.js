@@ -2,7 +2,7 @@ import React from 'react'
 
 export const DogCard = (props) => {
   const {photos, name, age, distance} = props
-  const srcImg = !photos || !photos[4].$t ? null : photos[4].$t
+  const srcImg = !photos || !photos[2].$t ? null : photos[2].$t
   const dogName = !name || !name.match(' ') ? name : name.split(' ')[0]
   return (
     <div className='DogCard-container'>
