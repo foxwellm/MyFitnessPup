@@ -1,10 +1,10 @@
 import { hasErrored} from '../actions'
-import { googleDistanceMatrixAPI } from '../APIKEY'
 
 export const addDistance = (dogs, zipCode) => {
   return (dispatch) => {
     const promisedDogs = dogs.map(async dog => {
       try {
+        const googleDistanceMatrixAPI = process.env.REACT_APP_GOOGLE_DISTANCE_MATRIX_API
         const url = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${zipCode}&destinations=${dog.zip}&key=${googleDistanceMatrixAPI}`
         const response = await fetch(url)
         if (!response.ok) {

@@ -1,4 +1,3 @@
-import { petFinderAPI } from '../APIKEY'
 import { dogCleaner } from '../helpers/dogCleaner'
 import { addDistance } from '../thunks/addDistance'
 import { fetchDogsSuccess, setLoading, hasErrored } from '../actions'
@@ -6,6 +5,7 @@ import { fetchDogsSuccess, setLoading, hasErrored } from '../actions'
 export const retrieveDogs = (zipCode, dogs) => {
   return async (dispatch) => {
     const promisedDogs = dogs.map(async dog => {
+      const petFinderAPI = process.env.REACT_APP_PET_FINDER_API
       const url = `https://cors-anywhere.herokuapp.com/http://api.petfinder.com/pet.find?key=${petFinderAPI}&format=json&animal=dog&location=${zipCode}&breed=${dog}&count=10&age!==Senior&output=full`
       const urlOptions = {
         headers: { "Content-Type": "application/json" }
