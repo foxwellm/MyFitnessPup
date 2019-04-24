@@ -1,6 +1,7 @@
 # MyFitnessPup
 #### MyFitnessPup is a React app that lets avid runners/hikers search for their perfect companion at local shelters near by. Many dog breeds are un-suited to keep pace with their owners on long hikes or runs and so MyFitnessPup helps users find the breeds that will.
 
+## Live Site: https://my-fitness-pup.herokuapp.com/
 
 ## Installation Steps 
 - Clone this repo: ```https://github.com/foxwellm/MyFitnessPup```
