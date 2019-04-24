@@ -24,6 +24,7 @@ export class App extends Component {
         <Header />
         <Switch>
           <Route exact path='/' component={Home} />
+          <Route exact path='/about' render={() => <Home isAbout={true}/>} />
           <Route exact path='/about-breeds' component={AboutBreeds} />
           <Route path='/about-breeds/:breed' render={({ match }) => {
             const { breed } = match.params
