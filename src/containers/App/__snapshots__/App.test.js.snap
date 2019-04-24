@@ -12,6 +12,11 @@ exports[`App should match the correct snapshot 1`] = `
       path="/"
     />
     <Route
+      exact={true}
+      path="/about"
+      render={[Function]}
+    />
+    <Route
       component={[Function]}
       exact={true}
       path="/about-breeds"

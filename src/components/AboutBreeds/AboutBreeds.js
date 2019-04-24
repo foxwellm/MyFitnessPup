@@ -14,7 +14,7 @@ export class AboutBreeds extends Component {
 
   render() {
     const breedCards =this.state.breeds.map((breed, i) => {
-      return <Link to={`/about-breeds/${breed.breed}`}><BreedCard {...breed} info={info[breed.name]} location={this.props.location} active={false} cardNumber={i} key={shortID.generate()} /></Link>
+      return <Link to={`/about-breeds/${breed.breed}`} key={shortID.generate()}><BreedCard {...breed} info={info[breed.name]} location={this.props.location} active={false} cardNumber={i}  /></Link>
     })
 
     return (

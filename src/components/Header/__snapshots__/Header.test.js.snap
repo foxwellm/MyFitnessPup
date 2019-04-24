@@ -19,6 +19,14 @@ exports[`Header should have match the correct snapshot 1`] = `
     activeClassName="selected"
     aria-current="page"
     className="header-navlink"
+    to="/about"
+  >
+    About
+  </NavLink>
+  <NavLink
+    activeClassName="selected"
+    aria-current="page"
+    className="header-navlink"
     to="/about-breeds"
   >
     About Breeds

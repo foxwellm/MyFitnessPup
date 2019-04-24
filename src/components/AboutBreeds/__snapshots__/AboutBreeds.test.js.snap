@@ -5,6 +5,7 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
   className="breed-cards-container"
 >
   <Link
+    key="37bb9d"
     replace={false}
     to="/about-breeds/Siberian Husky"
   >
@@ -16,11 +17,11 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
       isClimber={true}
       isCold={true}
       isRunner={true}
-      key="f7fc00"
       tag="siberian-husky"
     />
   </Link>
   <Link
+    key="79a1ab"
     replace={false}
     to="/about-breeds/Australian Shepherd"
   >
@@ -32,11 +33,11 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
       isClimber={true}
       isCold={true}
       isRunner={false}
-      key="3c441a"
       tag="australian-shepherd"
     />
   </Link>
   <Link
+    key="5c5b45"
     replace={false}
     to="/about-breeds/German Shorthaired Pointer"
   >
@@ -48,11 +49,11 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
       isClimber={true}
       isCold={false}
       isRunner={true}
-      key="089fd9"
       tag="german-shorthaired-pointer"
     />
   </Link>
   <Link
+    key="38f5f4"
     replace={false}
     to="/about-breeds/Vizsla"
   >
@@ -64,11 +65,11 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
       isClimber={true}
       isCold={false}
       isRunner={true}
-      key="1f3fdb"
       tag="vizsla"
     />
   </Link>
   <Link
+    key="5b2a43"
     replace={false}
     to="/about-breeds/Australian Cattle Dog / Blue Heeler"
   >
@@ -80,11 +81,11 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
       isClimber={true}
       isCold={false}
       isRunner={true}
-      key="396ba2"
       tag="australian-cattle-dog"
     />
   </Link>
   <Link
+    key="1addc5"
     replace={false}
     to="/about-breeds/Weimaraner"
   >
@@ -96,11 +97,11 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
       isClimber={true}
       isCold={false}
       isRunner={true}
-      key="3879cc"
       tag="weimaraner"
     />
   </Link>
   <Link
+    key="12a5fe"
     replace={false}
     to="/about-breeds/Bernese Mountain Dog"
   >
@@ -112,11 +113,11 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
       isClimber={true}
       isCold={true}
       isRunner={false}
-      key="61efae"
       tag="bernese-mountain-dog"
     />
   </Link>
   <Link
+    key="ecef3d"
     replace={false}
     to="/about-breeds/Rhodesian Ridgeback"
   >
@@ -128,11 +129,11 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
       isClimber={true}
       isCold={false}
       isRunner={true}
-      key="dba963"
       tag="rhodesian-ridgeback"
     />
   </Link>
   <Link
+    key="81941b"
     replace={false}
     to="/about-breeds/Alaskan Malamute"
   >
@@ -144,11 +145,11 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
       isClimber={true}
       isCold={true}
       isRunner={true}
-      key="10d23a"
       tag="alaskan-malamute"
     />
   </Link>
   <Link
+    key="0fbe07"
     replace={false}
     to="/about-breeds/Portuguese Water Dog"
   >
@@ -160,11 +161,11 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
       isClimber={true}
       isCold={true}
       isRunner={true}
-      key="205792"
       tag="portuguese-water-dog"
     />
   </Link>
   <Link
+    key="3a3203"
     replace={false}
     to="/about-breeds/Border Collie"
   >
@@ -176,11 +177,11 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
       isClimber={true}
       isCold={false}
       isRunner={true}
-      key="45a5bf"
       tag="border-collie"
     />
   </Link>
   <Link
+    key="fda262"
     replace={false}
     to="/about-breeds/German Shepherd Dog"
   >
@@ -192,11 +193,11 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
       isClimber={false}
       isCold={false}
       isRunner={true}
-      key="ed1069"
       tag="german-shepherd-dog"
     />
   </Link>
   <Link
+    key="2e21e9"
     replace={false}
     to="/about-breeds/Dalmatian"
   >
@@ -208,11 +209,11 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
       isClimber={true}
       isCold={false}
       isRunner={true}
-      key="174563"
       tag="dalmatian"
     />
   </Link>
   <Link
+    key="676531"
     replace={false}
     to="/about-breeds/Airedale Terrier"
   >
@@ -224,11 +225,11 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
       isClimber={true}
       isCold={false}
       isRunner={false}
-      key="bb8a02"
       tag="airedale-terrier"
     />
   </Link>
   <Link
+    key="2919ce"
     replace={false}
     to="/about-breeds/Jack Russell Terrier"
   >
@@ -240,11 +241,11 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
       isClimber={false}
       isCold={false}
       isRunner={true}
-      key="fcacad"
       tag="jack-russell-terrier"
     />
   </Link>
   <Link
+    key="e00485"
     replace={false}
     to="/about-breeds/Poodle"
   >
@@ -256,11 +257,11 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
       isClimber={true}
       isCold={false}
       isRunner={true}
-      key="c36688"
       tag="poodle"
     />
   </Link>
   <Link
+    key="80a100"
     replace={false}
     to="/about-breeds/Belgian Shepherd / Sheepdog"
   >
@@ -272,11 +273,11 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
       isClimber={true}
       isCold={false}
       isRunner={false}
-      key="b604ef"
       tag="belgian-shepherd"
     />
   </Link>
   <Link
+    key="fa241a"
     replace={false}
     to="/about-breeds/English Setter"
   >
@@ -288,11 +289,11 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
       isClimber={true}
       isCold={false}
       isRunner={true}
-      key="4159b3"
       tag="english-setter"
     />
   </Link>
   <Link
+    key="d77ba1"
     replace={false}
     to="/about-breeds/Brittany Spaniel"
   >
@@ -304,11 +305,11 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
       isClimber={true}
       isCold={false}
       isRunner={false}
-      key="a48dad"
       tag="brittany-spaniel"
     />
   </Link>
   <Link
+    key="87aa5c"
     replace={false}
     to="/about-breeds/Labrador Retriever"
   >
@@ -320,7 +321,6 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
       isClimber={false}
       isCold={false}
       isRunner={true}
-      key="f436ef"
       tag="labrador-retriever"
     />
   </Link>
