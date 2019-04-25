@@ -1,48 +1,69 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { App } from './App';
 import { Home } from '../../components/Home/Home'
 import { Search } from '../Search/Search'
 import { AboutBreeds } from '../../components/AboutBreeds/AboutBreeds'
 import { BreedInfo } from '../../components/BreedInfo/BreedInfo'
 import { NotFound } from '../../components/NotFound/NotFound'
+import { breeds, info } from '../../staticData/breeds'
+import { mapStateToProps, mapDispatchToProps } from './App'
 import { shallow, mount } from 'enzyme'
-import { BrowserRouter, MemoryRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { rootReducer } from '../../reducers/index';
 import thunk from 'redux-thunk';
-import { breeds } from '../../staticData/breeds'
+import { storeStaticBreeds, storeStaticBreedInfo } from '../../actions'
 
 describe('App', () => {
   const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
   let wrapper
-  
-  it('renders without crashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(
-      <Provider store={store}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </Provider>
-      , div);
-    ReactDOM.unmountComponentAtNode(div);
+  let mockStoreStaticBreeds
+  let mockStoreStaticBreedInfo
+
+  beforeEach(() => {
+    mockStoreStaticBreeds = jest.fn()
+    mockStoreStaticBreedInfo = jest.fn()
+    wrapper = shallow(<App
+      storeStaticBreeds={mockStoreStaticBreeds}
+      storeStaticBreedInfo={mockStoreStaticBreedInfo}
+      staticBreeds={breeds}
+      staticBreedInfo={info}
+    />)
   })
 
   it('should match the correct snapshot', () => {
-    wrapper = shallow(<App />)
     expect(wrapper).toMatchSnapshot()
   })
 
   describe('Routes', () => {
-
     it('should render the Home container when at the root route', () => {
       const wrapper = mount(
         <Provider store={store}>
           <MemoryRouter initialEntries={['/']}>
-            <App />
+            <App
+              storeStaticBreeds={mockStoreStaticBreeds}
+              storeStaticBreedInfo={mockStoreStaticBreedInfo}
+              staticBreeds={breeds}
+              staticBreedInfo={info}
+            />
+          </MemoryRouter>
+        </Provider>
+      )
+      expect(wrapper.find(Home)).toHaveLength(1)
+    })
+
+    it('should render the Home container when at /about', () => {
+      const wrapper = mount(
+        <Provider store={store}>
+          <MemoryRouter initialEntries={['/about']}>
+            <App
+              storeStaticBreeds={mockStoreStaticBreeds}
+              storeStaticBreedInfo={mockStoreStaticBreedInfo}
+              staticBreeds={breeds}
+              staticBreedInfo={info}
+            />
           </MemoryRouter>
         </Provider>
       )
@@ -54,7 +75,12 @@ describe('App', () => {
       const wrapper = mount(
         <Provider store={store}>
           <MemoryRouter initialEntries={['/about-breeds']}>
-            <App />
+            <App
+              storeStaticBreeds={mockStoreStaticBreeds}
+              storeStaticBreedInfo={mockStoreStaticBreedInfo}
+              staticBreeds={breeds}
+              staticBreedInfo={info}
+            />
           </MemoryRouter>
         </Provider>
       )
@@ -62,11 +88,15 @@ describe('App', () => {
     })
 
     it('should render the BreedInfo container when at /about-breeds/:breed and given a valid breed', () => {
-      const mockBreeds = breeds
       const wrapper = mount(
         <Provider store={store}>
           <MemoryRouter initialEntries={['/about-breeds/Poodle']}>
-            <App breeds={mockBreeds} />
+            <App
+              storeStaticBreeds={mockStoreStaticBreeds}
+              storeStaticBreedInfo={mockStoreStaticBreedInfo}
+              staticBreeds={breeds}
+              staticBreedInfo={info}
+            />
           </MemoryRouter>
         </Provider>
       )
@@ -78,7 +108,12 @@ describe('App', () => {
       const wrapper = mount(
         <Provider store={store}>
           <MemoryRouter initialEntries={['/about-breeds/Chihuahua']}>
-            <App breeds={mockBreeds} />
+            <App
+              storeStaticBreeds={mockStoreStaticBreeds}
+              storeStaticBreedInfo={mockStoreStaticBreedInfo}
+              staticBreeds={breeds}
+              staticBreedInfo={info}
+            />
           </MemoryRouter>
         </Provider>
       )
@@ -89,13 +124,52 @@ describe('App', () => {
       const wrapper = mount(
         <Provider store={store}>
           <MemoryRouter initialEntries={['/search']}>
-            <App />
+            <App
+              storeStaticBreeds={mockStoreStaticBreeds}
+              storeStaticBreedInfo={mockStoreStaticBreedInfo}
+              staticBreeds={breeds}
+              staticBreedInfo={info}
+            />
           </MemoryRouter>
         </Provider>
       )
       expect(wrapper.find(Search)).toHaveLength(1)
     })
-
   })
 
+  describe('mapStateToProps', () => {
+    it('should return an object of props', () => {
+      const mockStaticBreeds = [{ breed: 'Husky' }, { breed: 'Chihuahua' }]
+      const mockStaticBreedInfo = [{ name: 'Husky' }, { name: 'Chihuahua' }]
+      const mockState = {
+        staticBreeds: mockStaticBreeds,
+        staticBreedInfo: mockStaticBreedInfo,
+        otherState: false,
+      }
+      const expected = {
+        staticBreeds: mockStaticBreeds,
+        staticBreedInfo: mockStaticBreedInfo,
+      }
+      const mappedProps = mapStateToProps(mockState)
+      expect(mappedProps).toEqual(expected)
+    })
+  })
+
+  describe('mapDispatchToProps', () => {
+    it('should call dispatch when storeStaticBreeds is called', () => {
+      const mockDispatch = jest.fn()
+      const actionToDispatch = storeStaticBreeds()
+      const mappedProps = mapDispatchToProps(mockDispatch)
+      mappedProps.storeStaticBreeds()
+      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
+    })
+
+    it('should call dispatch when storeStaticBreedInfo is called', () => {
+      const mockDispatch = jest.fn()
+      const actionToDispatch = storeStaticBreedInfo()
+      const mappedProps = mapDispatchToProps(mockDispatch)
+      mappedProps.storeStaticBreedInfo()
+      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
+    })
+  })
 })

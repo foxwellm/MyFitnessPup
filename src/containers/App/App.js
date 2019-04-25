@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import Header from '../../components/Header/Header'
 import Home from '../../components/Home/Home'
 import AboutBreeds from '../../components/AboutBreeds/AboutBreeds'
@@ -7,18 +8,17 @@ import Search from '../Search/Search'
 import NotFound from '../../components/NotFound/NotFound'
 import { Switch, Route, withRouter } from 'react-router-dom'
 import { breeds, info } from '../../staticData/breeds'
+import { storeStaticBreeds, storeStaticBreedInfo } from '../../actions'
 
 export class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      breedNames: breeds.map(type => type.breed),
-      info: info
-    }
+
+  componentDidMount = () => {
+    this.props.storeStaticBreeds(breeds)
+    this.props.storeStaticBreedInfo(info)
   }
 
   render() {
-    const { breedNames, info} = this.state
+    const { staticBreeds, staticBreedInfo} = this.props
     return (
       <div className="App">
         <Header />
@@ -28,9 +28,11 @@ export class App extends Component {
           <Route exact path='/about-breeds' component={AboutBreeds} />
           <Route path='/about-breeds/:breed' render={({ match }) => {
             const { breed } = match.params
-            const dogInfo = info.find(dog => dog.name === breed)
-            const dogBreed = breeds.find(dog => dog.breed === breed)
+            const breedNames = staticBreeds.map(type => type.breed)
+            const dogInfo = staticBreedInfo.find(dog => dog.name === breed)
+            const dogBreed = staticBreeds.find(dog => dog.breed === breed)
             if (breedNames.includes(breed)) {
+             
               return <BreedInfo breed={dogBreed} info={dogInfo}/>
             }
             return <NotFound />
@@ -44,4 +46,14 @@ export class App extends Component {
   }
 }
 
-export default withRouter(App)
+export const mapStateToProps = (state) => ({
+  staticBreeds: state.staticBreeds,
+  staticBreedInfo: state.staticBreedInfo,
+})
+
+export const mapDispatchToProps = (dispatch) => ({
+  storeStaticBreeds: (breeds) => dispatch(storeStaticBreeds(breeds)),
+  storeStaticBreedInfo: (info) => dispatch(storeStaticBreedInfo(info)),
+})
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))

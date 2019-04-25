@@ -17,3 +17,13 @@ export const setDisplay = (bool) => ({
   type: 'SET_DISPLAY',
   isDisplay: bool
 });
+
+export const storeStaticBreeds = (breeds) => ({
+  type: 'STORE_BREEDS',
+  breeds: breeds
+});
+
+export const storeStaticBreedInfo = (info) => ({
+  type: 'STORE_BREED_INFO',
+  info: info
+});
