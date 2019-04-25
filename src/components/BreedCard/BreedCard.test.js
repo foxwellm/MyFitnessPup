@@ -1,15 +1,23 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import BreedCard from './BreedCard'
-import * as image from '../../helpers/importImages'
 
 describe('BreedCard', () => {
   let wrapper
-  image.importImages = jest.fn().mockImplementation(() => '../')
+  let mockImg
 
-  it('should have match the correct snapshot', () => {
-    wrapper = shallow(<BreedCard />)
-    expect(wrapper).toMatchSnapshot()
-  })
+  beforeEach(() => {
+    mockImg = 'siberian-husky.jpg'
+
+    wrapper = shallow(
+      <BreedCard
+        img={mockImg}
+      />
+    )
+  });
+
+  it('should match the correct snapshot', () => {
+    expect(wrapper).toMatchSnapshot();
+  });
 
 })

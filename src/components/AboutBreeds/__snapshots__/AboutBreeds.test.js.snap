@@ -5,7 +5,7 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
   className="breed-cards-container"
 >
   <Link
-    key="37bb9d"
+    key="3f5567"
     replace={false}
     to="/about-breeds/Siberian Husky"
   >
@@ -21,7 +21,7 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
     />
   </Link>
   <Link
-    key="79a1ab"
+    key="323a78"
     replace={false}
     to="/about-breeds/Australian Shepherd"
   >
@@ -37,7 +37,7 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
     />
   </Link>
   <Link
-    key="5c5b45"
+    key="7db9e7"
     replace={false}
     to="/about-breeds/German Shorthaired Pointer"
   >
@@ -53,7 +53,7 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
     />
   </Link>
   <Link
-    key="38f5f4"
+    key="753f8c"
     replace={false}
     to="/about-breeds/Vizsla"
   >
@@ -69,7 +69,7 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
     />
   </Link>
   <Link
-    key="5b2a43"
+    key="3c192f"
     replace={false}
     to="/about-breeds/Australian Cattle Dog / Blue Heeler"
   >
@@ -85,7 +85,7 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
     />
   </Link>
   <Link
-    key="1addc5"
+    key="d34477"
     replace={false}
     to="/about-breeds/Weimaraner"
   >
@@ -101,7 +101,7 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
     />
   </Link>
   <Link
-    key="12a5fe"
+    key="4cc06b"
     replace={false}
     to="/about-breeds/Bernese Mountain Dog"
   >
@@ -117,7 +117,7 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
     />
   </Link>
   <Link
-    key="ecef3d"
+    key="f2feaf"
     replace={false}
     to="/about-breeds/Rhodesian Ridgeback"
   >
@@ -133,7 +133,7 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
     />
   </Link>
   <Link
-    key="81941b"
+    key="90da65"
     replace={false}
     to="/about-breeds/Alaskan Malamute"
   >
@@ -149,7 +149,7 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
     />
   </Link>
   <Link
-    key="0fbe07"
+    key="f7485f"
     replace={false}
     to="/about-breeds/Portuguese Water Dog"
   >
@@ -165,7 +165,7 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
     />
   </Link>
   <Link
-    key="3a3203"
+    key="f4a71f"
     replace={false}
     to="/about-breeds/Border Collie"
   >
@@ -181,7 +181,7 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
     />
   </Link>
   <Link
-    key="fda262"
+    key="6de218"
     replace={false}
     to="/about-breeds/German Shepherd Dog"
   >
@@ -197,7 +197,7 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
     />
   </Link>
   <Link
-    key="2e21e9"
+    key="b963b7"
     replace={false}
     to="/about-breeds/Dalmatian"
   >
@@ -213,7 +213,7 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
     />
   </Link>
   <Link
-    key="676531"
+    key="546d21"
     replace={false}
     to="/about-breeds/Airedale Terrier"
   >
@@ -229,7 +229,7 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
     />
   </Link>
   <Link
-    key="2919ce"
+    key="020686"
     replace={false}
     to="/about-breeds/Jack Russell Terrier"
   >
@@ -245,7 +245,7 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
     />
   </Link>
   <Link
-    key="e00485"
+    key="6e70d7"
     replace={false}
     to="/about-breeds/Poodle"
   >
@@ -261,7 +261,7 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
     />
   </Link>
   <Link
-    key="80a100"
+    key="17d808"
     replace={false}
     to="/about-breeds/Belgian Shepherd / Sheepdog"
   >
@@ -277,7 +277,7 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
     />
   </Link>
   <Link
-    key="fa241a"
+    key="de21bb"
     replace={false}
     to="/about-breeds/English Setter"
   >
@@ -293,7 +293,7 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
     />
   </Link>
   <Link
-    key="d77ba1"
+    key="d534e3"
     replace={false}
     to="/about-breeds/Brittany Spaniel"
   >
@@ -309,7 +309,7 @@ exports[`AboutBreeds should have match the correct snapshot 1`] = `
     />
   </Link>
   <Link
-    key="87aa5c"
+    key="cc2602"
     replace={false}
     to="/about-breeds/Labrador Retriever"
   >

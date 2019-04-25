@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { importImages } from '../../helpers/importImages'
 
 export class BreedCard extends Component {
 
@@ -12,8 +11,7 @@ export class BreedCard extends Component {
   }
 
   render() {
-    const { active, img, isCold, isRunner, isClimber, breed } = this.props
-    const images = importImages();
+    const { active, isCold, isRunner, isClimber, breed, img } = this.props
     const cssClasses = [
       "BreedCard-container",
       active ? "activeCard" : null
@@ -22,7 +20,9 @@ export class BreedCard extends Component {
 
       <div className={cssClasses.join(' ')} name={breed} onClick={this.handleClick}>
         <div className='breed-card-header'>{breed}</div>
-        <div className='breed-img' style={{ backgroundImage: `url(${images[img]})` }}></div>
+        <div className='img-container'>
+          <img className='breed-img' alt='dog' src={require(`../../images/${img}`)} />
+        </div>
         <div className='breed-attr'>
           {
             isCold ? <i className="fas fa-snowflake"></i> : <div></div>

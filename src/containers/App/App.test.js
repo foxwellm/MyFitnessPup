@@ -14,12 +14,10 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import { rootReducer } from '../../reducers/index';
 import thunk from 'redux-thunk';
 import { breeds } from '../../staticData/breeds'
-import * as image from '../../helpers/importImages'
 
 describe('App', () => {
   const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
   let wrapper
-  image.importImages = jest.fn().mockImplementation(() => '../')
   
   it('renders without crashing', () => {
     const div = document.createElement('div');
@@ -64,7 +62,6 @@ describe('App', () => {
     })
 
     it('should render the BreedInfo container when at /about-breeds/:breed and given a valid breed', () => {
-      image.importImages = jest.fn().mockImplementation(() => '../')
       const mockBreeds = breeds
       const wrapper = mount(
         <Provider store={store}>

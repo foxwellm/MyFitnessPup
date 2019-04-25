@@ -40,7 +40,6 @@
       "src/**/*.{js,jsx}",
       "!/node_modules/",
       "!src/index.js",
-      "!src/helpers/importImages.js",
       "!src/setupTest.js"
     ],
     "snapshotSerializers": [

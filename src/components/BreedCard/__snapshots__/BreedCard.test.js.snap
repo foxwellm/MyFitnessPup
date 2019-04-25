@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`BreedCard should have match the correct snapshot 1`] = `
+exports[`BreedCard should match the correct snapshot 1`] = `
 <div
   className="BreedCard-container "
   onClick={[Function]}
@@ -9,13 +9,14 @@ exports[`BreedCard should have match the correct snapshot 1`] = `
     className="breed-card-header"
   />
   <div
-    className="breed-img"
-    style={
-      Object {
-        "backgroundImage": "url(undefined)",
-      }
-    }
-  />
+    className="img-container"
+  >
+    <img
+      alt="dog"
+      className="breed-img"
+      src="siberian-husky.jpg"
+    />
+  </div>
   <div
     className="breed-attr"
   >
