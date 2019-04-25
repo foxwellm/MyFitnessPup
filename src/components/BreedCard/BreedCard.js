@@ -21,7 +21,7 @@ export class BreedCard extends Component {
       <div className={cssClasses.join(' ')} name={breed} onClick={this.handleClick}>
         <div className='breed-card-header'>{breed}</div>
         <div className='img-container'>
-          <img className='breed-img' alt='dog' src={require(`../../images/${img}`)} />
+          <img className='breed-img' alt='dog' src={require(`../../assets/images/${img}`)} />
         </div>
         <div className='breed-attr'>
           {

@@ -19,7 +19,7 @@ exports[`DogCard should have match the correct snapshot 1`] = `
      away
   </div>
   <div
-    className="img-container"
+    className="search-img-container"
   >
     <img
       alt="dog from shelter"
