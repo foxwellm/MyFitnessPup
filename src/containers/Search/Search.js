@@ -95,24 +95,6 @@ export class Search extends Component {
     })
   }
 
-  prev = () => {
-    let newPage = this.state.currentPage - 1
-    this.setState({
-      currentPage: newPage
-    })
-  }
-
-  next = () => {
-    const { currentPage, currentSearchDogs } = this.state
-    let newPage = currentPage + 1
-    console.log(currentSearchDogs.slice(currentPage * 10, newPage * 10))
-    console.log(this.props.storedDogs)
-
-    this.setState({
-      currentPage: newPage
-    })
-  }
-
   toggleSearchParams = () => {
     const { isSpecificSearch } = this.state
     this.setState({ isSpecificSearch: !isSpecificSearch })
@@ -164,7 +146,6 @@ export class Search extends Component {
             !isDisplay ? null : !isLoading ? displayCards : <div>...Loading</div>
           }
         </div>
-        <div><button onClick={this.prev}>prev</button><button onClick={this.next}>next</button></div>
       </div>
     )
   }

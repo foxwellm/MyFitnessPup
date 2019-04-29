@@ -8,7 +8,6 @@ export const addDistance = (dogs, zipCode) => {
         const url = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${zipCode}&destinations=${dog.zip}&key=${googleDistanceMatrixAPI}`
         const response = await fetch(url)
         if (!response.ok) {
-          debugger
           throw Error(response.statusText)
         }
         const data = await response.json()

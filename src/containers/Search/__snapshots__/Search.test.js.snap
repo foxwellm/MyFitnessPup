@@ -86,17 +86,5 @@ exports[`Search should match the correct snapshot 1`] = `
   <div
     className="results-container"
   />
-  <div>
-    <button
-      onClick={[Function]}
-    >
-      prev
-    </button>
-    <button
-      onClick={[Function]}
-    >
-      next
-    </button>
-  </div>
 </div>
 `;
