@@ -1,5 +1,6 @@
 import { retrieveDogs } from '../retrieveDogs'
-import { hasErrored, setLoading } from '../../actions'
+import { hasErrored, setLoading, fetchDogsSuccess } from '../../actions'
+import * as cleaner from '../../helpers/dogCleaner'
 
 describe('retrieveDogs', () => {
 
@@ -11,7 +12,7 @@ describe('retrieveDogs', () => {
   beforeEach(() => {
     mockURL = 'http://localhost:3000/'
     mockDispatch = jest.fn()
-    mockDogs = ['Poodle', 'Labrador']
+    mockDogs = ['Poodle']
     mockZipCode = 77043
   })
 
@@ -34,25 +35,43 @@ describe('retrieveDogs', () => {
   })
 
   it('should dispatch setLoading(false) if the response is ok', async () => {
-    window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-      ok: true
-    }))
+    Promise.all = jest.fn().mockImplementation(() => [])
     const thunk = retrieveDogs(mockZipCode, mockDogs)
     await thunk(mockDispatch)
     expect(mockDispatch).toHaveBeenCalledWith(setLoading(false))
   })
 
-  it('should dispatch fetchDogsSuccess', async () => {
-    const mockNote = 'Mock Note'
-
-    window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-      json: () => Promise.resolve(mockNote),
-      ok: true
-    }))
-
+  it('should dispatch fetchDogsSuccess if resolvedDogs is returned', async () => {
+    Promise.all = jest.fn().mockImplementation(() => [])
     const thunk = retrieveDogs(mockZipCode, mockDogs)
     await thunk(mockDispatch)
-    expect(mockDispatch).toHaveBeenCalledWith(fetchDogsSuccess(resolvedDogs))
+    expect(mockDispatch).toHaveBeenCalledWith(fetchDogsSuccess([]))
+  })
+
+  it('should dispatch fetchDogsSuccess when mapping through dogs', async () => {
+    window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+      ok: true,
+      json: () => Promise.resolve({
+        petfinder: {
+          lastOffset: {
+            $t: 'pictureURL'
+          }
+        },
+        data: {
+          rows: [{
+            elements: [{
+              distance: {
+                text: '12'
+              }
+            }]
+          }]
+        }
+      })
+    }))
+    cleaner.dogCleaner = jest.fn().mockImplementation(() => ['Poodle'])
+    const thunk = retrieveDogs(mockZipCode, mockDogs)
+    await thunk(mockDispatch)
+    await expect(mockDispatch).toHaveBeenCalledWith(fetchDogsSuccess([]))
   })
 
 })

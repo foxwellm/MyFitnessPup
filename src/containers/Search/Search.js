@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { breeds } from '../../staticData/breeds'
 import { DogCard } from '../../components/DogCard/DogCard'
 import { retrieveDogs } from '../../thunks/retrieveDogs'
 import BreedCard from '../../components/BreedCard/BreedCard'
 import { setLoading, setDisplay } from '../../actions'
+import trail from '../../assets/images/trail.jpg'
+let shortID = require('short-id');
 
 export class Search extends Component {
   constructor() {
@@ -12,10 +13,10 @@ export class Search extends Component {
     this.state = {
       zipCode: '',
       zipError: '',
-      breeds: breeds,
       currentPage: 1,
       search: [],
-      currentSearchDogs: []
+      currentSearchDogs: [],
+      isSpecificSearch: false
     }
   }
 
@@ -26,12 +27,12 @@ export class Search extends Component {
   }
 
   updateCurrentSearchDogs = () => {
-    const { zipCode, breeds, search } = this.state
-    const { storedDogs } = this.props
+    const { zipCode, search } = this.state
+    const { storedDogs, staticBreeds } = this.props
     let searchingAll = []
 
     if (this.state.search.length === 0) {
-      breeds.map(breed => {
+      staticBreeds.map(breed => {
         return searchingAll = [...searchingAll, ...storedDogs[zipCode][breed.breed].cleanedDogs]
       })
       searchingAll.sort((a, b) => {
@@ -62,19 +63,19 @@ export class Search extends Component {
   }
 
   handleSearch = async (e) => {
-    const { setLoading, setDisplay } = this.props
-    const { search, breeds, zipCode } = this.state
     e.preventDefault()
-
+    const { setLoading, setDisplay, staticBreeds } = this.props
+    const { search, zipCode } = this.state
     if (zipCode.length !== 5) {
       this.setState({ zipError: 'Please enter valid zip code' })
     } else {
       this.setState({ zipError: '' })
       setDisplay(true)
-      const searchDogs = !search.length ? breeds.map(breed => breed.breed) : search
+      const searchDogs = !search.length ? staticBreeds.map(breed => breed.breed) : search
       const newSearchDogs = this.checkStoredDogs(searchDogs)
       newSearchDogs.length && await this.props.retrieveDogs(zipCode, newSearchDogs)
       this.updateCurrentSearchDogs()
+      this.setState({ currentPage: 1 })
       setLoading(false)
     }
   }
@@ -94,24 +95,53 @@ export class Search extends Component {
     })
   }
 
+  prev = () => {
+    let newPage = this.state.currentPage - 1
+    this.setState({
+      currentPage: newPage
+    })
+  }
+
+  next = () => {
+    const { currentPage, currentSearchDogs } = this.state
+    let newPage = currentPage + 1
+    console.log(currentSearchDogs.slice(currentPage * 10, newPage * 10))
+    console.log(this.props.storedDogs)
+
+    this.setState({
+      currentPage: newPage
+    })
+  }
+
+  toggleSearchParams = () => {
+    const { isSpecificSearch } = this.state
+    this.setState({ isSpecificSearch: !isSpecificSearch })
+  }
+
   render() {
     const { isLoading, isDisplay } = this.props
-    const { search, currentSearchDogs, currentPage, zipCode, zipError } = this.state
+    const { search, currentSearchDogs, currentPage, zipCode, zipError, isSpecificSearch } = this.state
     let displayCards = []
     if (!isLoading) {
       for (let i = (currentPage * 10) - 10; i < (currentPage * 10); i++) {
-        displayCards.push(<DogCard {...currentSearchDogs[i]} zip={zipCode} />)
+        displayCards.push(<DogCard {...currentSearchDogs[i]} zip={zipCode} key={shortID.generate()} />)
       }
     }
 
-    const searchCards = this.state.breeds.map((breed, i) => {
+    const specificSearchCSS = [
+      "search-container",
+      isSpecificSearch ? "show" : null
+    ];
+
+    const searchCards = this.props.staticBreeds.map((breed, i) => {
       const active = search.includes(breed.breed) ? true : false
-      return <BreedCard {...breed} active={active} handleSearchFilter={this.handleSearchFilter} location={this.props.location} cardNumber={i} key={i} />
+      return <BreedCard {...breed} active={active} handleSearchFilter={this.handleSearchFilter} location={this.props.location} cardNumber={i} key={shortID.generate()} />
     })
     const searching = !search.length ? 'all' : search.length
 
     return (
-      <div>
+      <div className='Search'>
+        <img className='trail-img' alt='outdoor trail' src={trail} />
         <div className='search-bar'>
           <div className='search-num-display'>
             {
@@ -119,14 +149,14 @@ export class Search extends Component {
             }
             <button className='search-btn' onClick={this.handleClear}>Clear all</button>
           </div>
-
+          <div className=''><button className='search-btn specific-search-btn' onClick={this.toggleSearchParams}>Search specific breeds</button></div>
           <form onSubmit={this.handleSearch} className='search-input-container'>
             <div className='search-error'>{zipError}</div>
             <input className='search-input' type='number' onChange={this.handleChange} placeholder='zip-code' name='zip' value={this.state.zipCode}></input>
             <button className='search-btn'>Search</button>
           </form>
         </div>
-        <div className='search-container'>
+        <div className={specificSearchCSS.join(' ')}>
           {searchCards}
         </div>
         <div className='results-container'>
@@ -134,12 +164,14 @@ export class Search extends Component {
             !isDisplay ? null : !isLoading ? displayCards : <div>...Loading</div>
           }
         </div>
+        <div><button onClick={this.prev}>prev</button><button onClick={this.next}>next</button></div>
       </div>
     )
   }
 }
 
 export const mapStateToProps = (state) => ({
+  staticBreeds: state.staticBreeds,
   storedDogs: state.storedDogs,
   isLoading: state.isLoading,
   isDisplay: state.isDisplay

@@ -1,3 +1,7 @@
+.BreedCard-link {
+  text-decoration: none;
+}
+
 .BreedCard-container {
   width: 150px;
   height: 180px;
@@ -17,8 +21,7 @@
   height: 50px;
   margin: 0;
   pointer-events: none;
-  color: white;
-  text-decoration: none;
+  color: white;  
 }
 
 .img-container {
@@ -54,3 +57,4 @@
   color: white;
   font-size: 20px;
 }
+

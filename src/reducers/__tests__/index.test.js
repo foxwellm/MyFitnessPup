@@ -9,6 +9,8 @@ describe('rootReducer', () => {
       storedDogs: {},
       isDisplay: false,
       isLoading: true,
+      staticBreeds: [],
+      staticBreedInfo: []
     }
 
     expect(store.getState()).toEqual(expected)

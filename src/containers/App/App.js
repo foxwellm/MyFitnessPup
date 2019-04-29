@@ -32,7 +32,6 @@ export class App extends Component {
             const dogInfo = staticBreedInfo.find(dog => dog.name === breed)
             const dogBreed = staticBreeds.find(dog => dog.breed === breed)
             if (breedNames.includes(breed)) {
-             
               return <BreedInfo breed={dogBreed} info={dogInfo}/>
             }
             return <NotFound />
@@ -42,7 +41,7 @@ export class App extends Component {
           <Route component={NotFound} />
         </Switch>
       </div>
-    );
+    )
   }
 }
 

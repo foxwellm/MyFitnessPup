@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import BreedCard from '../BreedCard/BreedCard'
 import { Link } from 'react-router-dom'
+import trail from '../../assets/images/trail.jpg'
 let shortID = require('short-id');
 
 export class AboutBreeds extends Component {
@@ -9,7 +10,7 @@ export class AboutBreeds extends Component {
   render() {
     const { staticBreeds, staticBreedInfo, location } = this.props
     const breedCards = staticBreeds.map((breed, i) => {
-      return <Link to={`/about-breeds/${breed.breed}`} key={shortID.generate()}>
+      return <Link className='BreedCard-link' to={`/about-breeds/${breed.breed}`} key={shortID.generate()}>
         <BreedCard
           {...breed}
           info={staticBreedInfo[breed.name]}
@@ -21,7 +22,10 @@ export class AboutBreeds extends Component {
     })
 
     return (
-      <div className='breed-cards-container'>{breedCards}</div >
+      <div className='breed-cards-container'>
+        <img className='trail-img' alt='outdoor trail' src={trail} />
+      {breedCards}
+      </div >
     )
   }
 }

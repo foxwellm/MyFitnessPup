@@ -1,12 +1,42 @@
 import React from 'react';
-import {Search} from '../Search/Search'
-import {shallow} from 'enzyme'
-import {mapStateToProps, mapDispatchToProps} from '../Search/Search'
+import { Search } from '../Search/Search'
+import { shallow } from 'enzyme'
+import { mapStateToProps, mapDispatchToProps } from '../Search/Search'
 
 describe('Search', () => {
-let wrapper
+  let wrapper
+  let mockStoredDogs
+  let mockStaticBreeds
+  let mockStaticBreedInfo
+  let shortID = require('short-id')
+
+  beforeEach(() => {
+    shortID.generate = jest.fn().mockImplementation(() => '63de45')
+    mockStoredDogs = {
+      77043: {
+        'Poodle': {
+          cleanedDogs: [{ distance: '19 mi' }, { distance: '91 mi' }]
+        },
+        'Retriever': {
+          cleanedDogs: [{ distance: '92 mi' }, { distance: '29 mi' }]
+        }
+      }
+    }
+    mockStaticBreeds = [
+      { breed: 'Poodle', tag: 'poodle', img: 'poodle.jpg', isCold: true, isRunner: true, isClimber: true },
+      { breed: 'Retriever', tag: 'retriever', img: 'retriever.jpg', isCold: true, isRunner: false, isClimber: true },
+    ]
+    mockStaticBreedInfo = [
+      { name: 'Poodle', desc: "The Poodle was originally bred to pull sleds and carts long distances in the harsh Russian climate.They are powerfully built dogs with lively spirits, always ready for adventure at any time.A true endurance breed, Siberians make an excellent choice for those looking for a dog that will keep them entertained on long hikes.They are gentle and alert, but very social dogs that enjoy spending time outside." },
+      { name: 'Retriever', desc: "The Retriever is an intelligent, adventurous breed that is always ready to go. Originally used as herding dogs, they still excel at this job today, as well as in many dog sports such as agility and obedience. Australian Shepherds make excellent hiking partners, as they are very athletic, friendly, and well suited for long hours of strenuous activity." },
+    ]
+    wrapper = shallow(<Search
+      storedDogs={mockStoredDogs}
+      staticBreeds={mockStaticBreeds}
+      staticBreedInfo={mockStaticBreedInfo}
+    />)
+  })
   it('should match the correct snapshot', () => {
-    wrapper = shallow(<Search />)
     expect(wrapper).toMatchSnapshot()
   })
 
@@ -16,9 +46,9 @@ let wrapper
         value: 77043
       }
     }
-    it('should change state of zipCode', ()=> {
-      wrapper = shallow(<Search />)
-      wrapper.setState({zipCode: 80204})
+    it('should change state of zipCode', () => {
+      // wrapper = shallow(<Search />)
+      wrapper.setState({ zipCode: 80204 })
       expect(wrapper.state('zipCode')).toEqual(80204)
       wrapper.instance().handleChange(mockEvent)
       expect(wrapper.state('zipCode')).toEqual(77043)
@@ -27,67 +57,28 @@ let wrapper
 
   describe('updateCurrentSearchDogs', () => {
 
-    const mockStoredDogs = {
-      77043: {
-        'Poodle': {
-          cleanedDogs: [{ distance: '19 mi' }, { distance: '91 mi' }]
-        },
-        'Retriever': {
-          cleanedDogs: [{ distance: '29 mi' }, { distance: '92 mi' }]
-        }
-      }
-    }
-
     it('should search all dogs when given none and sort by distance', () => {
-      wrapper = shallow(<Search storedDogs={mockStoredDogs}/>)
-      wrapper.setState({ breeds: [{ breed: 'Poodle'}, { breed: 'Retriever'}] })
+      wrapper.setState({ zipCode: 77043 })
       wrapper.instance().updateCurrentSearchDogs()
       expect(wrapper.state('currentSearchDogs')).toEqual([{ distance: '19 mi' }, { distance: '29 mi' }, { distance: '91 mi' }, { distance: '92 mi' },])
     })
 
     it('should search dogs in search state and sort by distance', () => {
-      wrapper = shallow(<Search storedDogs={mockStoredDogs}/>)
-      wrapper.setState({ breeds: [{ breed: 'Poodle' }, { breed: 'Retriever' }] })
-      wrapper.setState({ search: ['Poodle', 'Retriever'] })
+      wrapper.setState({ search: ['Retriever'], zipCode: 77043 })
       wrapper.instance().updateCurrentSearchDogs()
-      expect(wrapper.state('currentSearchDogs')).toEqual([{ distance: '19 mi' }, { distance: '29 mi' }, { distance: '91 mi' }, { distance: '92 mi' },])
+      expect(wrapper.state('currentSearchDogs')).toEqual([{ distance: '29 mi' }, { distance: '92 mi' },])
     })
   })
 
   describe('checkStoredDogs', () => {
-    const mockStoredDogs = {
-      77043: {
-        'Poodle': {
-          cleanedDogs: [{ distance: '19 mi' }, { distance: '91 mi' }]
-        },
-        'Retriever': {
-          cleanedDogs: [{ distance: '29 mi' }, { distance: '92 mi' }]
-        }
-      }
-    }
 
     it("should return argument if that type if dog at that zipcode doesn't exist", () => {
-      wrapper = shallow(<Search />)
-
       wrapper.setState({ zipCode: 80204 })
-      wrapper.setProps({ storedDogs: mockStoredDogs })
       expect(wrapper.instance().checkStoredDogs(['Poodle'])).toEqual(['Poodle'])
     })
 
     it("should return dogs that are not already stored at that zipcode", () => {
-      wrapper = shallow(<Search />)
-      const mockStoredDogs = {
-        77043: {
-          'Poodle': {
-            cleanedDogs: [{ distance: '19 mi' }, { distance: '91 mi' }]
-          },
-          'Retriever': {
-            cleanedDogs: [{ distance: '29 mi' }, { distance: '92 mi' }]
-          }
-        }
-      }
       wrapper.setState({ zipCode: 77043 })
-      wrapper.setProps({ storedDogs: mockStoredDogs })
       expect(wrapper.instance().checkStoredDogs(['Poodle', 'Viszla'])).toEqual(['Viszla'])
     })
   })
@@ -95,9 +86,12 @@ let wrapper
   describe('handleSearch', () => {
 
     it('should set an error if zipcode is not valid', () => {
-      wrapper = shallow(<Search />)
+      const mockPreventDefault = {
+        preventDefault: jest.fn()
+      }
+
       wrapper.setState({ zipCode: 7704 })
-      wrapper.instance().handleSearch()
+      wrapper.instance().handleSearch(mockPreventDefault)
       expect(wrapper.state('zipError')).toEqual('Please enter valid zip code')
     })
   })
@@ -105,8 +99,8 @@ let wrapper
   describe('mapStateToProps', () => {
 
     it('should return an array of objects for storedDogs and boolean for isLoading and isDisplay', () => {
-      //setup
       const mockState = {
+        staticBreeds: [{}, {}],
         storedDogs: [{}, {}],
         isLoading: true,
         isDisplay: true,
@@ -114,13 +108,12 @@ let wrapper
 
       }
       const expected = {
+        staticBreeds: [{}, {}],
         storedDogs: [{}, {}],
         isLoading: true,
         isDisplay: true
       }
-      //execution
       const mappedProps = mapStateToProps(mockState)
-      //expectation
       expect(mappedProps).toEqual(expected)
     })
   })
@@ -128,32 +121,23 @@ let wrapper
   describe('mapDispatchToProps', () => {
 
     it('should call dispatch when using retrieveDogs from MDTP', () => {
-      //setup
       const mockDispatch = jest.fn()
-      //execution
       const mappedProps = mapDispatchToProps(mockDispatch)
       mappedProps.retrieveDogs(77043, ['Poodle', 'Retriever'])
-      //expectation
       expect(mockDispatch).toHaveBeenCalled()
     })
 
     it('should call dispatch when using setLoading from MDTP', () => {
-      //setup
       const mockDispatch = jest.fn()
-      //execution
       const mappedProps = mapDispatchToProps(mockDispatch)
       mappedProps.setLoading(true)
-      //expectation
       expect(mockDispatch).toHaveBeenCalled()
     })
 
     it('should call dispatch when using setDisplay from MDTP', () => {
-      //setup
       const mockDispatch = jest.fn()
-      //execution
       const mappedProps = mapDispatchToProps(mockDispatch)
       mappedProps.setDisplay(true)
-      //expectation
       expect(mockDispatch).toHaveBeenCalled()
     })
   })
