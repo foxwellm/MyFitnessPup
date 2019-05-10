@@ -5,22 +5,41 @@ import { fetchDogsSuccess, setLoading, hasErrored } from '../actions'
 export const retrieveDogs = (zipCode, dogs) => {
   return async (dispatch) => {
     const promisedDogs = dogs.map(async dog => {
-      const petFinderAPI = process.env.REACT_APP_PET_FINDER_API
-      const url = `https://cors-anywhere.herokuapp.com/http://api.petfinder.com/pet.find?key=${petFinderAPI}&format=json&animal=dog&location=${zipCode}&breed=${dog}&count=10&age!==Senior&output=full`
-      const urlOptions = {
-        headers: { "Content-Type": "application/json" }
+      const petFinderAPIClient = process.env.REACT_APP_PET_FINDER_API_CLIENT
+      const petFinderAPISecret = process.env.REACT_APP_PET_FINDER_API_SECRET
+      const petFinderTokenRequestUrl = 'https://api.petfinder.com/v2/oauth2/token'
+      var tokenParams = new URLSearchParams();
+      tokenParams.append('grant_type', 'client_credentials');
+      tokenParams.append('client_id', petFinderAPIClient);
+      tokenParams.append('client_secret', petFinderAPISecret);
+      const petFinderTokenRequestUrlOptions = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+        },
+        body: tokenParams
       }
-      const response = await fetch(url, urlOptions)
-      if (!response.ok) {
-        throw Error(response.statusText)
+      const petFinderResponseToken = await fetch(petFinderTokenRequestUrl, petFinderTokenRequestUrlOptions)
+      if (!petFinderResponseToken.ok) {
+        throw Error(petFinderResponseToken.statusText)
       }
-      const dirtyDogs = await response.json()
+      const petFinderResponseTokenJSON = await petFinderResponseToken.json()
+      const petFinderAccessToken = petFinderResponseTokenJSON.access_token
+      const petFinderRequestUrl = `https://api.petfinder.com/v2/animals?type=dog&breed=${dog}&location=${zipCode}&age=baby,young,adult`
+      const petFinderRequestUrlOptions = {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${petFinderAccessToken}`
+        }
+      }
+      const petFinderResponse = await fetch(petFinderRequestUrl, petFinderRequestUrlOptions)
+      const dirtyDogs = await petFinderResponse.json()
       const cleanedDogs = dogCleaner(dirtyDogs)
       const cleanedAndAddedDogs = await dispatch(addDistance(cleanedDogs, zipCode))
       return {
         location: zipCode,
         breed: dog,
-        lastOffset: dirtyDogs.petfinder.lastOffset.$t,
+        next: dirtyDogs.pagination._links.next.href,
         cleanedDogs: cleanedAndAddedDogs
       }
     })

@@ -1,25 +1,23 @@
 export const dogCleaner = (dogs) => {
-  const cleanedDogs = dogs.petfinder.pets.pet.map(dog => {
-    let photos = null
-    if (Object.keys(dog.media).length !== 0) { 
-      photos = dog.media.photos.photo
+  const cleanedDogs = dogs.animals.map(dog => {
+    let photo = null
+    if (Object.keys(dog.photos).length !== 0) { 
+      photo = dog.photos[0].full
     }
     return {
-      id: dog.id.$t,
-      name: dog.name.$t,
-      mix: dog.mix.$t,
-      breeds: dog.breeds.breed,
-      age: dog.age.$t,
-      sex: dog.sex.$t,
+      id: dog.id,
+      name: dog.name,
+      breeds: dog.breeds,
+      age: dog.age,
+      gender: dog.gender,
       contact: dog.contact,
       description: dog.description,
-      photos,
-      options: dog.options,
-      shelterId: dog.shelterId.$t,
-      shelterPetId: dog.shelterPetId.$t,
-      size: dog.size.$t,
-      status: dog.status.$t,
-      zip: dog.contact.zip.$t,
+      photo,
+      url: dog.url,
+      link: dog._links.self,
+      size: dog.size,
+      status: dog.status,
+      zip: dog.contact.address.postcode,
       distance: ''
     }
   })

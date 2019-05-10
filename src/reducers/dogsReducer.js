@@ -7,14 +7,14 @@ export const dogsReducer = (state = {}, action) => {
           newState[dog.location] = {}
           newState[dog.location][dog.breed] = {}
           newState[dog.location][dog.breed].cleanedDogs = dog.cleanedDogs
-          newState[dog.location][dog.breed].offset = dog.lastOffset
+          newState[dog.location][dog.breed].next = dog.next
         } else if (!newState[dog.location][dog.breed]) {
           newState[dog.location][dog.breed] = {}
           newState[dog.location][dog.breed].cleanedDogs = dog.cleanedDogs
-          newState[dog.location][dog.breed].offset = dog.lastOffset
+          newState[dog.location][dog.breed].next = dog.next
         } else {
           newState[dog.location][dog.breed].cleanedDogs = [...newState[dog.location][dog.breed].cleanedDogs, ...dog.cleanedDogs]
-          newState[dog.location][dog.breed].offset = dog.lastOffset
+          newState[dog.location][dog.breed].next = dog.next
         }
       })
       return newState
