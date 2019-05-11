@@ -26,32 +26,6 @@ export class Search extends Component {
     })
   }
 
-  updateCurrentSearchDogs = () => {
-    const { zipCode, search } = this.state
-    const { storedDogs, staticBreeds } = this.props
-    let searchingAll = []
-
-    if (this.state.search.length === 0) {
-      staticBreeds.map(breed => {
-        return searchingAll = [...searchingAll, ...storedDogs[zipCode][breed.breed].cleanedDogs]
-      })
-      searchingAll.sort((a, b) => {
-        return parseFloat(a.distance.split(' ')[0].split(',').join('')) - parseFloat(b.distance.split(' ')[0].split(',').join(''))
-      })
-    } else {
-      search.map(breed => {
-        return searchingAll = [...searchingAll, ...storedDogs[zipCode][breed].cleanedDogs]
-      })
-      searchingAll.sort((a, b) => {
-        return parseFloat(a.distance.split(' ')[0].split(',').join('')) - parseFloat(b.distance.split(' ')[0].split(',').join(''))
-      })
-    }
-    this.setState({
-      currentSearchDogs: searchingAll
-    })
-    setDisplay(false)
-  }
-
   checkStoredDogs = (searchDogs) => {
     const { storedDogs } = this.props
     const { zipCode } = this.state
@@ -72,9 +46,7 @@ export class Search extends Component {
       this.setState({ zipError: '' })
       setDisplay(true)
       const searchDogs = !search.length ? staticBreeds.map(breed => breed.breed) : search
-      const newSearchDogs = this.checkStoredDogs(searchDogs)
-      newSearchDogs.length && await this.props.retrieveDogs(zipCode, newSearchDogs)
-      this.updateCurrentSearchDogs()
+      await this.props.retrieveDogs(zipCode, searchDogs)
       this.setState({ currentPage: 1 })
       setLoading(false)
     }
@@ -101,12 +73,12 @@ export class Search extends Component {
   }
 
   render() {
-    const { isLoading, isDisplay } = this.props
-    const { search, currentSearchDogs, currentPage, zipCode, zipError, isSpecificSearch } = this.state
+    const { isLoading, isDisplay, storedDogs } = this.props
+    const { search, currentPage, zipCode, zipError, isSpecificSearch } = this.state
     let displayCards = []
     if (!isLoading) {
       for (let i = (currentPage * 10) - 10; i < (currentPage * 10); i++) {
-        displayCards.push(<DogCard {...currentSearchDogs[i]} zip={zipCode} key={shortID.generate()} />)
+        displayCards.push(<DogCard {...storedDogs[i]} zip={zipCode} key={shortID.generate()} />)
       }
     }
 

@@ -1,23 +1,10 @@
-export const dogsReducer = (state = {}, action) => {
+export const dogsReducer = (state = [], action) => {
   switch (action.type) {
     case 'FETCH_DOGS_SUCCESS':
-      let newState = { ...state }
-      action.dogs.forEach(dog => { 
-        if (!newState[dog.location]) {
-          newState[dog.location] = {}
-          newState[dog.location][dog.breed] = {}
-          newState[dog.location][dog.breed].cleanedDogs = dog.cleanedDogs
-          newState[dog.location][dog.breed].next = dog.next
-        } else if (!newState[dog.location][dog.breed]) {
-          newState[dog.location][dog.breed] = {}
-          newState[dog.location][dog.breed].cleanedDogs = dog.cleanedDogs
-          newState[dog.location][dog.breed].next = dog.next
-        } else {
-          newState[dog.location][dog.breed].cleanedDogs = [...newState[dog.location][dog.breed].cleanedDogs, ...dog.cleanedDogs]
-          newState[dog.location][dog.breed].next = dog.next
-        }
+      const newDogs = action.dogs.sort((a, b) => {
+        return parseFloat(a.distance.split(' ')[0].split(',').join('')) - parseFloat(b.distance.split(' ')[0].split(',').join(''))
       })
-      return newState
+      return [...state, ...newDogs]
     default:
       return state;
   }
