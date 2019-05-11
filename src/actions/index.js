@@ -3,6 +3,21 @@ export const fetchDogsSuccess = (dogs) => ({
   dogs
 })
 
+export const setDogsNext = (nextUrl) => ({
+  type: 'SET_DOGS_NEXT',
+  nextUrl
+})
+
+export const setSearchLocation = (location) => ({
+  type: 'SET_SEARCH_LOCATION',
+  location
+})
+
+export const setSearchedDogs = (dogs) => ({
+  type: 'SET_SEARCHED_DOGS',
+  dogs
+})
+
 export const setLoading = (bool) => ({
   type: 'SET_LOADING',
   isLoading: bool
