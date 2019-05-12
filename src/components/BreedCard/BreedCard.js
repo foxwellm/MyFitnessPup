@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import ReactTooltip from 'react-tooltip'
+
 
 export class BreedCard extends Component {
 
@@ -24,14 +26,15 @@ export class BreedCard extends Component {
           <img className='breed-img' alt='dog' src={require(`../../assets/images/${img}`)} />
         </div>
         <div className='breed-attr'>
+          <ReactTooltip className='pref-span' id='pref' delayShow='100' type='info' place='bottom' effect='solid' getContent={(dataTip) =>`${dataTip}`} />
           {
-            isCold ? <i className="fas fa-snowflake"></i> : <div></div>
+            isCold ? <div className='pref-container'><i className="fas fa-snowflake"  data-tip='Requires cold climate' data-for='pref'></i></div> : <div></div>
           }
           {
-            isClimber ? <i className="fas fa-mountain"></i> : <div></div>
+            isClimber ? <div className='pref-container'><i className="fas fa-mountain"  data-tip='Loves hiking' data-for='pref'></i></div> : <div></div>
           }
           {
-            isRunner ? <i className="fas fa-running"></i> : <div></div>
+            isRunner ? <div className='pref-container'><i className="fas fa-running"  data-tip='Loves running' data-for='pref'></i></div> : <div></div>
           }
         </div>
       </div>
