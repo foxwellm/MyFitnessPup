@@ -6,11 +6,16 @@ describe('rootReducer', () => {
 
   it('should set the store with an initial state', () => {
     let expected = {
-      storedDogs: {},
+      staticBreeds: [],
+      staticBreedInfo: [],
       isDisplay: false,
       isLoading: true,
-      staticBreeds: [],
-      staticBreedInfo: []
+      hasErrored: '',
+      fetchedDogs: [],
+      nextDogsUrl: '',
+      searchTotalPages: 0,
+      searchLocation: '',
+      searchedDogs: [],
     }
 
     expect(store.getState()).toEqual(expected)

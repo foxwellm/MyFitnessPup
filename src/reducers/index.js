@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
-import { dogsReducer } from './dogsReducer';
+import { dogFetchReducer } from './dogFetchReducer';
 import { nextUrlReducer } from './nextUrlReducer';
+import { setSearchTotalPagesReducer } from './setSearchTotalPagesReducer';
 import { setLoadingReducer } from './setLoadingReducer';
 import { setDisplayReducer } from './setDisplayReducer';
 import { setSearchLocationReducer } from './setSearchLocationReducer';
@@ -10,13 +11,14 @@ import { storeBreedsReducer } from './storeBreedsReducer';
 import { storeBreedInfoReducer } from './storeBreedInfoReducer';
 
 export const rootReducer = combineReducers({
-  storedDogs: dogsReducer,
-  nextDogsUrl: nextUrlReducer,
-  searchLocation: setSearchLocationReducer,
-  searchedDogs: setSearchedDogsReducer,
+  staticBreeds: storeBreedsReducer,
+  staticBreedInfo: storeBreedInfoReducer,
   isLoading: setLoadingReducer,
   isDisplay: setDisplayReducer,
   hasErrored: hasErroredReducer,
-  staticBreeds: storeBreedsReducer,
-  staticBreedInfo: storeBreedInfoReducer,
+  fetchedDogs: dogFetchReducer,
+  nextDogsUrl: nextUrlReducer,
+  searchTotalPages: setSearchTotalPagesReducer,
+  searchLocation: setSearchLocationReducer,
+  searchedDogs: setSearchedDogsReducer,
 })
