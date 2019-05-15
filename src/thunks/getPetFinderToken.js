@@ -18,6 +18,9 @@ export const getPetFinderToken = () => {
         body: tokenParams
       }
       const petFinderResponseToken = await fetch(petFinderTokenRequestUrl, petFinderTokenRequestUrlOptions)
+      if (!petFinderResponseToken.ok) {
+        throw Error(petFinderResponseToken.statusText)
+      }
       const petFinderResponseTokenJSON = await petFinderResponseToken.json()
       return petFinderResponseTokenJSON.access_token
     } catch (error) {
