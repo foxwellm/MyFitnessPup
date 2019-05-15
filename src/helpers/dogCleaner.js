@@ -10,7 +10,7 @@ export const dogCleaner = (dogs) => {
       breeds: dog.breeds,
       age: dog.age,
       gender: dog.gender,
-      contact: dog.contact,
+      contact: dog.contact.email,
       description: dog.description,
       photo,
       url: dog.url,
