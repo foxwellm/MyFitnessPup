@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import ReactTooltip from 'react-tooltip'
 
-
 export class BreedCard extends Component {
 
   handleClick = () => {

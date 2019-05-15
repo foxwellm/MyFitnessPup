@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { DogCard } from '../../components/DogCard/DogCard'
+import DogCard from '../../components/DogCard/DogCard'
 import { retrieveDogs } from '../../thunks/retrieveDogs'
 import BreedCard from '../../components/BreedCard/BreedCard'
 import { setLoading, setDisplay, setSearchedDogs } from '../../actions'

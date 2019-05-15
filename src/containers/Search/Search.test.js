@@ -12,9 +12,7 @@ describe('Search', () => {
   let mockSearchTotalPages
   let mockIsLoading
   let mockIsDisplay
-
   let shortID = require('short-id')
-
   let mockRetrieveDogs
   let mockSetSearchedDogs
   let mockSetLoading
@@ -66,7 +64,6 @@ describe('Search', () => {
     mockSearchTotalPages = 5
     mockIsDisplay = true
     mockIsLoading = false
-
     mockRetrieveDogs = jest.fn()
     mockSetSearchedDogs = jest.fn()
     mockSetLoading = jest.fn()
