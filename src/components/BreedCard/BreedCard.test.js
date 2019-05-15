@@ -1,6 +1,8 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import BreedCard from './BreedCard'
+import {BreedCard} from './BreedCard'
+import ReactTooltip from 'react-tooltip'
+jest.mock('../../thunks/fetchProjects');
 
 describe('BreedCard', () => {
   let wrapper

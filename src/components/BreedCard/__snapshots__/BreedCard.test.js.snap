@@ -32,6 +32,18 @@ exports[`BreedCard should match the correct snapshot 1`] = `
   <div
     className="breed-attr"
   >
+    <ReactTooltip
+      className="pref-span"
+      clickable={false}
+      effect="solid"
+      getContent={[Function]}
+      id="pref"
+      insecure={true}
+      place="bottom"
+      resizeHide={true}
+      type="info"
+      wrapper="div"
+    />
     <div />
     <div />
     <div />
@@ -71,6 +83,18 @@ exports[`BreedCard should match the correct snapshot when the path is not "/abou
   <div
     className="breed-attr"
   >
+    <ReactTooltip
+      className="pref-span"
+      clickable={false}
+      effect="solid"
+      getContent={[Function]}
+      id="pref"
+      insecure={true}
+      place="bottom"
+      resizeHide={true}
+      type="info"
+      wrapper="div"
+    />
     <div />
     <div />
     <div />
