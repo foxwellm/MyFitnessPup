@@ -37,8 +37,9 @@ export class Search extends Component {
 
   handleSearch = (e) => {
     e.preventDefault()
-    const { staticBreeds, setSearchedDogs, searchedDogs, retrieveDogs, nextDogsUrl, setDisplay } = this.props
+    const { staticBreeds, setSearchedDogs, retrieveDogs, nextDogsUrl, setDisplay } = this.props
     const { search, zipCode } = this.state
+    console.log(zipCode)
     if (zipCode.length !== 5) {
       this.setState({ zipError: 'Please enter valid zip code' })
     } else {

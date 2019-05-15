@@ -1,7 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import {BreedCard} from './BreedCard'
-jest.mock('../../thunks/fetchProjects');
 
 describe('BreedCard', () => {
   let wrapper
