@@ -1,4 +1,4 @@
-import { hasErrored} from '../actions'
+import { hasErrored } from '../actions'
 
 export const addDistance = (dogs, zipCode) => {
   return (dispatch) => {

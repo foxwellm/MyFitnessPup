@@ -1,18 +1,15 @@
 import { addDistance } from '../addDistance'
-import {hasErrored } from '../../actions'
-import {response} from '../addDistance'
+import { hasErrored } from '../../actions'
 
 describe('addDistance', () => {
 
   let mockDogs
   let mockZipCode
   let mockDispatch
-  let mockURL
 
   beforeEach(() => {
-    mockURL = 'http://localhost:3000/'
     mockDispatch = jest.fn()
-    mockDogs = [{breed: 'Poodle', distance: ''}, {breed: 'Labrador', distance: ''}]
+    mockDogs = [{ breed: 'Poodle', distance: '' }, { breed: 'Labrador', distance: '' }]
     mockZipCode = 77043
   })
 
@@ -28,28 +25,26 @@ describe('addDistance', () => {
     expect(mockDispatch).toHaveBeenCalledWith(hasErrored('Something went wrong'))
   })
 
-  it('should return an object', async () => {
-    const mockResult = {
-      data: {
-        rows: [ {
-          elements: [{
-            distance: {
-              text: '19.2 mi'
-            }
-          },{}]
-        },{}]
-      }
+  it('should not dispatch hasErrored if correct data is returned', async () => {
+    const hasErrored = jest.fn()
+    const mockData = {
+      rows: [{
+        elements: [{
+          distance: {
+            text: '19.2 mi'
+          }
+        }, {}]
+      }, {}]
     }
-
-    window.response = await jest.fn().mockImplementation( () => mockResult)
-    window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-      json: () => Promise.resolve(mockResult),
-      ok: true
-    }))
+    window.fetch = jest.fn().mockImplementation(() =>
+      Promise.resolve({
+        json: () => Promise.resolve(mockData),
+        ok: true
+      }))
 
     const thunk = addDistance(mockDogs, mockZipCode)
-    thunk(mockDispatch)
-    expect(Promise.all(mockDispatch)).toEqual(Promise.all({}))
+    await thunk(mockDispatch)
+    expect(hasErrored).not.toHaveBeenCalled()
   })
 
 })
