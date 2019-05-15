@@ -6,16 +6,20 @@ exports[`DogCard should have match the correct snapshot 1`] = `
 >
   <div
     className="dog-name"
-  />
+  >
+    Butch
+  </div>
   <div
     className="dog-age"
   >
     Age: 
+    Young
   </div>
   <div
     className="dog-distance"
   >
     Location: 
+    17.0 mi
      away
   </div>
   <div
@@ -24,7 +28,73 @@ exports[`DogCard should have match the correct snapshot 1`] = `
     <img
       alt="dog from shelter"
       className="dog-img"
-      src={null}
+      src="photoUrl"
+    />
+  </div>
+</div>
+`;
+
+exports[`DogCard should have match the correct snapshot when the dog has multiple names 1`] = `
+<div
+  className="DogCard-container"
+>
+  <div
+    className="dog-name"
+  >
+    Butch
+  </div>
+  <div
+    className="dog-age"
+  >
+    Age: 
+    Young
+  </div>
+  <div
+    className="dog-distance"
+  >
+    Location: 
+    17.0 mi
+     away
+  </div>
+  <div
+    className="search-img-container"
+  >
+    <img
+      alt="dog from shelter"
+      className="dog-img"
+      src="photoUrl"
+    />
+  </div>
+</div>
+`;
+
+exports[`DogCard should have match the correct snapshot when the dog has no name 1`] = `
+<div
+  className="DogCard-container"
+>
+  <div
+    className="dog-name"
+  />
+  <div
+    className="dog-age"
+  >
+    Age: 
+    Young
+  </div>
+  <div
+    className="dog-distance"
+  >
+    Location: 
+    17.0 mi
+     away
+  </div>
+  <div
+    className="search-img-container"
+  >
+    <img
+      alt="dog from shelter"
+      className="dog-img"
+      src="photoUrl"
     />
   </div>
 </div>
