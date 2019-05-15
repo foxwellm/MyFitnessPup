@@ -1,6 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import {BreedCard} from './BreedCard'
+import { BreedCard } from './BreedCard'
+import {ReactTooltip} from 'react-tooltip'
 
 describe('BreedCard', () => {
   let wrapper
@@ -36,6 +37,19 @@ describe('BreedCard', () => {
   });
 
   it('should match the correct snapshot', () => {
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should match the correct snapshot', () => {
+    mockBreed = {
+      breed: 'Siberian Husky',
+      tag: 'siberian-husky',
+      img: 'siberian-husky.jpg',
+      isCold: false,
+      isRunner: false,
+      isClimber: false
+    }
+    wrapper.setProps({breed: mockBreed})
     expect(wrapper).toMatchSnapshot();
   });
 

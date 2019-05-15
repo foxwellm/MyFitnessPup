@@ -51,6 +51,57 @@ exports[`BreedCard should match the correct snapshot 1`] = `
 </div>
 `;
 
+exports[`BreedCard should match the correct snapshot 2`] = `
+<div
+  className="BreedCard-container activeCard"
+  name={
+    Object {
+      "breed": "Siberian Husky",
+      "img": "siberian-husky.jpg",
+      "isClimber": false,
+      "isCold": false,
+      "isRunner": false,
+      "tag": "siberian-husky",
+    }
+  }
+  onClick={[Function]}
+>
+  <div
+    className="breed-card-header"
+  >
+    <Component />
+  </div>
+  <div
+    className="img-container"
+  >
+    <img
+      alt="dog"
+      className="breed-img"
+      src="siberian-husky.jpg"
+    />
+  </div>
+  <div
+    className="breed-attr"
+  >
+    <ReactTooltip
+      className="pref-span"
+      clickable={false}
+      effect="solid"
+      getContent={[Function]}
+      id="pref"
+      insecure={true}
+      place="bottom"
+      resizeHide={true}
+      type="info"
+      wrapper="div"
+    />
+    <div />
+    <div />
+    <div />
+  </div>
+</div>
+`;
+
 exports[`BreedCard should match the correct snapshot when the path is not "/about-breeds"  1`] = `
 <div
   className="BreedCard-container "

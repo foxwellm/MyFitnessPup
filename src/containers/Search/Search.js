@@ -39,7 +39,6 @@ export class Search extends Component {
     e.preventDefault()
     const { staticBreeds, setSearchedDogs, retrieveDogs, nextDogsUrl, setDisplay } = this.props
     const { search, zipCode } = this.state
-    console.log(zipCode)
     if (zipCode.length !== 5) {
       this.setState({ zipError: 'Please enter valid zip code' })
     } else {
@@ -62,7 +61,8 @@ export class Search extends Component {
 
   handleSearchFilter = (name) => {
     let newSearch = this.state.search
-    newSearch = newSearch.includes(name) ? newSearch.filter(breed => breed !== name) : [...newSearch, name]
+    newSearch = newSearch.includes(name) ? newSearch.filter(breed => breed !== name)
+      : [...newSearch, name]
     this.setState({
       search: newSearch
     })
@@ -137,13 +137,13 @@ export class Search extends Component {
         </div>
         {
           isDisplay &&
-            <div className='results-container'>
-              
-              {
-                !isLoading ? displayCards : <div>...Loading</div>
-              }
-              
-            </div>
+          <div className='results-container'>
+
+            {
+              !isLoading ? displayCards : <div>...Loading</div>
+            }
+
+          </div>
         }
         {
           !isLoading && <div className='search-buttons-container'>
