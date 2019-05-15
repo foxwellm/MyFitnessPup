@@ -47,6 +47,12 @@
   overflow: scroll;
 }
 
+.search-buttons-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
 .search-input-container {
   display: flex;
   position: relative;
