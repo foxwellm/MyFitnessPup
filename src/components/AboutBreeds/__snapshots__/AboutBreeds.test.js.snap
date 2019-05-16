@@ -1,7 +1,57 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AboutBreeds should have match the correct snapshot 1`] = `
-<ContextConsumer>
-  <Component />
-</ContextConsumer>
+<div
+  className="breed-cards-container"
+>
+  <img
+    alt="outdoor trail"
+    className="trail-img"
+    src="trail.jpg"
+  />
+  <Link
+    className="BreedCard-link"
+    key="6"
+    replace={false}
+    to="/about-breeds/Siberian Husky"
+  >
+    <BreedCard
+      active={false}
+      breed="Siberian Husky"
+      cardNumber={0}
+      img="siberian-husky.jpg"
+      isClimber={true}
+      isCold={true}
+      isRunner={true}
+      location={
+        Object {
+          "pathname": "/about-breeds",
+        }
+      }
+      tag="siberian-husky"
+    />
+  </Link>
+  <Link
+    className="BreedCard-link"
+    key="6"
+    replace={false}
+    to="/about-breeds/Australian Shepherd"
+  >
+    <BreedCard
+      active={false}
+      breed="Australian Shepherd"
+      cardNumber={1}
+      img="australian-shepherd.jpg"
+      isClimber={true}
+      isCold={true}
+      isRunner={false}
+      location={
+        Object {
+          "pathname": "/about-breeds",
+        }
+      }
+      tag="australian-shepherd"
+    />
+  </Link>
+</div>
 `;
