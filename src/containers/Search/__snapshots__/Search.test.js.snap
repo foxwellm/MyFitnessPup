@@ -67,7 +67,7 @@ exports[`Search should match the correct snapshot 1`] = `
       isClimber={true}
       isCold={true}
       isRunner={true}
-      key="63de45"
+      key="6"
       tag="poodle"
     />
     <BreedCard
@@ -79,7 +79,103 @@ exports[`Search should match the correct snapshot 1`] = `
       isClimber={true}
       isCold={true}
       isRunner={false}
-      key="63de45"
+      key="6"
+      tag="retriever"
+    />
+  </div>
+  <div
+    className="search-buttons-container"
+  >
+    <button
+      className="next-btn search-btn"
+      onClick={[Function]}
+    >
+      Next
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Search should match the correct snapshot when dogs are done loading from fetch 1`] = `
+<div
+  className="Search"
+>
+  <img
+    alt="outdoor trail"
+    className="trail-img"
+    src="trail.jpg"
+  />
+  <div
+    className="search-bar"
+  >
+    <div
+      className="search-num-display"
+    >
+      Searching all dog breed(s)
+      <button
+        className="search-btn"
+        onClick={[Function]}
+      >
+        Clear all
+      </button>
+    </div>
+    <div
+      className=""
+    >
+      <button
+        className="search-btn specific-search-btn"
+        onClick={[Function]}
+      >
+        Search specific breeds
+      </button>
+    </div>
+    <form
+      className="search-input-container"
+      onSubmit={[Function]}
+    >
+      <div
+        className="search-error"
+      />
+      <input
+        className="search-input"
+        name="zip"
+        onChange={[Function]}
+        placeholder="zip-code"
+        type="number"
+        value="77043"
+      />
+      <button
+        className="search-btn"
+      >
+        Search
+      </button>
+    </form>
+  </div>
+  <div
+    className="search-container "
+  >
+    <BreedCard
+      active={false}
+      breed="Poodle"
+      cardNumber={0}
+      handleSearchFilter={[Function]}
+      img="poodle.jpg"
+      isClimber={true}
+      isCold={true}
+      isRunner={true}
+      key="6"
+      tag="poodle"
+    />
+    <BreedCard
+      active={false}
+      breed="Retriever"
+      cardNumber={1}
+      handleSearchFilter={[Function]}
+      img="retriever.jpg"
+      isClimber={true}
+      isCold={true}
+      isRunner={false}
+      key="6"
       tag="retriever"
     />
   </div>
@@ -94,7 +190,7 @@ exports[`Search should match the correct snapshot 1`] = `
       distance="2.0 mi"
       gender="Female"
       id="37030888"
-      key="63de45"
+      key="6"
       link={
         Object {
           "href": "/v2/animals/436246",
@@ -115,7 +211,7 @@ exports[`Search should match the correct snapshot 1`] = `
       distance="10.2 mi"
       gender="Male"
       id="37030889"
-      key="63de45"
+      key="6"
       link={
         Object {
           "href": "/v2/animals/436247",
@@ -209,7 +305,7 @@ exports[`Search should match the correct snapshot when dogs are loading from fet
       isClimber={true}
       isCold={true}
       isRunner={true}
-      key="63de45"
+      key="6"
       tag="poodle"
     />
     <BreedCard
@@ -221,349 +317,16 @@ exports[`Search should match the correct snapshot when dogs are loading from fet
       isClimber={true}
       isCold={true}
       isRunner={false}
-      key="63de45"
+      key="6"
       tag="retriever"
     />
   </div>
   <div
     className="results-container"
   >
-    <DogCard
-      age="Young"
-      breeds={Object {}}
-      contact="petplace@gmail.com"
-      description="Star is by far the star of the house.  We love her…ation please contact Alfred↵ alfredk9rr@gmail.com"
-      distance="2.0 mi"
-      gender="Female"
-      id="37030888"
-      key="63de45"
-      link={
-        Object {
-          "href": "/v2/animals/436246",
-        }
-      }
-      name="Star"
-      photo="http://photos.petfinder.com/photos/pets/37030888/1/"
-      size="Large"
-      status="Available"
-      url="https://www.petfinder.com/dog/vegas-357285"
-      zip="77043"
-    />
-    <DogCard
-      age="Baby"
-      breeds={Object {}}
-      contact="petplace@gmail.com"
-      description="Butch is by far the star of the house.  We love her…ation please contact Alfred↵ alfredk9rr@gmail.com"
-      distance="10.2 mi"
-      gender="Male"
-      id="37030889"
-      key="63de45"
-      link={
-        Object {
-          "href": "/v2/animals/436247",
-        }
-      }
-      name="Butch"
-      photo="http://photos.petfinder.com/photos/pets/37030888/1/"
-      size="Large"
-      status="Available"
-      url="https://www.petfinder.com/dog/vegas-357285"
-      zip="77043"
-    />
-  </div>
-  <div
-    className="search-buttons-container"
-  >
-    <button
-      className="next-btn search-btn"
-      onClick={[Function]}
-    >
-      Next
-    </button>
-  </div>
-</div>
-`;
-
-exports[`Search should match the correct snapshot when dogs are loading from fetch 2`] = `
-<div
-  className="Search"
->
-  <img
-    alt="outdoor trail"
-    className="trail-img"
-    src="trail.jpg"
-  />
-  <div
-    className="search-bar"
-  >
-    <div
-      className="search-num-display"
-    >
-      Searching all dog breed(s)
-      <button
-        className="search-btn"
-        onClick={[Function]}
-      >
-        Clear all
-      </button>
+    <div>
+      ...Loading
     </div>
-    <div
-      className=""
-    >
-      <button
-        className="search-btn specific-search-btn"
-        onClick={[Function]}
-      >
-        Search specific breeds
-      </button>
-    </div>
-    <form
-      className="search-input-container"
-      onSubmit={[Function]}
-    >
-      <div
-        className="search-error"
-      />
-      <input
-        className="search-input"
-        name="zip"
-        onChange={[Function]}
-        placeholder="zip-code"
-        type="number"
-        value="77043"
-      />
-      <button
-        className="search-btn"
-      >
-        Search
-      </button>
-    </form>
-  </div>
-  <div
-    className="search-container "
-  >
-    <BreedCard
-      active={false}
-      breed="Poodle"
-      cardNumber={0}
-      handleSearchFilter={[Function]}
-      img="poodle.jpg"
-      isClimber={true}
-      isCold={true}
-      isRunner={true}
-      key="63de45"
-      tag="poodle"
-    />
-    <BreedCard
-      active={false}
-      breed="Retriever"
-      cardNumber={1}
-      handleSearchFilter={[Function]}
-      img="retriever.jpg"
-      isClimber={true}
-      isCold={true}
-      isRunner={false}
-      key="63de45"
-      tag="retriever"
-    />
-  </div>
-  <div
-    className="results-container"
-  >
-    <DogCard
-      age="Young"
-      breeds={Object {}}
-      contact="petplace@gmail.com"
-      description="Star is by far the star of the house.  We love her…ation please contact Alfred↵ alfredk9rr@gmail.com"
-      distance="2.0 mi"
-      gender="Female"
-      id="37030888"
-      key="63de45"
-      link={
-        Object {
-          "href": "/v2/animals/436246",
-        }
-      }
-      name="Star"
-      photo="http://photos.petfinder.com/photos/pets/37030888/1/"
-      size="Large"
-      status="Available"
-      url="https://www.petfinder.com/dog/vegas-357285"
-      zip="77043"
-    />
-    <DogCard
-      age="Baby"
-      breeds={Object {}}
-      contact="petplace@gmail.com"
-      description="Butch is by far the star of the house.  We love her…ation please contact Alfred↵ alfredk9rr@gmail.com"
-      distance="10.2 mi"
-      gender="Male"
-      id="37030889"
-      key="63de45"
-      link={
-        Object {
-          "href": "/v2/animals/436247",
-        }
-      }
-      name="Butch"
-      photo="http://photos.petfinder.com/photos/pets/37030888/1/"
-      size="Large"
-      status="Available"
-      url="https://www.petfinder.com/dog/vegas-357285"
-      zip="77043"
-    />
-  </div>
-  <div
-    className="search-buttons-container"
-  >
-    <button
-      className="next-btn search-btn"
-      onClick={[Function]}
-    >
-      Next
-    </button>
-  </div>
-</div>
-`;
-
-exports[`Search should match the correct snapshot when dogs are loading from fetch 3`] = `
-<div
-  className="Search"
->
-  <img
-    alt="outdoor trail"
-    className="trail-img"
-    src="trail.jpg"
-  />
-  <div
-    className="search-bar"
-  >
-    <div
-      className="search-num-display"
-    >
-      Searching all dog breed(s)
-      <button
-        className="search-btn"
-        onClick={[Function]}
-      >
-        Clear all
-      </button>
-    </div>
-    <div
-      className=""
-    >
-      <button
-        className="search-btn specific-search-btn"
-        onClick={[Function]}
-      >
-        Search specific breeds
-      </button>
-    </div>
-    <form
-      className="search-input-container"
-      onSubmit={[Function]}
-    >
-      <div
-        className="search-error"
-      />
-      <input
-        className="search-input"
-        name="zip"
-        onChange={[Function]}
-        placeholder="zip-code"
-        type="number"
-        value="77043"
-      />
-      <button
-        className="search-btn"
-      >
-        Search
-      </button>
-    </form>
-  </div>
-  <div
-    className="search-container "
-  >
-    <BreedCard
-      active={false}
-      breed="Poodle"
-      cardNumber={0}
-      handleSearchFilter={[Function]}
-      img="poodle.jpg"
-      isClimber={true}
-      isCold={true}
-      isRunner={true}
-      key="63de45"
-      tag="poodle"
-    />
-    <BreedCard
-      active={false}
-      breed="Retriever"
-      cardNumber={1}
-      handleSearchFilter={[Function]}
-      img="retriever.jpg"
-      isClimber={true}
-      isCold={true}
-      isRunner={false}
-      key="63de45"
-      tag="retriever"
-    />
-  </div>
-  <div
-    className="results-container"
-  >
-    <DogCard
-      age="Young"
-      breeds={Object {}}
-      contact="petplace@gmail.com"
-      description="Star is by far the star of the house.  We love her…ation please contact Alfred↵ alfredk9rr@gmail.com"
-      distance="2.0 mi"
-      gender="Female"
-      id="37030888"
-      key="63de45"
-      link={
-        Object {
-          "href": "/v2/animals/436246",
-        }
-      }
-      name="Star"
-      photo="http://photos.petfinder.com/photos/pets/37030888/1/"
-      size="Large"
-      status="Available"
-      url="https://www.petfinder.com/dog/vegas-357285"
-      zip="77043"
-    />
-    <DogCard
-      age="Baby"
-      breeds={Object {}}
-      contact="petplace@gmail.com"
-      description="Butch is by far the star of the house.  We love her…ation please contact Alfred↵ alfredk9rr@gmail.com"
-      distance="10.2 mi"
-      gender="Male"
-      id="37030889"
-      key="63de45"
-      link={
-        Object {
-          "href": "/v2/animals/436247",
-        }
-      }
-      name="Butch"
-      photo="http://photos.petfinder.com/photos/pets/37030888/1/"
-      size="Large"
-      status="Available"
-      url="https://www.petfinder.com/dog/vegas-357285"
-      zip="77043"
-    />
-  </div>
-  <div
-    className="search-buttons-container"
-  >
-    <button
-      className="next-btn search-btn"
-      onClick={[Function]}
-    >
-      Next
-    </button>
   </div>
 </div>
 `;

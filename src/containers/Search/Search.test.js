@@ -12,14 +12,18 @@ describe('Search', () => {
   let mockSearchTotalPages
   let mockIsLoading
   let mockIsDisplay
+  // let shortID = {
+  //   generate: jest.fn().mockImplementation(() => '63de45')
+  // }
   let shortID = require('short-id')
+  shortID.generate = jest.fn().mockImplementation(() => 6)
   let mockRetrieveDogs
   let mockSetSearchedDogs
   let mockSetLoading
   let mockSetDisplay
 
   beforeEach(() => {
-    shortID.generate = jest.fn().mockImplementation(() => '63de45')
+   
     mockFetchedDogs = [
       {
         id: "37030888",
@@ -62,7 +66,7 @@ describe('Search', () => {
     mockSearchedDogs = ['Poodle', 'Retriever']
     mockNextDogsUrl = 'petfinder/next'
     mockSearchTotalPages = 5
-    mockIsDisplay = true
+    mockIsDisplay = false
     mockIsLoading = false
     mockRetrieveDogs = jest.fn()
     mockSetSearchedDogs = jest.fn()
@@ -88,17 +92,12 @@ describe('Search', () => {
   })
 
   it('should match the correct snapshot when dogs are loading from fetch', () => {
-    wrapper.setState({ isDisplay: false })
+    wrapper.setProps({ isDisplay: true, isLoading: true })
     expect(wrapper).toMatchSnapshot()
   })
 
-  it('should match the correct snapshot when dogs are loading from fetch', () => {
-    wrapper.setState({ isDisplay: true, isLoading: false })
-    expect(wrapper).toMatchSnapshot()
-  })
-
-  it('should match the correct snapshot when dogs are loading from fetch', () => {
-    wrapper.setState({ isDisplay: true, isLoading: true })
+  it('should match the correct snapshot when dogs are done loading from fetch', () => {
+    wrapper.setProps({ isDisplay: true, isLoading: false })
     expect(wrapper).toMatchSnapshot()
   })
 

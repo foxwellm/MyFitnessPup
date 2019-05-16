@@ -114,7 +114,6 @@ export class Search extends Component {
       return <BreedCard {...breed} active={active} handleSearchFilter={this.handleSearchFilter} location={this.props.location} cardNumber={i} key={shortID.generate()} />
     })
     const searching = !search.length ? 'all' : search.length
-
     return (
       <div className='Search'>
         <img className='trail-img' alt='outdoor trail' src={trail} />
