@@ -24,8 +24,8 @@ export class BreedCard extends Component {
         <div className='img-container'>
           <img className='breed-img' alt='dog' src={require(`../../assets/images/${img}`)} />
         </div>
+          <ReactTooltip className='pref-span' id='pref' type='info' place='bottom' effect='solid' getContent={(dataTip) =>`${dataTip}`} ></ReactTooltip>
         <div className='breed-attr'>
-          <ReactTooltip className='pref-span' id='pref' type='info' place='bottom' effect='solid' getContent={(dataTip) =>`${dataTip}`} />
           {
             isCold ? <div className='pref-container'><i className="fas fa-snowflake"  data-tip='Requires cold climate' data-for='pref'></i></div> : <div></div>
           }

@@ -9,19 +9,18 @@ describe('BreedCard', () => {
   let mockHandleSearchFilter
   let mockBreed
   let mockActive
+  let mockIsCold
+  let mockIsRunner
+  let mockIsClimber
 
   beforeEach(() => {
     mockImg = 'siberian-husky.jpg'
     mockLocation = { pathname: '/about-breeds' }
     mockHandleSearchFilter = jest.fn()
-    mockBreed = {
-      breed: 'Siberian Husky',
-      tag: 'siberian-husky',
-      img: 'siberian-husky.jpg',
-      isCold: true,
-      isRunner: true,
-      isClimber: true
-    }
+    mockBreed = 'Siberian Husky'
+    mockIsCold = true
+    mockIsRunner = true
+    mockIsClimber = true
     mockActive = true
 
     wrapper = shallow(
@@ -30,6 +29,9 @@ describe('BreedCard', () => {
         location={mockLocation}
         handleSearchFilter={mockHandleSearchFilter}
         breed={mockBreed}
+        isCold={mockIsCold}
+        isRunner={mockIsRunner}
+        isClimber={mockIsClimber}
         active={mockActive}
       />
     )
@@ -40,16 +42,22 @@ describe('BreedCard', () => {
   });
 
   it('should match the correct snapshot', () => {
-    mockBreed = {
-      breed: 'Siberian Husky',
-      tag: 'siberian-husky',
-      img: 'siberian-husky.jpg',
-      isCold: false,
-      isRunner: false,
-      isClimber: false
-    }
-    wrapper.setProps({breed: mockBreed})
-    expect(wrapper).toMatchSnapshot();
+    mockIsCold = false
+    mockIsRunner = false
+    mockIsClimber = false
+    wrapper = shallow(
+      <BreedCard
+        img={mockImg}
+        location={mockLocation}
+        handleSearchFilter={mockHandleSearchFilter}
+        breed={mockBreed}
+        isCold={mockIsCold}
+        isRunner={mockIsRunner}
+        isClimber={mockIsClimber}
+        active={mockActive}
+      />
+    )
+      expect(wrapper).toMatchSnapshot();
   });
 
   it('should match the correct snapshot when the path is not "/about-breeds" ', () => {
@@ -60,6 +68,45 @@ describe('BreedCard', () => {
         location={mockLocation}
         handleSearchFilter={mockHandleSearchFilter}
         breed={mockBreed}
+        isCold={mockIsCold}
+        isRunner={mockIsRunner}
+        isClimber={mockIsClimber}
+        active={mockActive}
+      />
+    )
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should match the correct snapshot', () => {
+    mockLocation = { pathname: '/about' }
+    wrapper = shallow(
+      <BreedCard
+        img={mockImg}
+        location={mockLocation}
+        handleSearchFilter={mockHandleSearchFilter}
+        breed={mockBreed}
+        isCold={mockIsCold}
+        isRunner={mockIsRunner}
+        isClimber={mockIsClimber}
+        active={mockActive}
+      />
+    )
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should match the correct snapshot', () => {
+    mockLocation = { pathname: '/about' }
+    mockActive = false
+    wrapper = shallow(
+      <BreedCard
+        img={mockImg}
+        location={mockLocation}
+        handleSearchFilter={mockHandleSearchFilter}
+        breed={mockBreed}
+        isCold={mockIsCold}
+        isRunner={mockIsRunner}
+        isClimber={mockIsClimber}
+        active={mockActive}
       />
     )
     expect(wrapper).toMatchSnapshot();
@@ -79,6 +126,10 @@ describe('BreedCard', () => {
           location={mockLocation}
           handleSearchFilter={mockHandleSearchFilter}
           breed={mockBreed}
+          isCold={mockIsCold}
+          isRunner={mockIsRunner}
+          isClimber={mockIsClimber}
+          active={mockActive}
         />
       )
       wrapper.instance().handleClick()
