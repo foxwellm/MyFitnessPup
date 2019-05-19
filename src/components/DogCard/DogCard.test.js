@@ -8,6 +8,8 @@ describe('DogCard', () => {
   let mockName
   let mockAge
   let mockDistance
+  let shortID = require('short-id')
+  shortID.generate = jest.fn().mockImplementation(() => 6)
 
   beforeEach(() => {
     mockPhoto = 'photoUrl'

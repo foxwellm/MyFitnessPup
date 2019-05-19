@@ -1,0 +1,135 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DogInfo should have match the correct snapshot 1`] = `
+<div
+  className="DogInfo-container"
+>
+  <div
+    className="doginfo-img-container"
+  >
+    <img
+      alt="dog from shelter"
+      className="doginfo-img"
+      src="petfinder/photoUrl"
+    />
+  </div>
+  <div
+    className="doginfo-info-container"
+  >
+    <div
+      className="doginfo-name"
+    >
+      Butch
+    </div>
+    <div
+      className="doginfo doginfo-age"
+    >
+      Age: 
+      Young
+    </div>
+    <div
+      className="doginfo doginfo-gender"
+    >
+      Gender: 
+      male
+    </div>
+    <div
+      className="doginfo doginfo-distance"
+    >
+      Location: 
+      12 mi
+       away
+    </div>
+    <div
+      className="doginfo doginfo-status"
+    >
+      Status: 
+      available
+    </div>
+    <div
+      className="doginfo doginfo-contact"
+    >
+      Contact: 
+      contact@gmail.com
+    </div>
+    <div
+      className="doginfo doginfo-url"
+    >
+      PetFinder URL: 
+      petfinder.com/dog123
+    </div>
+    <div
+      className="doginfo doginfo-description"
+    >
+      Description: 
+    </div>
+  </div>
+</div>
+`;
+
+exports[`DogInfo should have match the correct snapshot when the name is more than one word 1`] = `
+<div
+  className="DogInfo-container"
+>
+  <div
+    className="doginfo-img-container"
+  >
+    <img
+      alt="dog from shelter"
+      className="doginfo-img"
+      src="petfinder/photoUrl"
+    />
+  </div>
+  <div
+    className="doginfo-info-container"
+  >
+    <div
+      className="doginfo-name"
+    >
+      Butch
+    </div>
+    <div
+      className="doginfo doginfo-age"
+    >
+      Age: 
+      Young
+    </div>
+    <div
+      className="doginfo doginfo-gender"
+    >
+      Gender: 
+      male
+    </div>
+    <div
+      className="doginfo doginfo-distance"
+    >
+      Location: 
+      12 mi
+       away
+    </div>
+    <div
+      className="doginfo doginfo-status"
+    >
+      Status: 
+      available
+    </div>
+    <div
+      className="doginfo doginfo-contact"
+    >
+      Contact: 
+      contact@gmail.com
+    </div>
+    <div
+      className="doginfo doginfo-url"
+    >
+      PetFinder URL: 
+      petfinder.com/dog123
+    </div>
+    <div
+      className="doginfo doginfo-description"
+    >
+      Description: 
+    </div>
+  </div>
+</div>
+`;

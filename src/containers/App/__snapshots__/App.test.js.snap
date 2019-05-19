@@ -26,6 +26,10 @@ exports[`App should match the correct snapshot 1`] = `
       render={[Function]}
     />
     <Route
+      path="/dog/:id"
+      render={[Function]}
+    />
+    <Route
       component={[Function]}
       path="/search"
     />

@@ -1,8 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DogCard should have match the correct snapshot 1`] = `
-<div
+<Link
   className="DogCard-container"
+  key="6"
+  replace={false}
+  to="/dog/undefined"
 >
   <div
     className="dog-name"
@@ -31,12 +34,15 @@ exports[`DogCard should have match the correct snapshot 1`] = `
       src="photoUrl"
     />
   </div>
-</div>
+</Link>
 `;
 
 exports[`DogCard should have match the correct snapshot when the dog has multiple names 1`] = `
-<div
+<Link
   className="DogCard-container"
+  key="6"
+  replace={false}
+  to="/dog/undefined"
 >
   <div
     className="dog-name"
@@ -65,12 +71,15 @@ exports[`DogCard should have match the correct snapshot when the dog has multipl
       src="photoUrl"
     />
   </div>
-</div>
+</Link>
 `;
 
 exports[`DogCard should have match the correct snapshot when the dog has no name 1`] = `
-<div
+<Link
   className="DogCard-container"
+  key="6"
+  replace={false}
+  to="/dog/undefined"
 >
   <div
     className="dog-name"
@@ -97,5 +106,5 @@ exports[`DogCard should have match the correct snapshot when the dog has no name
       src="photoUrl"
     />
   </div>
-</div>
+</Link>
 `;

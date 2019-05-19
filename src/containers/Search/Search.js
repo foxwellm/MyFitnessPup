@@ -92,10 +92,6 @@ export class Search extends Component {
     this.setState({ currentPage: prevPage })
   }
 
-  createDogPopup = (id) => {
-    console.log(id)
-  }
-
   render() {
     const { isLoading, isDisplay, fetchedDogs, searchTotalPages } = this.props
     const { search, currentPage, zipCode, zipError, isSpecificSearch } = this.state
@@ -103,7 +99,7 @@ export class Search extends Component {
     if (!isLoading) {
       for (let i = (currentPage * 10) - 10; i < (currentPage * 10); i++) {
         if (fetchedDogs[i]) {
-          displayCards.push(<DogCard {...fetchedDogs[i]} zip={zipCode} key={shortID.generate()} createDogPopup={this.createDogPopup} />)
+          displayCards.push(<DogCard {...fetchedDogs[i]} zip={zipCode} key={shortID.generate()} />)
         }
       }
     }
