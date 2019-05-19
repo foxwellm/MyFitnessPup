@@ -1,8 +1,8 @@
-import { retrieveDogs } from '../retrieveDogs'
+import { fetchDogs } from '../fetchDogs'
 import { hasErrored, setLoading, fetchDogsSuccess, setDogsNext, fetchAdditionalDogsSuccess } from '../../actions'
 import * as cleaner from '../../helpers/dogCleaner'
 
-describe('retrieveDogs', () => {
+describe('fetchDogs', () => {
   
   let mockDogs
   let mockZipCode
@@ -18,7 +18,7 @@ describe('retrieveDogs', () => {
   
   
   it('calls dispatch with the setLoading action', () => {
-    const thunk = retrieveDogs(mockZipCode, mockDogs )
+    const thunk = fetchDogs(mockZipCode, mockDogs )
     thunk(mockDispatch)
     expect(mockDispatch).toHaveBeenCalledWith(setLoading(true))
   })
@@ -29,7 +29,7 @@ describe('retrieveDogs', () => {
         ok: false,
         statusText: 'Something went wrong'
       }))
-    const thunk = retrieveDogs(mockZipCode, mockDogs)
+    const thunk = fetchDogs(mockZipCode, mockDogs)
     await thunk(mockDispatch)
     expect(mockDispatch).toHaveBeenCalledWith(hasErrored('Something went wrong'))
   })
@@ -50,7 +50,7 @@ describe('retrieveDogs', () => {
       })
       }))
     cleaner.dogCleaner = jest.fn().mockImplementation(() => ['Poodle'])
-    const thunk = retrieveDogs(mockZipCode, mockDogs)
+    const thunk = fetchDogs(mockZipCode, mockDogs)
     await thunk(mockDispatch)
     expect(mockDispatch).toHaveBeenCalledWith(setLoading(false))
   })
@@ -71,7 +71,7 @@ describe('retrieveDogs', () => {
         })
       }))
     cleaner.dogCleaner = jest.fn().mockImplementation(() => ['Poodle'])
-    const thunk = retrieveDogs(mockZipCode, mockDogs)
+    const thunk = fetchDogs(mockZipCode, mockDogs)
     await thunk(mockDispatch)
     expect(mockDispatch).toHaveBeenCalledWith(setDogsNext('nextLink'))
   })
@@ -93,12 +93,12 @@ describe('retrieveDogs', () => {
         })
       }))
     cleaner.dogCleaner = jest.fn().mockImplementation(() => ['Poodle'])
-    const thunk = retrieveDogs(mockZipCode, mockDogs)
+    const thunk = fetchDogs(mockZipCode, mockDogs)
     await thunk(mockDispatch)
     expect(setDogsNext).not.toHaveBeenCalled()
   })
 
-  it('should dispatch fetchDogsSuccess if retrieveDogs thunk does not receive a nextSearch argument', async () => {
+  it('should dispatch fetchDogsSuccess if fetchDogs thunk does not receive a nextSearch argument', async () => {
     window.fetch = jest.fn().mockImplementation(() =>
       Promise.resolve({
         ok: true,
@@ -113,12 +113,12 @@ describe('retrieveDogs', () => {
           }
         })
       }))
-    const thunk = retrieveDogs(mockZipCode, mockDogs)
+    const thunk = fetchDogs(mockZipCode, mockDogs)
     await thunk(mockDispatch)
     expect(mockDispatch).toHaveBeenCalledWith(fetchDogsSuccess())
   })
   
-  it('should dispatch fetchAdditionalDogsSuccess if retrieveDogs thunk receives a nextSearch argument', async () => {
+  it('should dispatch fetchAdditionalDogsSuccess if fetchDogs thunk receives a nextSearch argument', async () => {
     window.fetch = jest.fn().mockImplementation(() =>
       Promise.resolve({
         ok: true,
@@ -133,7 +133,7 @@ describe('retrieveDogs', () => {
           }
         })
       }))
-    const thunk = retrieveDogs(mockZipCode, mockDogs, mockNextSearch)
+    const thunk = fetchDogs(mockZipCode, mockDogs, mockNextSearch)
     await thunk(mockDispatch)
     expect(mockDispatch).toHaveBeenCalledWith(fetchAdditionalDogsSuccess())
   })

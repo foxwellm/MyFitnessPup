@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import DogCard from '../../components/DogCard/DogCard'
-import { retrieveDogs } from '../../thunks/retrieveDogs'
+import { fetchDogs } from '../../thunks/fetchDogs'
 import BreedCard from '../../components/BreedCard/BreedCard'
 import { setLoading, setDisplay, setSearchedDogs } from '../../actions'
 import trail from '../../assets/images/trail.jpg'
@@ -37,7 +37,7 @@ export class Search extends Component {
 
   handleSearch = (e) => {
     e.preventDefault()
-    const { staticBreeds, setSearchedDogs, retrieveDogs, nextDogsUrl, setDisplay } = this.props
+    const { staticBreeds, setSearchedDogs, fetchDogs, nextDogsUrl, setDisplay } = this.props
     const { search, zipCode } = this.state
     if (zipCode.length !== 5) {
       this.setState({ zipError: 'Please enter valid zip code' })
@@ -47,7 +47,7 @@ export class Search extends Component {
       const isSameSearch = this.checkSameSearch(searchDogs)
       setSearchedDogs(searchDogs)
       const nextSearch = isSameSearch ? nextDogsUrl : null
-      retrieveDogs(zipCode, searchDogs, nextSearch)
+      fetchDogs(zipCode, searchDogs, nextSearch)
       this.setState({ currentPage: 1 })
       setDisplay(true)
     }
@@ -74,14 +74,14 @@ export class Search extends Component {
   }
 
   showNextDogs = () => {
-    const { nextDogsUrl, fetchedDogs, retrieveDogs } = this.props
+    const { nextDogsUrl, fetchedDogs, fetchDogs } = this.props
     const { currentPage, zipCode } = this.state
     const nextPage = currentPage + 1
 
     if (fetchedDogs.length > currentPage * 10) {
       this.setState({ currentPage: nextPage })
     } else {
-      retrieveDogs(zipCode, [], nextDogsUrl)
+      fetchDogs(zipCode, [], nextDogsUrl)
       this.setState({ currentPage: nextPage })
     }
   }
@@ -92,6 +92,10 @@ export class Search extends Component {
     this.setState({ currentPage: prevPage })
   }
 
+  createDogPopup = (id) => {
+    console.log(id)
+  }
+
   render() {
     const { isLoading, isDisplay, fetchedDogs, searchTotalPages } = this.props
     const { search, currentPage, zipCode, zipError, isSpecificSearch } = this.state
@@ -99,7 +103,7 @@ export class Search extends Component {
     if (!isLoading) {
       for (let i = (currentPage * 10) - 10; i < (currentPage * 10); i++) {
         if (fetchedDogs[i]) {
-          displayCards.push(<DogCard {...fetchedDogs[i]} zip={zipCode} key={shortID.generate()} />)
+          displayCards.push(<DogCard {...fetchedDogs[i]} zip={zipCode} key={shortID.generate()} createDogPopup={this.createDogPopup} />)
         }
       }
     }
@@ -182,7 +186,7 @@ export const mapStateToProps = (state) => ({
 })
 
 export const mapDispatchToProps = (dispatch) => ({
-  retrieveDogs: (zipCode, breedTypes, nextsearch) => dispatch(retrieveDogs(zipCode, breedTypes, nextsearch)),
+  fetchDogs: (zipCode, breedTypes, nextsearch) => dispatch(fetchDogs(zipCode, breedTypes, nextsearch)),
   setSearchedDogs: (dogs) => dispatch(setSearchedDogs(dogs)),
   setLoading: (bool) => dispatch(setLoading(bool)),
   setDisplay: (bool) => dispatch(setDisplay(bool)),

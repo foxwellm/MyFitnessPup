@@ -1,15 +1,15 @@
 import { dogCleaner } from '../helpers/dogCleaner'
-import { addDistance } from '../thunks/addDistance'
-import { getPetFinderToken } from '../thunks/getPetFinderToken'
+import { addDistance } from './addDistance'
+import { getPetFinderToken } from './getPetFinderToken'
 import { fetchDogsSuccess, fetchAdditionalDogsSuccess, setDogsNext, setLoading, hasErrored, setSearchTotalPages } from '../actions'
 
-export const retrieveDogs = (zipCode, dogs, nextSearch) => {
+export const fetchDogs = (zipCode, dogs, nextSearch) => {
   return async (dispatch) => {
     try {
       dispatch(setLoading(true))
       const petFinderAccessToken = await dispatch(getPetFinderToken())
       const dogsToSearch = dogs.join(',')
-      const petFinderUrl = 'https://api.petfinder.com'
+      const petFinderUrl = 'https://cors-anywhere.herokuapp.com/https://api.petfinder.com'
       const petFinderSearchParams = nextSearch || `/v2/animals?type=dog&breed=${dogsToSearch}&location=${zipCode}&age=baby,young,adult&sort=distance&limit=10&distance=10`
       const petFinderRequestUrlOptions = {
         headers: {

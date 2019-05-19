@@ -12,18 +12,14 @@ describe('Search', () => {
   let mockSearchTotalPages
   let mockIsLoading
   let mockIsDisplay
-  // let shortID = {
-  //   generate: jest.fn().mockImplementation(() => '63de45')
-  // }
   let shortID = require('short-id')
-  shortID.generate = jest.fn().mockImplementation(() => 6)
-  let mockRetrieveDogs
+  let mockFetchDogs
   let mockSetSearchedDogs
   let mockSetLoading
   let mockSetDisplay
 
   beforeEach(() => {
-   
+    shortID.generate = jest.fn().mockImplementation(() => 6)
     mockFetchedDogs = [
       {
         id: "37030888",
@@ -68,7 +64,7 @@ describe('Search', () => {
     mockSearchTotalPages = 5
     mockIsDisplay = false
     mockIsLoading = false
-    mockRetrieveDogs = jest.fn()
+    mockFetchDogs = jest.fn()
     mockSetSearchedDogs = jest.fn()
     mockSetLoading = jest.fn()
     mockSetDisplay = jest.fn()
@@ -79,7 +75,7 @@ describe('Search', () => {
       searchedDogs={mockSearchedDogs}
       nextDogsUrl={mockNextDogsUrl}
       searchTotalPages={mockSearchTotalPages}
-      retrieveDogs={mockRetrieveDogs}
+      fetchDogs={mockFetchDogs}
       setSearchedDogs={mockSetSearchedDogs}
       setLoading={mockSetLoading}
       setDisplay={mockSetDisplay}
@@ -152,7 +148,7 @@ describe('Search', () => {
       wrapper.setState({ zipCode: '80204' })
       wrapper.instance().handleSearch(mockPreventDefault)
       expect(mockSetSearchedDogs).toHaveBeenCalled()
-      expect(mockRetrieveDogs).toHaveBeenCalled()
+      expect(mockFetchDogs).toHaveBeenCalled()
       expect(mockSetDisplay).toHaveBeenCalled()
       expect(wrapper.state('currentPage')).toEqual(1)
     })
@@ -167,7 +163,7 @@ describe('Search', () => {
       wrapper.instance().checkSameSearch = jest.fn().mockImplementation(() => true)
       wrapper.setState({ zipCode: '80204', search: ['Retriever', 'Poodle'] })
       wrapper.instance().handleSearch(mockPreventDefault)
-      expect(mockRetrieveDogs).toHaveBeenCalledWith('80204', ['Retriever', 'Poodle'], 'petfinder/next')
+      expect(mockFetchDogs).toHaveBeenCalledWith('80204', ['Retriever', 'Poodle'], 'petfinder/next')
     })
   })
 
@@ -205,7 +201,7 @@ describe('Search', () => {
     it('should fetch additional dogs to display if no more to show after clicking next, then increase currentPage by 1', () => {
       wrapper.setState({ currentPage: 1 })
       wrapper.instance().showNextDogs()
-      expect(mockRetrieveDogs).toHaveBeenCalled()
+      expect(mockFetchDogs).toHaveBeenCalled()
       expect(wrapper.state('currentPage')).toEqual(2)
     })
 
@@ -214,7 +210,7 @@ describe('Search', () => {
       wrapper.setProps({ fetchedDogs: mockFetchedDogs })
       wrapper.setState({ currentPage: 1 })
       wrapper.instance().showNextDogs()
-      expect(mockRetrieveDogs).not.toHaveBeenCalled()
+      expect(mockFetchDogs).not.toHaveBeenCalled()
       expect(wrapper.state('currentPage')).toEqual(2)
     })
   })
@@ -256,10 +252,10 @@ describe('Search', () => {
   })
 
   describe('mapDispatchToProps', () => {
-    it('should call dispatch when using retrieveDogs from MDTP', () => {
+    it('should call dispatch when using fetchDogs from MDTP', () => {
       const mockDispatch = jest.fn()
       const mappedProps = mapDispatchToProps(mockDispatch)
-      mappedProps.retrieveDogs('77043', ['Poodle', 'Retriever'])
+      mappedProps.fetchDogs('77043', ['Poodle', 'Retriever'])
       expect(mockDispatch).toHaveBeenCalled()
     })
 

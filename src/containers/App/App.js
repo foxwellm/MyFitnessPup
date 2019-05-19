@@ -5,6 +5,7 @@ import Home from '../../components/Home/Home'
 import AboutBreeds from '../../components/AboutBreeds/AboutBreeds'
 import BreedInfo from '../../components/BreedInfo/BreedInfo'
 import Search from '../Search/Search'
+import DogInfo from '../../components/DogInfo/DogInfo';
 import NotFound from '../../components/NotFound/NotFound'
 import { Switch, Route, withRouter } from 'react-router-dom'
 import { breeds, info } from '../../staticData/breeds'
@@ -18,7 +19,7 @@ export class App extends Component {
   }
 
   render() {
-    const { staticBreeds, staticBreedInfo} = this.props
+    const { staticBreeds, staticBreedInfo, fetchedDogs} = this.props
     return (
       <div className="App">
         <Header />
@@ -37,6 +38,16 @@ export class App extends Component {
             return <NotFound />
           }}
           />
+          <Route path='/dog/:id' render={({ match }) => {
+            let { id } = match.params
+            id = parseInt(id)
+            const dogFromStore = fetchedDogs.find(dog => dog.id === id)
+            if (dogFromStore) {
+              return <DogInfo dogFromStore={dogFromStore}/>
+            }
+            return <NotFound />
+          }}
+          />
           <Route path='/search' component={Search} />
           <Route component={NotFound} />
         </Switch>
@@ -48,6 +59,7 @@ export class App extends Component {
 export const mapStateToProps = (state) => ({
   staticBreeds: state.staticBreeds,
   staticBreedInfo: state.staticBreedInfo,
+  fetchedDogs: state.fetchedDogs,
 })
 
 export const mapDispatchToProps = (dispatch) => ({

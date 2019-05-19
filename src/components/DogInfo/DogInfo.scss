@@ -1,0 +1,33 @@
+.DogInfo-container {
+  display: flex;
+  width: 90vw;
+  height: 40vw;
+  margin: 50px auto;
+  text-align: left;
+}
+
+.doginfo-img-container {
+  min-width: 300px;
+  min-height: 450px;
+  width: 30vw;
+  height: 40vw;
+}
+
+.doginfo-info-container {
+  width: 55vw;
+  margin: 2vw 0 2vw 5vw;
+}
+
+.doginfo-img {
+  width: 100%;
+  height: 100%;
+}
+
+.doginfo {
+  font-size: 1.5vw;
+  padding: 0.2vw;
+}
+
+.doginfo-name {
+  font-size: 5vw;
+}
