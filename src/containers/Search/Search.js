@@ -5,6 +5,7 @@ import { fetchDogs } from '../../thunks/fetchDogs'
 import BreedCard from '../../components/BreedCard/BreedCard'
 import { setLoading, setDisplay, setSearchedDogs } from '../../actions'
 import trail from '../../assets/images/trail.jpg'
+import loadingGif from '../../assets/images/dogwheel.gif'
 let shortID = require('short-id');
 
 export class Search extends Component {
@@ -135,21 +136,11 @@ export class Search extends Component {
           {searchCards}
         </div>
         {
-          isDisplay &&
-          <div className='results-container'>
-
-            {
-              !isLoading ? displayCards : <div>...Loading</div>
-            }
-
-          </div>
-        }
-        {
           !isLoading && <div className='search-buttons-container'>
             {
               currentPage !== 1 &&
               <button
-                className="prev-btn search-btn"
+                className="next-prev-btn"
                 onClick={this.showPrevDogs}
               >
                 Previous
@@ -158,11 +149,19 @@ export class Search extends Component {
             {
               !isLoading && currentPage !== searchTotalPages &&
               <button
-                className="next-btn search-btn"
+                className="next-prev-btn"
                 onClick={this.showNextDogs}
               >
                 Next
                 </button>
+            }
+          </div>
+        }
+        {
+          isDisplay &&
+          <div className='results-container'>
+            {
+              !isLoading ? displayCards : <img className='dog-loading' alt='outdoor trail' src={loadingGif} />
             }
           </div>
         }
