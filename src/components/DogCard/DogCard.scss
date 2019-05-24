@@ -2,9 +2,9 @@
   width: 250px;
   height: 250px;
   position: relative;
-  margin: 200px 150px 0;
+  margin: 100px 150px 50px;
   background-color: salmon;
-  transition: 0.2s;
+  transition: 0.1s;
   text-decoration: none;
   color: white;
   &:before {
@@ -14,7 +14,7 @@
     height: 25px;
     width: 25px;
     position: absolute;
-    transition: 0.2s;
+    transition: 0.1s;
   }
   &:after {
     content: "";
@@ -25,18 +25,18 @@
     position: absolute;
     top: 50px;
     left: 50px;
-    transition: 0.2s;
+    transition: 0.1s;
   }
   &:hover {
     transform: rotate(-45deg);
-    transition: 0.2s;
+    transition: 0.1s;
     background-color: red;
     .info-container {
-      transition: 0.2s;
+      transition: 0.1s;
       transform: rotate(45deg);
       .info-inner-container {
         transform: translateY(-45px);
-        transition: 0.2s;
+        transition: 0.1s;
       }
     }
   }
@@ -46,29 +46,26 @@
     width: 250px;
     top: -125px;
     left: 0;
-    transition: 0.2s;
+    transition: 0.1s;
   }
   &:hover:before {
     background-color: red;
     height: 250px;
     width: 250px;
-    transition: 0.2s;
+    transition: 0.1s;
   }
 }
 
 .info-container {
-  transition: 0.2s;
+  transition: 0.1s;
   height: 250px;
   width: 250px;
-  // display: flex;
   position: relative;
   z-index: 2;
-  // flex-direction: column;
-  // justify-content: space-around;
 }
 
 .info-inner-container {
-  transition: 0.2s;
+  transition: 0.1s;
   height: 250px;
   width: 250px;
   display: flex;
@@ -79,6 +76,7 @@
 .dog-img {
   width: 150px;
   height: 150px;
+  border-radius: 50%;
 }
 
 .dog-name {
