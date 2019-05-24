@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ReactTooltip from 'react-tooltip'
+import Tooltip from '@material-ui/core/Tooltip';
 
 export class BreedCard extends Component {
 
@@ -24,16 +24,27 @@ export class BreedCard extends Component {
         <div className='img-container'>
           <img className='breed-img' alt='dog' src={require(`../../assets/images/${img}`)} />
         </div>
-          <ReactTooltip className='pref-span' id='pref' type='info' place='bottom' effect='solid' getContent={(dataTip) =>`${dataTip}`} ></ReactTooltip>
         <div className='breed-attr'>
           {
-            isCold ? <div className='pref-container'><i className="fas fa-snowflake"  data-tip='Requires cold climate' data-for='pref'></i></div> : <div></div>
+            isCold ?
+              <Tooltip title="Requires cold weather">
+                <i className="fas fa-snowflake" data-tip='Requires cold climate' data-for='pref'></i>
+              </Tooltip>
+              : <div></div>
           }
           {
-            isClimber ? <div className='pref-container'><i className="fas fa-mountain"  data-tip='Loves hiking' data-for='pref'></i></div> : <div></div>
+            isClimber ?
+              <Tooltip title="Loves hiking">
+                <i className="fas fa-mountain" data-tip='Loves hiking' data-for='pref'></i>
+              </Tooltip>
+              : <div></div>
           }
           {
-            isRunner ? <div className='pref-container'><i className="fas fa-running"  data-tip='Loves running' data-for='pref'></i></div> : <div></div>
+            isRunner ?
+              <Tooltip title="Loves running">
+                <i className="fas fa-running" data-tip='Loves running' data-for='pref'></i>
+              </Tooltip>
+              : <div></div>
           }
         </div>
       </div>
