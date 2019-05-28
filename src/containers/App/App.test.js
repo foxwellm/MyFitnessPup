@@ -4,6 +4,7 @@ import { Home } from '../../components/Home/Home'
 import { Search } from '../Search/Search'
 import { AboutBreeds } from '../../components/AboutBreeds/AboutBreeds'
 import { BreedInfo } from '../../components/BreedInfo/BreedInfo'
+import { DogInfo } from '../../components/DogInfo/DogInfo'
 import { NotFound } from '../../components/NotFound/NotFound'
 import { breeds, info } from '../../staticData/breeds'
 import { mapStateToProps, mapDispatchToProps } from './App'
@@ -134,6 +135,48 @@ describe('App', () => {
         </Provider>
       )
       expect(wrapper.find(Search)).toHaveLength(1)
+    })
+
+    it('should render the DogInfo container when at /dog/:id with a matching id', () => {
+      const mockFetchedDogs = [{
+        id: 1,
+        name: 'Fiddo'
+      }]
+      const wrapper = mount(
+        <Provider store={store}>
+          <MemoryRouter initialEntries={['/dog/1']}>
+            <App
+              fetchedDogs={mockFetchedDogs}
+              storeStaticBreeds={mockStoreStaticBreeds}
+              storeStaticBreedInfo={mockStoreStaticBreedInfo}
+              staticBreeds={breeds}
+              staticBreedInfo={info}
+            />
+          </MemoryRouter>
+        </Provider>
+      )
+      expect(wrapper.find(DogInfo)).toHaveLength(1)
+    })
+
+    it('should render the NotFound container when at /dog/:id when id is not found', () => {
+      const mockFetchedDogs = [{
+        id: 1,
+        name: 'Fiddo'
+      }]
+      const wrapper = mount(
+        <Provider store={store}>
+          <MemoryRouter initialEntries={['/dog/2']}>
+            <App
+              fetchedDogs={mockFetchedDogs}
+              storeStaticBreeds={mockStoreStaticBreeds}
+              storeStaticBreedInfo={mockStoreStaticBreedInfo}
+              staticBreeds={breeds}
+              staticBreedInfo={info}
+            />
+          </MemoryRouter>
+        </Provider>
+      )
+      expect(wrapper.find(NotFound)).toHaveLength(1)
     })
   })
 

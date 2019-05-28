@@ -19,13 +19,13 @@ export class App extends Component {
   }
 
   render() {
-    const { staticBreeds, staticBreedInfo, fetchedDogs} = this.props
+    const { staticBreeds, staticBreedInfo, fetchedDogs } = this.props
     return (
       <div className="App">
         <Header />
         <Switch>
           <Route exact path='/' component={Home} />
-          <Route exact path='/about' render={() => <Home isAbout={true}/>} />
+          <Route exact path='/about' render={() => <Home isAbout={true} />} />
           <Route exact path='/about-breeds' component={AboutBreeds} />
           <Route path='/about-breeds/:breed' render={({ match }) => {
             const { breed } = match.params
@@ -33,7 +33,7 @@ export class App extends Component {
             const dogInfo = staticBreedInfo.find(dog => dog.name === breed)
             const dogBreed = staticBreeds.find(dog => dog.breed === breed)
             if (breedNames.includes(breed)) {
-              return <BreedInfo breed={dogBreed} info={dogInfo}/>
+              return <BreedInfo breed={dogBreed} info={dogInfo} />
             }
             return <NotFound />
           }}
@@ -43,7 +43,7 @@ export class App extends Component {
             id = parseInt(id)
             const dogFromStore = fetchedDogs.find(dog => dog.id === id)
             if (dogFromStore) {
-              return <DogInfo dogFromStore={dogFromStore}/>
+              return <DogInfo dogFromStore={dogFromStore} />
             }
             return <NotFound />
           }}
