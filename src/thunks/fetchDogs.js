@@ -10,7 +10,7 @@ export const fetchDogs = (zipCode, dogs, nextSearch) => {
       const petFinderAccessToken = await dispatch(getPetFinderToken())
       const dogsToSearch = dogs.join(',')
       const petFinderUrl = 'https://cors-anywhere.herokuapp.com/https://api.petfinder.com'
-      const petFinderSearchParams = nextSearch || `/v2/animals?type=dog&breed=${dogsToSearch}&location=${zipCode}&age=baby,young,adult&sort=distance&limit=10&distance=10`
+      const petFinderSearchParams = nextSearch || `/v2/animals?type=dog&breed=${dogsToSearch}&location=${zipCode}&age=baby,young,adult&sort=distance&status=adoptable`
       const petFinderRequestUrlOptions = {
         headers: {
           "Content-Type": "application/json",
@@ -25,7 +25,8 @@ export const fetchDogs = (zipCode, dogs, nextSearch) => {
       const cleanedDogs = dogCleaner(dirtyDogs)
       const cleanedAndAddedDogs = await dispatch(addDistance(cleanedDogs, zipCode))
       dispatch(setSearchTotalPages(dirtyDogs.pagination.total_pages))
-      if (dirtyDogs.pagination._links.next) dispatch(setDogsNext(dirtyDogs.pagination._links.next.href))
+      dirtyDogs.pagination._links.next ? dispatch(setDogsNext(dirtyDogs.pagination._links.next.href))
+        : dispatch(setDogsNext(null))
       nextSearch ? dispatch(fetchAdditionalDogsSuccess(cleanedAndAddedDogs))
         : dispatch(fetchDogsSuccess(cleanedAndAddedDogs))
       dispatch(setLoading(false))
