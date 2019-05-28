@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CircularIndeterminate should have match the correct snapshot 1`] = `
+<div
+  className="makeStyles-container-1"
+>
+  <WithStyles(ForwardRef(CircularProgress))
+    className="makeStyles-progress-3"
+  />
+  <div
+    className="makeStyles-text-2"
+  >
+    Fetching more dogs that match your criteria
+  </div>
+  <WithStyles(ForwardRef(CircularProgress))
+    className="makeStyles-progress-3"
+    color="secondary"
+  />
+</div>
+`;
