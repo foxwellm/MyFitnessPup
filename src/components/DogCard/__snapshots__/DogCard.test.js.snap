@@ -8,31 +8,32 @@ exports[`DogCard should have match the correct snapshot 1`] = `
   to="/dog/undefined"
 >
   <div
-    className="dog-name"
+    className="info-container"
   >
-    Butch
-  </div>
-  <div
-    className="dog-age"
-  >
-    Age: 
-    Young
-  </div>
-  <div
-    className="dog-distance"
-  >
-    Location: 
-    17.0 mi
-     away
-  </div>
-  <div
-    className="search-img-container"
-  >
-    <img
-      alt="dog from shelter"
-      className="dog-img"
-      src="photoUrl"
-    />
+    <div
+      className="info-inner-container"
+    >
+      <div
+        className="dog-name"
+      >
+        Butch
+      </div>
+      <div
+        className="search-img-container"
+      >
+        <img
+          alt="dog from shelter"
+          className="dog-img"
+          src="photoUrl"
+        />
+      </div>
+      <div
+        className="dog-distance"
+      >
+        17.0 mi
+         away
+      </div>
+    </div>
   </div>
 </Link>
 `;
@@ -45,31 +46,32 @@ exports[`DogCard should have match the correct snapshot when the dog has multipl
   to="/dog/undefined"
 >
   <div
-    className="dog-name"
+    className="info-container"
   >
-    Butch
-  </div>
-  <div
-    className="dog-age"
-  >
-    Age: 
-    Young
-  </div>
-  <div
-    className="dog-distance"
-  >
-    Location: 
-    17.0 mi
-     away
-  </div>
-  <div
-    className="search-img-container"
-  >
-    <img
-      alt="dog from shelter"
-      className="dog-img"
-      src="photoUrl"
-    />
+    <div
+      className="info-inner-container"
+    >
+      <div
+        className="dog-name"
+      >
+        Butch
+      </div>
+      <div
+        className="search-img-container"
+      >
+        <img
+          alt="dog from shelter"
+          className="dog-img"
+          src="photoUrl"
+        />
+      </div>
+      <div
+        className="dog-distance"
+      >
+        17.0 mi
+         away
+      </div>
+    </div>
   </div>
 </Link>
 `;
@@ -82,29 +84,68 @@ exports[`DogCard should have match the correct snapshot when the dog has no name
   to="/dog/undefined"
 >
   <div
-    className="dog-name"
-  />
-  <div
-    className="dog-age"
+    className="info-container"
   >
-    Age: 
-    Young
+    <div
+      className="info-inner-container"
+    >
+      <div
+        className="dog-name"
+      />
+      <div
+        className="search-img-container"
+      >
+        <img
+          alt="dog from shelter"
+          className="dog-img"
+          src="photoUrl"
+        />
+      </div>
+      <div
+        className="dog-distance"
+      >
+        17.0 mi
+         away
+      </div>
+    </div>
   </div>
+</Link>
+`;
+
+exports[`DogCard should have match the correct snapshot when the dog has no photo 1`] = `
+<Link
+  className="DogCard-container"
+  key="6"
+  replace={false}
+  to="/dog/undefined"
+>
   <div
-    className="dog-distance"
+    className="info-container"
   >
-    Location: 
-    17.0 mi
-     away
-  </div>
-  <div
-    className="search-img-container"
-  >
-    <img
-      alt="dog from shelter"
-      className="dog-img"
-      src="photoUrl"
-    />
+    <div
+      className="info-inner-container"
+    >
+      <div
+        className="dog-name"
+      >
+        Butch
+      </div>
+      <div
+        className="search-img-container"
+      >
+        <img
+          alt="dog from shelter"
+          className="dog-img"
+          src="nopic.png"
+        />
+      </div>
+      <div
+        className="dog-distance"
+      >
+        17.0 mi
+         away
+      </div>
+    </div>
   </div>
 </Link>
 `;

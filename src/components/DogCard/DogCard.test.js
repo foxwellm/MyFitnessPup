@@ -27,6 +27,17 @@ describe('DogCard', () => {
     expect(wrapper).toMatchSnapshot()
   })
 
+  it('should have match the correct snapshot when the dog has no photo', () => {
+    mockPhoto = null
+    wrapper = shallow(<DogCard
+      photo={mockPhoto}
+      name={mockName}
+      age={mockAge}
+      distance={mockDistance}
+    />)
+    expect(wrapper).toMatchSnapshot()
+  })
+
   it('should have match the correct snapshot when the dog has multiple names', () => {
     mockName = 'Butch Casidy'
     wrapper = shallow(<DogCard
