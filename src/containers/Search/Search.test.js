@@ -197,32 +197,6 @@ describe('Search', () => {
     })
   })
 
-  describe('showNextDogs', () => {
-    it('should fetch additional dogs to display if no more to show after clicking next, then increase currentPage by 1', () => {
-      wrapper.setState({ currentPage: 1 })
-      wrapper.instance().showNextDogs()
-      expect(mockFetchDogs).toHaveBeenCalled()
-      expect(wrapper.state('currentPage')).toEqual(2)
-    })
-
-    it('should increase currentPage by 1 and not fetch additional dogs if not necessary', () => {
-      mockFetchedDogs = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
-      wrapper.setProps({ fetchedDogs: mockFetchedDogs })
-      wrapper.setState({ currentPage: 1 })
-      wrapper.instance().showNextDogs()
-      expect(mockFetchDogs).not.toHaveBeenCalled()
-      expect(wrapper.state('currentPage')).toEqual(2)
-    })
-  })
-
-  describe('showPrevDogs', () => {
-    it('should setState of currentPage to 1 less', () => {
-      wrapper.setState({ currentPage: 2 })
-      wrapper.instance().showPrevDogs()
-      expect(wrapper.state('currentPage')).toEqual(1)
-    })
-  })
-
   describe('mapStateToProps', () => {
     it('should return an array of objects for storedDogs and boolean for isLoading and isDisplay', () => {
       const mockState = {
@@ -235,7 +209,6 @@ describe('Search', () => {
         isLoading: true,
         isDisplay: true,
         notAProp2: [{}]
-
       }
       const expected = {
         staticBreeds: [{}, {}],

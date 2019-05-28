@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import DogCard from '../../components/DogCard/DogCard'
 import { fetchDogs } from '../../thunks/fetchDogs'
 import BreedCard from '../../components/BreedCard/BreedCard'
+import CircularIndeterminate from '../../components/material-ui/CircularIndeterminate'
 import { setLoading, setDisplay, setSearchedDogs } from '../../actions'
 import trail from '../../assets/images/trail.jpg'
 import loadingGif from '../../assets/images/dogwheel.gif'
@@ -12,12 +13,23 @@ export class Search extends Component {
   constructor() {
     super()
     this.state = {
-      zipCode: '77043',
+      zipCode: '',
       zipError: '',
       currentPage: 1,
       search: [],
       currentSearchDogs: [],
-      isSpecificSearch: false
+      isSpecificSearch: false,
+      isFetchingMoreDogs: false
+    }
+  }
+
+  componentWillReceiveProps = ({ fetchedDogs }) => {
+    if (this.scroller && this.props.fetchedDogs.length !== fetchedDogs.length) {
+      const topBeforeRender = this.scroller.scrollTop
+      setTimeout(() => {
+        this.scroller.scrollTop = topBeforeRender
+        this.setState({ isFetchingMoreDogs: false })
+      }, 50)
     }
   }
 
@@ -74,36 +86,21 @@ export class Search extends Component {
     this.setState({ isSpecificSearch: !isSpecificSearch })
   }
 
-  showNextDogs = () => {
+  handleScroll = () => {
     const { nextDogsUrl, fetchedDogs, fetchDogs } = this.props
-    const { currentPage, zipCode } = this.state
-    const nextPage = currentPage + 1
+    const { zipCode, isFetchingMoreDogs } = this.state
 
-    if (fetchedDogs.length > currentPage * 10) {
-      this.setState({ currentPage: nextPage })
-    } else {
-      fetchDogs(zipCode, [], nextDogsUrl)
-      this.setState({ currentPage: nextPage })
+    if (this.scroller) {
+      if ((this.scroller.scrollTop + this.scroller.offsetHeight > this.scroller.scrollHeight - 100) && fetchedDogs.length && !isFetchingMoreDogs && nextDogsUrl) {
+        this.setState({ scrollHeight: this.scroller.scrollHeight, scrollTop: this.scroller.scrollTop, isFetchingMoreDogs: true })
+        fetchDogs(zipCode, [], nextDogsUrl)
+      }
     }
-  }
-
-  showPrevDogs = () => {
-    const { currentPage } = this.state
-    const prevPage = currentPage - 1
-    this.setState({ currentPage: prevPage })
   }
 
   render() {
     const { isLoading, isDisplay, fetchedDogs, searchTotalPages } = this.props
-    const { search, currentPage, zipCode, zipError, isSpecificSearch } = this.state
-    let displayCards = []
-    if (!isLoading) {
-      for (let i = (currentPage * 10) - 10; i < (currentPage * 10); i++) {
-        if (fetchedDogs[i]) {
-          displayCards.push(<DogCard {...fetchedDogs[i]} zip={zipCode} key={shortID.generate()} />)
-        }
-      }
-    }
+    const { search, zipCode, zipError, isSpecificSearch, isFetchingMoreDogs } = this.state
 
     const specificSearchCSS = [
       "search-container",
@@ -115,6 +112,7 @@ export class Search extends Component {
       return <BreedCard {...breed} active={active} handleSearchFilter={this.handleSearchFilter} location={this.props.location} cardNumber={i} key={shortID.generate()} />
     })
     const searching = !search.length ? 'all' : search.length
+
     return (
       <div className='Search'>
         <img className='trail-img' alt='outdoor trail' src={trail} />
@@ -136,55 +134,46 @@ export class Search extends Component {
           {searchCards}
         </div>
         {
-          !isLoading && <div className='search-buttons-container'>
-            {
-              currentPage !== 1 &&
-              <button
-                className="next-prev-btn"
-                onClick={this.showPrevDogs}
-              >
-                Previous
-                  </button>
-            }
-            {
-              !isLoading && currentPage !== searchTotalPages &&
-              <button
-                className="next-prev-btn"
-                onClick={this.showNextDogs}
-              >
-                Next
-                </button>
-            }
-          </div>
-        }
-        {
           isDisplay &&
-          <div className='results-container'>
+          <div className='results-container' onScroll={this.handleScroll} ref={(scroller) => {
+            this.scroller = scroller
+          }}>
             {
-              !isLoading ? displayCards : <img className='dog-loading' alt='outdoor trail' src={loadingGif} />
+              isLoading && !fetchedDogs.length ? <img className='dog-loading' alt='outdoor trail' src={loadingGif} />
+                : fetchedDogs.map(dog => {
+                  return <DogCard {...dog} zip={zipCode} key={shortID.generate()} />
+                })
+            }
+            {
+              fetchedDogs.length && <div className='bot'>
+                {
+                  isFetchingMoreDogs ? <CircularIndeterminate />
+                    : <div className='end-container'>No more dogs match your criteria</div>
+                }
+              </div>
+            }
+              </div>
             }
           </div>
-        }
-      </div>
     )
-  }
-}
-
+        }
+      }
+      
 export const mapStateToProps = (state) => ({
-  staticBreeds: state.staticBreeds,
-  fetchedDogs: state.fetchedDogs,
-  searchedDogs: state.searchedDogs,
-  nextDogsUrl: state.nextDogsUrl,
-  searchTotalPages: state.searchTotalPages,
-  isLoading: state.isLoading,
-  isDisplay: state.isDisplay
-})
-
+          staticBreeds: state.staticBreeds,
+        fetchedDogs: state.fetchedDogs,
+        searchedDogs: state.searchedDogs,
+        nextDogsUrl: state.nextDogsUrl,
+        searchTotalPages: state.searchTotalPages,
+        isLoading: state.isLoading,
+        isDisplay: state.isDisplay
+      })
+      
 export const mapDispatchToProps = (dispatch) => ({
-  fetchDogs: (zipCode, breedTypes, nextsearch) => dispatch(fetchDogs(zipCode, breedTypes, nextsearch)),
-  setSearchedDogs: (dogs) => dispatch(setSearchedDogs(dogs)),
-  setLoading: (bool) => dispatch(setLoading(bool)),
-  setDisplay: (bool) => dispatch(setDisplay(bool)),
-})
-
+          fetchDogs: (zipCode, breedTypes, nextsearch) => dispatch(fetchDogs(zipCode, breedTypes, nextsearch)),
+        setSearchedDogs: (dogs) => dispatch(setSearchedDogs(dogs)),
+        setLoading: (bool) => dispatch(setLoading(bool)),
+        setDisplay: (bool) => dispatch(setDisplay(bool)),
+      })
+      
 export default connect(mapStateToProps, mapDispatchToProps)(Search)

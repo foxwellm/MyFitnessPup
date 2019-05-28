@@ -46,7 +46,7 @@ exports[`Search should match the correct snapshot 1`] = `
         onChange={[Function]}
         placeholder="zip-code"
         type="number"
-        value="77043"
+        value=""
       />
       <button
         className="search-btn"
@@ -82,16 +82,6 @@ exports[`Search should match the correct snapshot 1`] = `
       key="6"
       tag="retriever"
     />
-  </div>
-  <div
-    className="search-buttons-container"
-  >
-    <button
-      className="next-btn search-btn"
-      onClick={[Function]}
-    >
-      Next
-    </button>
   </div>
 </div>
 `;
@@ -142,7 +132,7 @@ exports[`Search should match the correct snapshot when dogs are done loading fro
         onChange={[Function]}
         placeholder="zip-code"
         type="number"
-        value="77043"
+        value=""
       />
       <button
         className="search-btn"
@@ -181,6 +171,7 @@ exports[`Search should match the correct snapshot when dogs are done loading fro
   </div>
   <div
     className="results-container"
+    onScroll={[Function]}
   >
     <DogCard
       age="Young"
@@ -201,7 +192,7 @@ exports[`Search should match the correct snapshot when dogs are done loading fro
       size="Large"
       status="Available"
       url="https://www.petfinder.com/dog/vegas-357285"
-      zip="77043"
+      zip=""
     />
     <DogCard
       age="Baby"
@@ -222,18 +213,17 @@ exports[`Search should match the correct snapshot when dogs are done loading fro
       size="Large"
       status="Available"
       url="https://www.petfinder.com/dog/vegas-357285"
-      zip="77043"
+      zip=""
     />
-  </div>
-  <div
-    className="search-buttons-container"
-  >
-    <button
-      className="next-btn search-btn"
-      onClick={[Function]}
+    <div
+      className="bot"
     >
-      Next
-    </button>
+      <div
+        className="end-container"
+      >
+        No more dogs match your criteria
+      </div>
+    </div>
   </div>
 </div>
 `;
@@ -284,7 +274,7 @@ exports[`Search should match the correct snapshot when dogs are loading from fet
         onChange={[Function]}
         placeholder="zip-code"
         type="number"
-        value="77043"
+        value=""
       />
       <button
         className="search-btn"
@@ -323,9 +313,58 @@ exports[`Search should match the correct snapshot when dogs are loading from fet
   </div>
   <div
     className="results-container"
+    onScroll={[Function]}
   >
-    <div>
-      ...Loading
+    <DogCard
+      age="Young"
+      breeds={Object {}}
+      contact="petplace@gmail.com"
+      description="Star is by far the star of the house.  We love her…ation please contact Alfred↵ alfredk9rr@gmail.com"
+      distance="2.0 mi"
+      gender="Female"
+      id="37030888"
+      key="6"
+      link={
+        Object {
+          "href": "/v2/animals/436246",
+        }
+      }
+      name="Star"
+      photo="http://photos.petfinder.com/photos/pets/37030888/1/"
+      size="Large"
+      status="Available"
+      url="https://www.petfinder.com/dog/vegas-357285"
+      zip=""
+    />
+    <DogCard
+      age="Baby"
+      breeds={Object {}}
+      contact="petplace@gmail.com"
+      description="Butch is by far the star of the house.  We love her…ation please contact Alfred↵ alfredk9rr@gmail.com"
+      distance="10.2 mi"
+      gender="Male"
+      id="37030889"
+      key="6"
+      link={
+        Object {
+          "href": "/v2/animals/436247",
+        }
+      }
+      name="Butch"
+      photo="http://photos.petfinder.com/photos/pets/37030888/1/"
+      size="Large"
+      status="Available"
+      url="https://www.petfinder.com/dog/vegas-357285"
+      zip=""
+    />
+    <div
+      className="bot"
+    >
+      <div
+        className="end-container"
+      >
+        No more dogs match your criteria
+      </div>
     </div>
   </div>
 </div>
