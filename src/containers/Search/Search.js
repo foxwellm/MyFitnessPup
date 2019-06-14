@@ -4,22 +4,21 @@ import DogCard from '../../components/DogCard/DogCard'
 import { fetchDogs } from '../../thunks/fetchDogs'
 import BreedCard from '../../components/BreedCard/BreedCard'
 import CircularIndeterminate from '../../components/material-ui/CircularIndeterminate'
-import { setLoading, setDisplay, setSearchedDogs } from '../../actions'
+import { setLoading, setDisplay, setSearchedDogs, setUserZipCode } from '../../actions'
 import trail from '../../assets/images/trail.jpg'
 import loadingGif from '../../assets/images/dogwheel.gif'
 let shortID = require('short-id')
 
 export class Search extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
-      zipCode: '',
+      zipCode: this.props.userZipCode,
       zipError: '',
-      currentPage: 1,
       search: [],
       currentSearchDogs: [],
       isSpecificSearch: false,
-      isFetchingMoreDogs: false
+      isFetchingMoreDogs: false,
     }
     this.scrollRef = React.createRef()
   }
@@ -55,18 +54,17 @@ export class Search extends Component {
 
   handleSearch = (e) => {
     e.preventDefault()
-    const { staticBreeds, setSearchedDogs, fetchDogs, nextDogsUrl, setDisplay } = this.props
+    const { staticBreeds, setSearchedDogs, fetchDogs, setDisplay, setUserZipCode } = this.props
     const { search, zipCode } = this.state
     if (zipCode.length !== 5) {
       this.setState({ zipError: 'Please enter valid zip code' })
     } else {
-      this.setState({ zipError: '' })
       const searchDogs = !search.length ? staticBreeds.map(breed => breed.breed) : search
-      const isSameSearch = this.checkSameSearch(searchDogs)
-      setSearchedDogs(searchDogs)
-      const nextSearch = isSameSearch ? nextDogsUrl : null
-      fetchDogs(zipCode, searchDogs, nextSearch)
-      this.setState({ currentPage: 1 })
+      setUserZipCode(zipCode)
+      if (!this.checkSameSearch(searchDogs)) {
+        setSearchedDogs(searchDogs)
+        fetchDogs(zipCode, searchDogs, null)
+      }
       setDisplay(true)
     }
   }
@@ -104,7 +102,7 @@ export class Search extends Component {
 
   render() {
     const { isLoading, isDisplay, fetchedDogs } = this.props
-    const { search, zipCode, zipError, isSpecificSearch, isFetchingMoreDogs } = this.state
+    const { search, zipError, isSpecificSearch, isFetchingMoreDogs } = this.state
     const specificSearchCSS = [
       "search-container",
       isSpecificSearch ? "show" : null
@@ -114,7 +112,6 @@ export class Search extends Component {
       return <BreedCard {...breed} active={active} handleSearchFilter={this.handleSearchFilter} location={this.props.location} cardNumber={i} key={shortID.generate()} />
     })
     const searching = !search.length ? 'all' : search.length
-
     return (
       <div className='Search'>
         <img className='trail-img' alt='outdoor trail' src={trail} />
@@ -141,7 +138,7 @@ export class Search extends Component {
             {
               isLoading && !fetchedDogs.length ? <img className='dog-loading' alt='outdoor trail' src={loadingGif} />
                 : fetchedDogs.map(dog => {
-                  return <DogCard {...dog} zip={zipCode} key={shortID.generate()} />
+                  return <DogCard {...dog} key={shortID.generate()} />
                 })
             }
             {
@@ -161,6 +158,7 @@ export class Search extends Component {
 
 export const mapStateToProps = (state) => ({
   staticBreeds: state.staticBreeds,
+  userZipCode: state.userZipCode,
   fetchedDogs: state.fetchedDogs,
   searchedDogs: state.searchedDogs,
   nextDogsUrl: state.nextDogsUrl,
@@ -174,6 +172,7 @@ export const mapDispatchToProps = (dispatch) => ({
   setSearchedDogs: (dogs) => dispatch(setSearchedDogs(dogs)),
   setLoading: (bool) => dispatch(setLoading(bool)),
   setDisplay: (bool) => dispatch(setDisplay(bool)),
+  setUserZipCode: (zipCode) => dispatch(setUserZipCode(zipCode)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search)

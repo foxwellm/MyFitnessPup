@@ -1,12 +1,13 @@
 import { dogCleaner } from '../helpers/dogCleaner'
 import { addDistance } from './addDistance'
 import { getPetFinderToken } from './getPetFinderToken'
-import { fetchDogsSuccess, fetchAdditionalDogsSuccess, setDogsNext, setLoading, hasErrored, setSearchTotalPages } from '../actions'
+import { newSearch, fetchDogsSuccess, fetchAdditionalDogsSuccess, setDogsNext, setLoading, hasErrored, setSearchTotalPages } from '../actions'
 
 export const fetchDogs = (zipCode, dogs, nextSearch) => {
   return async (dispatch) => {
     try {
       dispatch(setLoading(true))
+      !nextSearch && dispatch(newSearch())
       const petFinderAccessToken = await dispatch(getPetFinderToken())
       const dogsToSearch = dogs.join(',')
       const petFinderUrl = 'https://cors-anywhere.herokuapp.com/https://api.petfinder.com'
@@ -25,7 +26,7 @@ export const fetchDogs = (zipCode, dogs, nextSearch) => {
       const cleanedDogs = dogCleaner(dirtyDogs)
       const cleanedAndAddedDogs = await dispatch(addDistance(cleanedDogs, zipCode))
       dispatch(setSearchTotalPages(dirtyDogs.pagination.total_pages))
-      dirtyDogs.pagination._links.next ? dispatch(setDogsNext(dirtyDogs.pagination._links.next.href))
+      dirtyDogs.pagination._links && dirtyDogs.pagination._links.next ? dispatch(setDogsNext(dirtyDogs.pagination._links.next.href))
         : dispatch(setDogsNext(null))
       nextSearch ? dispatch(fetchAdditionalDogsSuccess(cleanedAndAddedDogs))
         : dispatch(fetchDogsSuccess(cleanedAndAddedDogs))

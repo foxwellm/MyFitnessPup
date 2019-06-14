@@ -1,11 +1,16 @@
 export const storeStaticBreeds = (breeds) => ({
   type: 'STORE_BREEDS',
-  breeds: breeds
+  breeds
 })
 
 export const storeStaticBreedInfo = (info) => ({
   type: 'STORE_BREED_INFO',
-  info: info
+  info
+})
+
+export const setUserZipCode = (userZipCode) => ({
+  type: 'SET_USER_ZIP_CODE',
+  userZipCode
 })
 
 export const setLoading = (bool) => ({
@@ -21,6 +26,10 @@ export const hasErrored = (message) => ({
 export const setDisplay = (bool) => ({
   type: 'SET_DISPLAY',
   isDisplay: bool
+})
+
+export const newSearch = () => ({
+  type: 'NEW_SEARCH'
 })
 
 export const fetchDogsSuccess = (dogs) => ({
