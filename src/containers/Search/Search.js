@@ -7,7 +7,7 @@ import CircularIndeterminate from '../../components/material-ui/CircularIndeterm
 import { setLoading, setDisplay, setSearchedDogs } from '../../actions'
 import trail from '../../assets/images/trail.jpg'
 import loadingGif from '../../assets/images/dogwheel.gif'
-let shortID = require('short-id');
+let shortID = require('short-id')
 
 export class Search extends Component {
   constructor() {
@@ -21,15 +21,20 @@ export class Search extends Component {
       isSpecificSearch: false,
       isFetchingMoreDogs: false
     }
+    this.scrollRef = React.createRef()
+  }
+  
+  getSnapshotBeforeUpdate(prevProps) {
+    if(prevProps.fetchedDogs.length < this.props.fetchedDogs.length) {
+      return this.scrollRef.current.scrollTop
+    }
+    return null
   }
 
-  componentWillReceiveProps = ({ fetchedDogs }) => {
-    if (this.scroller && this.props.fetchedDogs.length !== fetchedDogs.length) {
-      const topBeforeRender = this.scroller.scrollTop
-      setTimeout(() => {
-        this.scroller.scrollTop = topBeforeRender
-        this.setState({ isFetchingMoreDogs: false })
-      }, 50)
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if(snapshot !== null) {
+      this.scrollRef.current.scrollTop = snapshot;
+      this.setState({ isFetchingMoreDogs: false })
     }
   }
 
@@ -90,23 +95,21 @@ export class Search extends Component {
     const { nextDogsUrl, fetchedDogs, fetchDogs } = this.props
     const { zipCode, isFetchingMoreDogs } = this.state
 
-    if (this.scroller) {
-      if ((this.scroller.scrollTop + this.scroller.offsetHeight > this.scroller.scrollHeight - 100) && fetchedDogs.length && !isFetchingMoreDogs && nextDogsUrl) {
-        this.setState({ scrollHeight: this.scroller.scrollHeight, scrollTop: this.scroller.scrollTop, isFetchingMoreDogs: true })
+    if (this.scrollRef) {
+      if ((this.scrollRef.current.scrollTop + this.scrollRef.current.offsetHeight > this.scrollRef.current.scrollHeight - 100) && fetchedDogs.length && !isFetchingMoreDogs && nextDogsUrl) {
+        this.setState({ scrollHeight: this.scrollRef.current.scrollHeight, scrollTop: this.scrollRef.current.scrollTop, isFetchingMoreDogs: true })
         fetchDogs(zipCode, [], nextDogsUrl)
       }
     }
   }
 
   render() {
-    const { isLoading, isDisplay, fetchedDogs, searchTotalPages } = this.props
+    const { isLoading, isDisplay, fetchedDogs } = this.props
     const { search, zipCode, zipError, isSpecificSearch, isFetchingMoreDogs } = this.state
-
     const specificSearchCSS = [
       "search-container",
       isSpecificSearch ? "show" : null
     ];
-
     const searchCards = this.props.staticBreeds.map((breed, i) => {
       const active = search.includes(breed.breed) ? true : false
       return <BreedCard {...breed} active={active} handleSearchFilter={this.handleSearchFilter} location={this.props.location} cardNumber={i} key={shortID.generate()} />
@@ -135,9 +138,7 @@ export class Search extends Component {
         </div>
         {
           isDisplay &&
-          <div className='results-container' onScroll={this.handleScroll} ref={(scroller) => {
-            this.scroller = scroller
-          }}>
+            <div className='results-container' onScroll={this.handleScroll} ref={this.scrollRef}>
             {
               isLoading && !fetchedDogs.length ? <img className='dog-loading' alt='outdoor trail' src={loadingGif} />
                 : fetchedDogs.map(dog => {
@@ -152,28 +153,28 @@ export class Search extends Component {
                 }
               </div>
             }
-              </div>
-            }
           </div>
-    )
         }
-      }
-      
+      </div>
+    )
+  }
+}
+
 export const mapStateToProps = (state) => ({
-          staticBreeds: state.staticBreeds,
-        fetchedDogs: state.fetchedDogs,
-        searchedDogs: state.searchedDogs,
-        nextDogsUrl: state.nextDogsUrl,
-        searchTotalPages: state.searchTotalPages,
-        isLoading: state.isLoading,
-        isDisplay: state.isDisplay
-      })
-      
+  staticBreeds: state.staticBreeds,
+  fetchedDogs: state.fetchedDogs,
+  searchedDogs: state.searchedDogs,
+  nextDogsUrl: state.nextDogsUrl,
+  searchTotalPages: state.searchTotalPages,
+  isLoading: state.isLoading,
+  isDisplay: state.isDisplay
+})
+
 export const mapDispatchToProps = (dispatch) => ({
-          fetchDogs: (zipCode, breedTypes, nextsearch) => dispatch(fetchDogs(zipCode, breedTypes, nextsearch)),
-        setSearchedDogs: (dogs) => dispatch(setSearchedDogs(dogs)),
-        setLoading: (bool) => dispatch(setLoading(bool)),
-        setDisplay: (bool) => dispatch(setDisplay(bool)),
-      })
-      
+  fetchDogs: (zipCode, breedTypes, nextsearch) => dispatch(fetchDogs(zipCode, breedTypes, nextsearch)),
+  setSearchedDogs: (dogs) => dispatch(setSearchedDogs(dogs)),
+  setLoading: (bool) => dispatch(setLoading(bool)),
+  setDisplay: (bool) => dispatch(setDisplay(bool)),
+})
+
 export default connect(mapStateToProps, mapDispatchToProps)(Search)
