@@ -4,6 +4,7 @@ import { nextUrlReducer } from './nextUrlReducer';
 import { setSearchTotalPagesReducer } from './setSearchTotalPagesReducer';
 import { setLoadingReducer } from './setLoadingReducer';
 import { setDisplayReducer } from './setDisplayReducer';
+import { setUserZipCodeReducer } from './setUserZipCodeReducer';
 import { setSearchLocationReducer } from './setSearchLocationReducer';
 import { setSearchedDogsReducer } from './setSearchedDogsReducer';
 import { hasErroredReducer } from './hasErroredReducer';
@@ -13,6 +14,7 @@ import { storeBreedInfoReducer } from './storeBreedInfoReducer';
 export const rootReducer = combineReducers({
   staticBreeds: storeBreedsReducer,
   staticBreedInfo: storeBreedInfoReducer,
+  userZipCode: setUserZipCodeReducer,
   isLoading: setLoadingReducer,
   isDisplay: setDisplayReducer,
   hasErrored: hasErroredReducer,
