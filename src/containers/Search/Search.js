@@ -23,16 +23,16 @@ export class Search extends Component {
     }
     this.scrollRef = React.createRef()
   }
-  
+
   getSnapshotBeforeUpdate(prevProps) {
-    if(prevProps.fetchedDogs.length < this.props.fetchedDogs.length) {
+    if (prevProps.fetchedDogs.length < this.props.fetchedDogs.length) {
       return this.scrollRef.current.scrollTop
     }
     return null
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if(snapshot !== null) {
+    if (snapshot !== null) {
       this.scrollRef.current.scrollTop = snapshot;
       this.setState({ isFetchingMoreDogs: false })
     }
@@ -94,12 +94,11 @@ export class Search extends Component {
   handleScroll = () => {
     const { nextDogsUrl, fetchedDogs, fetchDogs } = this.props
     const { zipCode, isFetchingMoreDogs } = this.state
+    const currentScrollRef = this.scrollRef.current
 
-    if (this.scrollRef) {
-      if ((this.scrollRef.current.scrollTop + this.scrollRef.current.offsetHeight > this.scrollRef.current.scrollHeight - 100) && fetchedDogs.length && !isFetchingMoreDogs && nextDogsUrl) {
-        this.setState({ scrollHeight: this.scrollRef.current.scrollHeight, scrollTop: this.scrollRef.current.scrollTop, isFetchingMoreDogs: true })
-        fetchDogs(zipCode, [], nextDogsUrl)
-      }
+    if ((currentScrollRef.scrollTop + currentScrollRef.offsetHeight > currentScrollRef.scrollHeight - 100) && fetchedDogs.length && !isFetchingMoreDogs && nextDogsUrl) {
+      this.setState({ isFetchingMoreDogs: true })
+      fetchDogs(zipCode, [], nextDogsUrl)
     }
   }
 
@@ -138,7 +137,7 @@ export class Search extends Component {
         </div>
         {
           isDisplay &&
-            <div className='results-container' onScroll={this.handleScroll} ref={this.scrollRef}>
+          <div className='results-container' onScroll={this.handleScroll} ref={this.scrollRef}>
             {
               isLoading && !fetchedDogs.length ? <img className='dog-loading' alt='outdoor trail' src={loadingGif} />
                 : fetchedDogs.map(dog => {

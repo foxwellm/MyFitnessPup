@@ -97,6 +97,46 @@ describe('Search', () => {
     expect(wrapper).toMatchSnapshot()
   })
 
+  it('should match the correct snapshot when fetching more dogs', () => {
+    wrapper.setProps({ isDisplay: true})
+    wrapper.setState({ isFetchingMoreDogs: true})
+    expect(wrapper).toMatchSnapshot()
+  })
+
+  it('should match the correct snapshot when fetching dogs the first time', () => {
+    wrapper.setProps({ isDisplay: true, isLoading: true, fetchedDogs: [] })
+    expect(wrapper).toMatchSnapshot()
+  })
+
+  describe('getSnapshotBeforeUpdate', () => {
+    it('should return the scrollTop value if fetchedDogs has increased', () => {
+      wrapper.instance().scrollRef = {
+        current: {
+          scrollTop: 200
+        }
+      }
+      const mockPrevProps = {
+        fetchedDogs: []
+      }
+      wrapper.setProps({ fetchedDogs: mockFetchedDogs})
+      expect(wrapper.instance().getSnapshotBeforeUpdate(mockPrevProps)).toEqual(200)
+    })
+  })
+
+  describe('componentDidUpdate', () => {
+    it('should set state of isFetchingMoreDogs to false once snapshot has been changed', () => {
+      const mockSnapshot = 200
+      wrapper.instance().scrollRef = {
+        current: {
+          scrollTop: 0
+        }
+      }
+      wrapper.instance().componentDidUpdate(null, null, mockSnapshot)
+      expect(wrapper.state('isFetchingMoreDogs')).toEqual(false)
+      expect(wrapper.instance().scrollRef.current.scrollTop).toEqual(200)
+    })
+  })
+
   describe('handleChange', () => {
     const mockEvent = {
       target: {
@@ -194,6 +234,38 @@ describe('Search', () => {
       wrapper.setState({ isSpecificSearch: false })
       wrapper.instance().toggleSearchParams()
       expect(wrapper.state('isSpecificSearch')).toEqual(true)
+    })
+  })
+
+  describe('handleScroll', () => {
+    it('should not do anything if the user has not scrolled to the bottom of the page', () => {
+      wrapper.instance().scrollRef = {
+        current: {
+          scrollTop: 200,
+          scrollHeight: 550,
+          offsetHeight: 100
+        }
+      }
+      wrapper.setProps({ fetchedDogs: mockFetchedDogs, nextDogsUrl: mockNextDogsUrl })
+      wrapper.instance().handleScroll()
+  
+      expect(wrapper.state('isFetchingMoreDogs')).toEqual(false)
+      expect(mockFetchDogs).not.toHaveBeenCalled()
+    })
+
+    it('should fetch more dogs if the user has scrolled to the bottom of the page', () => {
+      wrapper.instance().scrollRef = {
+        current: {
+          scrollTop: 200,
+          scrollHeight: 350,
+          offsetHeight: 100
+        }
+      }
+      wrapper.setProps({ fetchedDogs: mockFetchedDogs, nextDogsUrl: mockNextDogsUrl})
+      wrapper.instance().handleScroll()
+    
+      expect(wrapper.state('isFetchingMoreDogs')).toEqual(true)
+      expect(mockFetchDogs).toHaveBeenCalled()
     })
   })
 
