@@ -15,7 +15,7 @@ describe('Search', () => {
   let shortID = require('short-id')
   let mockFetchDogs
   let mockSetSearchedDogs
-  let mockSetLoading
+  let mockSetUserZipCode
   let mockSetDisplay
 
   beforeEach(() => {
@@ -66,8 +66,8 @@ describe('Search', () => {
     mockIsLoading = false
     mockFetchDogs = jest.fn()
     mockSetSearchedDogs = jest.fn()
-    mockSetLoading = jest.fn()
     mockSetDisplay = jest.fn()
+    mockSetUserZipCode = jest.fn()
 
     wrapper = shallow(<Search
       staticBreeds={mockStaticBreeds}
@@ -77,8 +77,8 @@ describe('Search', () => {
       searchTotalPages={mockSearchTotalPages}
       fetchDogs={mockFetchDogs}
       setSearchedDogs={mockSetSearchedDogs}
-      setLoading={mockSetLoading}
       setDisplay={mockSetDisplay}
+      setUserZipCode={mockSetUserZipCode}
       isDisplay={mockIsDisplay}
       isLoading={mockIsLoading}
     />)
@@ -184,26 +184,35 @@ describe('Search', () => {
       expect(wrapper.state('zipError')).toEqual('Please enter valid zip code')
     })
 
-    it('should fetch dogs if zipcode is valid', () => {
-      wrapper.setState({ zipCode: '80204' })
+    it('should search all dog breeds if no specific dogs selected', () => {
+      const allDogBreeds = mockStaticBreeds.map(dog => dog.breed)
+      wrapper.setState({ zipCode: '80204', search: [] })
       wrapper.instance().handleSearch(mockPreventDefault)
-      expect(mockSetSearchedDogs).toHaveBeenCalled()
-      expect(mockFetchDogs).toHaveBeenCalled()
-      expect(mockSetDisplay).toHaveBeenCalled()
-      expect(wrapper.state('currentPage')).toEqual(1)
+      expect(wrapper.instance().checkSameSearch).toHaveBeenCalledWith(allDogBreeds)
     })
 
-    it('should search specific dogs if not all have been selected', () => {
-      wrapper.setState({ zipCode: '80204', search: ['Retriever', 'Poodle'] })
+    it('should check to make sure user is searching new dogs', () => {
+      wrapper.setState({ zipCode: '80204', search: ['Viszla', 'Weimaraner'] })
       wrapper.instance().handleSearch(mockPreventDefault)
-      expect(wrapper.instance().checkSameSearch).toHaveBeenCalledWith(['Retriever', 'Poodle'])
+      expect(wrapper.instance().checkSameSearch).toHaveBeenCalledWith(['Viszla', 'Weimaraner'])
     })
 
-    it('should search specific dogs if not all have been selected', () => {
+    it('should search specific dogs if not all have been selected and it is a new search', () => {
+      wrapper.instance().checkSameSearch = jest.fn().mockImplementation(() => false)
+      wrapper.setState({ zipCode: '80204', search: ['Viszla', 'Weimaraner'] })
+      wrapper.instance().handleSearch(mockPreventDefault)
+      expect(mockFetchDogs).toHaveBeenCalledWith('80204', ['Viszla', 'Weimaraner'], null)
+      expect(mockSetSearchedDogs).toHaveBeenCalledWith(['Viszla', 'Weimaraner'])
+      expect(mockSetDisplay).toHaveBeenCalledWith(true)
+    })
+
+    it('should search specific dogs if not all have been selected and it is a new search', () => {
       wrapper.instance().checkSameSearch = jest.fn().mockImplementation(() => true)
-      wrapper.setState({ zipCode: '80204', search: ['Retriever', 'Poodle'] })
+      wrapper.setState({ zipCode: '80204', search: ['Viszla', 'Weimaraner'] })
       wrapper.instance().handleSearch(mockPreventDefault)
-      expect(mockFetchDogs).toHaveBeenCalledWith('80204', ['Retriever', 'Poodle'], 'petfinder/next')
+      expect(mockFetchDogs).not.toHaveBeenCalled()
+      expect(mockSetSearchedDogs).not.toHaveBeenCalled()
+      expect(mockSetDisplay).toHaveBeenCalledWith(true)
     })
   })
 
@@ -297,31 +306,31 @@ describe('Search', () => {
   })
 
   describe('mapDispatchToProps', () => {
+    let mockDispatch
+    let mappedProps
+
+    beforeEach(() => {
+      mockDispatch = jest.fn()
+      mappedProps = mapDispatchToProps(mockDispatch)
+    })
+
     it('should call dispatch when using fetchDogs from MDTP', () => {
-      const mockDispatch = jest.fn()
-      const mappedProps = mapDispatchToProps(mockDispatch)
       mappedProps.fetchDogs('77043', ['Poodle', 'Retriever'])
       expect(mockDispatch).toHaveBeenCalled()
     })
 
     it('should call dispatch when using setSearchedDogs from MDTP', () => {
-      const mockDispatch = jest.fn()
-      const mappedProps = mapDispatchToProps(mockDispatch)
       mappedProps.setSearchedDogs(['Poodle', 'Retriever'])
       expect(mockDispatch).toHaveBeenCalled()
     })
 
-    it('should call dispatch when using setLoading from MDTP', () => {
-      const mockDispatch = jest.fn()
-      const mappedProps = mapDispatchToProps(mockDispatch)
-      mappedProps.setLoading(true)
+    it('should call dispatch when using setDisplay from MDTP', () => {
+      mappedProps.setDisplay(true)
       expect(mockDispatch).toHaveBeenCalled()
     })
 
-    it('should call dispatch when using setDisplay from MDTP', () => {
-      const mockDispatch = jest.fn()
-      const mappedProps = mapDispatchToProps(mockDispatch)
-      mappedProps.setDisplay(true)
+    it('should call dispatch when using setUserZipCode from MDTP', () => {
+      mappedProps.setUserZipCode('77043')
       expect(mockDispatch).toHaveBeenCalled()
     })
   })

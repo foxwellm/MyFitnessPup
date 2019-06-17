@@ -4,7 +4,7 @@ import DogCard from '../../components/DogCard/DogCard'
 import { fetchDogs } from '../../thunks/fetchDogs'
 import BreedCard from '../../components/BreedCard/BreedCard'
 import CircularIndeterminate from '../../components/material-ui/CircularIndeterminate'
-import { setLoading, setDisplay, setSearchedDogs, setUserZipCode } from '../../actions'
+import { setDisplay, setSearchedDogs, setUserZipCode } from '../../actions'
 import trail from '../../assets/images/trail.jpg'
 import loadingGif from '../../assets/images/dogwheel.gif'
 let shortID = require('short-id')
@@ -170,7 +170,6 @@ export const mapStateToProps = (state) => ({
 export const mapDispatchToProps = (dispatch) => ({
   fetchDogs: (zipCode, breedTypes, nextsearch) => dispatch(fetchDogs(zipCode, breedTypes, nextsearch)),
   setSearchedDogs: (dogs) => dispatch(setSearchedDogs(dogs)),
-  setLoading: (bool) => dispatch(setLoading(bool)),
   setDisplay: (bool) => dispatch(setDisplay(bool)),
   setUserZipCode: (zipCode) => dispatch(setUserZipCode(zipCode)),
 })

@@ -46,7 +46,6 @@ exports[`Search should match the correct snapshot 1`] = `
         onChange={[Function]}
         placeholder="zip-code"
         type="number"
-        value=""
       />
       <button
         className="search-btn"
@@ -132,7 +131,6 @@ exports[`Search should match the correct snapshot when dogs are done loading fro
         onChange={[Function]}
         placeholder="zip-code"
         type="number"
-        value=""
       />
       <button
         className="search-btn"
@@ -192,7 +190,7 @@ exports[`Search should match the correct snapshot when dogs are done loading fro
       size="Large"
       status="Available"
       url="https://www.petfinder.com/dog/vegas-357285"
-      zip=""
+      zip="80204"
     />
     <DogCard
       age="Baby"
@@ -213,7 +211,7 @@ exports[`Search should match the correct snapshot when dogs are done loading fro
       size="Large"
       status="Available"
       url="https://www.petfinder.com/dog/vegas-357285"
-      zip=""
+      zip="80206"
     />
     <div
       className="bot"
@@ -274,7 +272,6 @@ exports[`Search should match the correct snapshot when dogs are loading from fet
         onChange={[Function]}
         placeholder="zip-code"
         type="number"
-        value=""
       />
       <button
         className="search-btn"
@@ -334,7 +331,7 @@ exports[`Search should match the correct snapshot when dogs are loading from fet
       size="Large"
       status="Available"
       url="https://www.petfinder.com/dog/vegas-357285"
-      zip=""
+      zip="80204"
     />
     <DogCard
       age="Baby"
@@ -355,7 +352,7 @@ exports[`Search should match the correct snapshot when dogs are loading from fet
       size="Large"
       status="Available"
       url="https://www.petfinder.com/dog/vegas-357285"
-      zip=""
+      zip="80206"
     />
     <div
       className="bot"
@@ -416,7 +413,6 @@ exports[`Search should match the correct snapshot when fetching dogs the first t
         onChange={[Function]}
         placeholder="zip-code"
         type="number"
-        value=""
       />
       <button
         className="search-btn"
@@ -513,7 +509,6 @@ exports[`Search should match the correct snapshot when fetching more dogs 1`] = 
         onChange={[Function]}
         placeholder="zip-code"
         type="number"
-        value=""
       />
       <button
         className="search-btn"
@@ -573,7 +568,7 @@ exports[`Search should match the correct snapshot when fetching more dogs 1`] = 
       size="Large"
       status="Available"
       url="https://www.petfinder.com/dog/vegas-357285"
-      zip=""
+      zip="80204"
     />
     <DogCard
       age="Baby"
@@ -594,7 +589,7 @@ exports[`Search should match the correct snapshot when fetching more dogs 1`] = 
       size="Large"
       status="Available"
       url="https://www.petfinder.com/dog/vegas-357285"
-      zip=""
+      zip="80206"
     />
     <div
       className="bot"
