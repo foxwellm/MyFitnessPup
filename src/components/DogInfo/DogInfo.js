@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 export const DogInfo = ({ dogFromStore: { id, name, age, gender, contact, description, url, status, distance, photo } }) => {
   const dogName = !name || !name.match(' ') ? name : name.split(' ')[0]
