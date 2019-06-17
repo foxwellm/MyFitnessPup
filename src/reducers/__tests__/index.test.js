@@ -16,6 +16,7 @@ describe('rootReducer', () => {
       searchTotalPages: 0,
       searchLocation: '',
       searchedDogs: [],
+      userZipCode: ''
     }
 
     expect(store.getState()).toEqual(expected)
