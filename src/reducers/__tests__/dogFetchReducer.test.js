@@ -9,6 +9,13 @@ describe('dogFetchReducer', () => {
     expect(result).toEqual(expected)
   })
 
+  it('should clear search if a new search is being performed', () => {
+    const initialState = [{ location: 80204, name: 'Buddy', distance: '5.0 mi' }, { location: 80206, name: 'Stanley', distance: '7.0 mi' }]
+    const expected = []
+    const result = dogFetchReducer(initialState, actions.newSearch())
+    expect(result).toEqual(expected)
+  })
+
   it('should add dogs that have been fetched from api and sort them by distance', () => {
     const initialState = []
     const mockfetchedDogs = [{ location: 80206, name: 'Stanley', distance: '7.0 mi' }, { location: 80204, name: 'Buddy', distance: '5.0 mi' }]
